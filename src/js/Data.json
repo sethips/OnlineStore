@@ -1,0 +1,51 @@
+{
+  "productsDataBase": [
+    {
+      "name": "Eingerless gloves in camel",
+      "pictures": [
+        "https://cdn.shopify.com/s/files/1/0102/4383/3952/products/accessories-241_7c9b49ad-9f62-42cb-bb36-4ad90c5eea70_2048x.jpg",
+        "https://cdn.shopify.com/s/files/1/0102/4383/3952/products/accessories-23_421d7906-0b30-4ab1-8f01-392a1419ad6f_2048x.jpg"
+      ],
+      "price": 390,
+      "price-reduction": 0,
+      "color": ["black"],
+      "description": {
+        "title-1": "MUS ADIPISCING NISL",
+        "p-1": [
+          "Condimentum mi curae adipiscing a viverra id vel curae nec parturient elementum pharetra ante a orci a ad praesent himenaeos ultrices conubia a maecenas.A nisi elementum fringilla sodales suspendisse at accumsan dictum vestibulum parturient condimentum condimentum augue.",
+          "Dui parturient ullamcorper a aptent sociosqu nisl a fringilla vestibulum adipiscing cras convallis pretium parturient senectus ridiculus nullam suspendisse ullamcorper vestibulum at quis dolor et a ullamcorper malesuada integer.Fusce urna parturient parturient eleifend ridiculus a morbi mattis."
+        ],
+        "title-2": "A nisi elementum fringilla sodales suspendisse at accumsan dictum vestibulum parturient condimentum condimentum a ullamcorper malesuada integer.",
+        "p-2": [
+          "A nisi elementum fringilla sodales suspendisse at accumsan dictum vestibulum parturient condimentum condimentum a ullamcorper malesuada integer."
+        ]
+      },
+      "Category": "home",
+      "stock": 100,
+      "Vendor": "Basel"
+    },
+    {
+      "name": "Jeptum ring earrings",
+      "pictures": [
+        "https://cdn.shopify.com/s/files/1/0102/4383/3952/products/jewelry-2_a1d9a402-b051-4c85-8761-6e2a489eddcc_2048x.jpg",
+        "https://cdn.shopify.com/s/files/1/0102/4383/3952/products/jewelry-12_8a0e17aa-c879-4127-98ea-6242dbf9568c_2048x.jpg"
+      ],
+      "price": 299,
+      "price-reduction": 0,
+      "color": ["black"],
+      "description": {
+        "title-1": "PARTURIENT ADIPISCING",
+        "p-1": [
+          "Blandit parturient adipiscing faucibus fringilla vestibulum ultrices integer dolor parturient parturient at porta platea inceptos. Habitant dui ut fringilla eleifend tincidunt scelerisque porta a tortor adipiscing ullamcorper etiam imperdiet pulvinar vel facilisis potenti facilisis mi parturient sed per egestas vivamus a auctor eu curae. Id dui bibendum non enim accumsan leo habitant diam eu."
+        ],
+        "title-2": "FACILISIS MI PARTURIENT",
+        "p-2": [
+          "Etiam fermentum parturient Sociosqu leo mus odio ad vestibulum. Adipiscing praesent a ut mi nostra sed. Proin a taciti adipiscing tempor turpis. Mi netus eros nisi vulputate etiam. Massa mi suspendisse ligula vestibu."
+        ]
+      },
+      "Category": "accessories",
+      "stock": 100,
+      "Vendor": "Basel"
+    }
+  ]
+}

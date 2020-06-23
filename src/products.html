@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Online Store</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+
+    <!-- Bootstrap CSS -->
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+    <!-- GoogleFont -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Karla&family=Lora:ital@1&family=Lato:ital@1&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+
+  <body>
+    <div class="">
+      <!-- top bar -->
+      <div
+        class="fluid-container custom-background py-2 px-5 d-flex font-size-13"
+      >
+        <!-- Top Bar -->
+        <div class="d-flex py-1 align-items-center m-auto ml-lg-0">
+          <i class="fa fa-phone-square icon-color-white pr-2"> </i>
+          <span class="mr-2 text-white"> OUR PHONE NUMBER: </span>
+          <span class="text-white">+77 (756) 334 876</span>
+        </div>
+        <div class="ml-auto py-1 d-none d-lg-block">
+          <ul class="nav">
+            <li class="nav-item">
+              <a href="#" class="nav-link text-white py-0"
+                ><i class="fa fa-user icon-color-white pr-2"></i>MY ACCOUNT</a
+              >
+            </li>
+            <li class="nav-item">
+              <a
+                href="Cart.html"
+                class="nav-link text-white py-0 position-relative"
+                >CART<span class="cart-badge">0</span></a
+              >
+            </li>
+            <li class="nav-item">
+              <a href="#" class="nav-link text-white py-0">OUR LOCATION</a>
+            </li>
+            <li class="nav-item">
+              <a href="Contact-us.html" class="nav-link text-white py-0"
+                >CONTACT US</a
+              >
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Main nav -->
+      <div class="fluid-container px-0 px-lg-5">
+        <div class="fluid-container p-0">
+          <nav class="navbar navbar-expand-md navbar-light py-4">
+            <div class="navbar-brand">
+              <a href="index.html">
+                <img
+                  class="img-fluid"
+                  src="//cdn.shopify.com/s/files/1/0102/4383/3952/files/logo-basel.svg?v=11944076954395008056"
+                  style="width: 196px;"
+                />
+              </a>
+            </div>
+            <button
+              class="navbar-toggler"
+              type="button"
+              data-toggle="collapse"
+              data-target="#MainNavbar"
+              aria-controls="MainNavbar"
+              aria-expanded="false"
+              aria-label="Toggle navigation"
+            >
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="MainNavbar">
+              <ul class="navbar-nav ml-auto">
+                <li class="nav-item active">
+                  <a class="nav-link" href="index.html">HOME </a>
+                </li>
+                <li class="nav-item dropdown">
+                  <a
+                    class="nav-link dropdown-toggle"
+                    href="collections.html"
+                    id="navbarDropdown"
+                    role="button"
+                    data-toggle="dropdown"
+                    aria-haspopup="true"
+                    aria-expanded="false"
+                  >
+                    SHOPE
+                  </a>
+                  <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="#">Laptops</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="#">Phones</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="#">Computers</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="#">Hardware</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="#">ETC</a>
+                  </div>
+                </li>
+                <li class="nav-item">
+                  <a
+                    class="nav-link position-relative"
+                    href="Cart.html"
+                    aria-disabled="true"
+                    >CART<span class="cart-badge-navbar">0</span></a
+                  >
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#" aria-disabled="true">ABOUT US</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#" aria-disabled="true">HELP</a>
+                </li>
+              </ul>
+            </div>
+          </nav>
+
+          <!-- hidden search bar -->
+          <div class="search-container d-none justify-content-center">
+            <form class="form-inline">
+              <input
+                class="form-control mr-sm-2"
+                type="search"
+                placeholder="Search"
+                aria-label="Search"
+              />
+              <button class="btn btn-outline-info my-2 my-sm-0" type="submit">
+                Search
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+
+      <!-- collection bar -->
+      <nav aria-label="breadcrumb" class="mb-5">
+        <ol class="breadcrumb rounded-0 px-sm-3 px-md-5">
+          <li class="breadcrumb-item"><a href="#">Home</a></li>
+          <li class="breadcrumb-item"><a href="#">Collections</a></li>
+          <li class="breadcrumb-item active" aria-current="page">Products</li>
+        </ol>
+      </nav>
+
+      <!-- insert Code Here -->
+
+      <!-- related products section -->
+      <div class="fluid-container">
+        <h3 class="text-center">RELATED PRODUCT</h3>
+        <!-- product carousel -->
+        <div class="row mx-2">
+          <div class="col-sm-12 px-2 px-md-5">
+            <div
+              id="myCarousel-2"
+              class="carousel slide"
+              data-ride="carousel"
+              data-interval="0"
+            >
+              <!-- Carousel indicators -->
+              <ol class="carousel-indicators">
+                <li
+                  data-target="#myCarousel-2"
+                  data-slide-to="0"
+                  class="active"
+                ></li>
+                <li data-target="#myCarousel-2" data-slide-to="1"></li>
+              </ol>
+              <!-- Wrapper for carousel items -->
+              <div class="carousel-inner">
+                <div class="item carousel-item active pt-3 pb-5 h-auto">
+                  <div class="row">
+                    <div class="col-4 col-md-3 px-1">
+                      <div class="img-box my-3">
+                        <img
+                          src="https://cdn.shopify.com/s/files/1/0102/4383/3952/products/accessories-21_1_1a51cd0d-6911-4536-af1c-1a475b3792a6_1512x.jpg"
+                          class="img-fluid h-auto"
+                          alt=""
+                        />
+                      </div>
+                    </div>
+                    <div class="col-4 col-md-3 px-1">
+                      <div class="img-box my-3">
+                        <img
+                          src="https://cdn.shopify.com/s/files/1/0102/4383/3952/products/accessories-14_9e7e1119-5ef5-437f-b1c9-959d06f85d3c_1728x.jpg"
+                          class="img-fluid h-auto"
+                          alt=""
+                        />
+                      </div>
+                    </div>
+                    <div class="col-4 col-md-3 px-1">
+                      <div class="img-box my-3">
+                        <img
+                          src="https://cdn.shopify.com/s/files/1/0102/4383/3952/products/accessories-14_9e7e1119-5ef5-437f-b1c9-959d06f85d3c_1728x.jpg"
+                          class="img-fluid h-auto"
+                          alt=""
+                        />
+                      </div>
+                    </div>
+                    <div class="d-none d-md-block col-4 col-md-3 px-1">
+                      <div class="img-box my-3">
+                        <img
+                          src="https://cdn.shopify.com/s/files/1/0102/4383/3952/products/accessories-14_9e7e1119-5ef5-437f-b1c9-959d06f85d3c_1728x.jpg"
+                          class="img-fluid h-auto"
+                          alt=""
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="item carousel-item pt-3 pb-5 h-auto">
+                  <div class="row">
+                    <div class="col-4 col-md-3 px-1">
+                      <div class="img-box my-3">
+                        <img
+                          src="https://cdn.shopify.com/s/files/1/0102/4383/3952/products/accessories-23_421d7906-0b30-4ab1-8f01-392a1419ad6f_1728x.jpg"
+                          class="img-fluid h-auto"
+                          alt=""
+                        />
+                      </div>
+                    </div>
+                    <div class="col-4 col-md-3 px-1">
+                      <div class="img-box my-3">
+                        <img
+                          src="https://cdn.shopify.com/s/files/1/0102/4383/3952/products/accessories-16_64fd0422-07ec-4407-b434-a573bbdf3300_1728x.jpg"
+                          class="img-fluid h-auto"
+                          alt=""
+                        />
+                      </div>
+                    </div>
+                    <div class="col-4 col-md-3 px-1">
+                      <div class="img-box my-3">
+                        <img
+                          src="https://cdn.shopify.com/s/files/1/0102/4383/3952/products/accessories-14_9e7e1119-5ef5-437f-b1c9-959d06f85d3c_1728x.jpg"
+                          class="img-fluid h-auto"
+                          alt=""
+                        />
+                      </div>
+                    </div>
+                    <div class="d-none d-md-block col-4 col-md-3 px-1">
+                      <div class="img-box my-3">
+                        <img
+                          src="https://cdn.shopify.com/s/files/1/0102/4383/3952/products/accessories-14_9e7e1119-5ef5-437f-b1c9-959d06f85d3c_1728x.jpg"
+                          class="img-fluid h-auto"
+                          alt=""
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- Carousel controls -->
+              <!-- <a
+                class="carousel-control left carousel-control-prev"
+                href="#myCarousel-2"
+                data-slide="prev"
+              >
+                <i class="fa fa-angle-left"></i>
+              </a>
+              <a
+                class="carousel-control right carousel-control-next"
+                href="#myCarousel-2"
+                data-slide="next"
+              >
+                <i class="fa fa-angle-right"></i>
+              </a> -->
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- footer -->
+      <footer class="fluid-container black-bg pt-5 pb-3">
+        <div class="d-flex justify-content-center">
+          <span class="px-2"><i class="fa fa-facebook text-white"></i></span
+          ><span class="px-2"><i class="fa fa-twitter text-white"></i></span
+          ><span class="px-2"><i class="fa fa-envelope text-white"></i></span>
+        </div>
+        <div class="fluid-container px-5">
+          <div class="row py-5 text-white">
+            <div class="col-xs-12 col-sm-6 col-md-3 col-lg-2 my-2">
+              <h5 class="mb-4">
+                <span class="border-bottom">OUR</span> STORES
+              </h5>
+              <ul class="list-unstyled">
+                <li>Ha Noi</li>
+                <li>New York</li>
+                <li>London SF</li>
+                <li>Los Angeles</li>
+                <li>Chicago</li>
+                <li>Las Vegas</li>
+              </ul>
+            </div>
+            <div class="col-xs-12 col-sm-6 col-md-3 col-lg-2 my-2">
+              <h5 class="mb-4">
+                <span class="border-bottom">INF</span>ORMATION
+              </h5>
+              <ul class="list-unstyled">
+                <li>About Store</li>
+                <li>New Collection</li>
+                <li>Woman Dress</li>
+                <li>Contact Us</li>
+                <li>Latest News</li>
+                <li>Our Sitemap</li>
+              </ul>
+            </div>
+            <div class="col-xs-12 col-sm-6 col-md-3 col-lg-2 my-2">
+              <h5 class="mb-4">
+                <span class="border-bottom">USE</span>FUL LINKS
+              </h5>
+              <ul class="list-unstyled">
+                <li>Privacy Policy</li>
+                <li>Returns</li>
+                <li>Terms & Conditions</li>
+                <li>Contact Us</li>
+                <li>Latest News</li>
+                <li>Our Sitemap</li>
+              </ul>
+            </div>
+            <div class="col-xs-12 col-sm-6 col-md-3 col-lg-2 my-2">
+              <h5 class="mb-4">
+                <span class="border-bottom">FOO</span>TER MENU
+              </h5>
+              <ul class="list-unstyled">
+                <li>Instagram profile</li>
+                <li>New Collection</li>
+                <li>Woman Dress</li>
+                <li>Contact Us</li>
+                <li>Latest News</li>
+                <li>Purchase Theme</li>
+              </ul>
+            </div>
+            <div class="col-xs-12 col-md-4 col-lg-4 my-2 d-flex flex-column">
+              <h5 class="mb-4">
+                <span class="border-bottom">ABO</span>UT THE STORE
+              </h5>
+              <p>
+                STORE - worldwide fashion store since 1978. We sell over 1000+
+                branded products on our web-site.
+              </p>
+              <span class="mb-2"
+                ><i class="fa fa-location-arrow mr-2"></i> 451 Wall Street, USA,
+                New York</span
+              >
+              <span
+                ><i class="fa fa-mobile mr-2"></i> Phone: (064) 332-1233</span
+              >
+            </div>
+          </div>
+          <div
+            class="border-top text-white d-flex justify-content-center align-items-center"
+          >
+            <span class="pt-3"
+              >2019 Created by The4 Studio. Premium e-commerce solutions.</span
+            >
+          </div>
+        </div>
+      </footer>
+    </div>
+    <!--JavaScript -->
+    <script src="../dist/bundle.js"></script>
+
+    <!-- fontAwesome Js File-->
+    <script
+      src="https://kit.fontawesome.com/aab7f370d2.js"
+      crossorigin="anonymous"
+    ></script>
+
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script
+      src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+      integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+      integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+      integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>

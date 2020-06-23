@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Online Store</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+
+    <!-- Bootstrap CSS -->
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+    <!-- GoogleFont -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Karla&family=Lora:ital@1&family=Lato:ital@1&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+
+  <body>
+    <div class="">
+      <!-- top bar -->
+      <div
+        class="fluid-container custom-background py-2 px-5 d-flex font-size-13"
+      >
+        <!-- Top Bar -->
+        <div class="d-flex py-1 align-items-center m-auto ml-lg-0">
+          <i class="fa fa-phone-square icon-color-white pr-2"> </i>
+          <span class="mr-2 text-white"> OUR PHONE NUMBER: </span>
+          <span class="text-white">+77 (756) 334 876</span>
+        </div>
+        <div class="ml-auto py-1 d-none d-lg-block">
+          <ul class="nav">
+            <li class="nav-item">
+              <a href="#" class="nav-link text-white py-0"
+                ><i class="fa fa-user icon-color-white pr-2"></i>MY ACCOUNT</a
+              >
+            </li>
+            <li class="nav-item">
+              <a href="#" class="nav-link text-white py-0 position-relative"
+                >CART<span class="cart-badge">0</span></a
+              >
+            </li>
+            <li class="nav-item">
+              <a href="#" class="nav-link text-white py-0">OUR LOCATION</a>
+            </li>
+            <li class="nav-item">
+              <a href="Contact-us.html" class="nav-link text-white py-0"
+                >CONTACT US</a
+              >
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Main nav -->
+      <div class="fluid-container px-0 px-lg-5">
+        <div class="fluid-container p-0">
+          <nav class="navbar navbar-expand-md navbar-light py-4">
+            <div class="navbar-brand">
+              <a href="index.html">
+                <img
+                  class="img-fluid"
+                  src="//cdn.shopify.com/s/files/1/0102/4383/3952/files/logo-basel.svg?v=11944076954395008056"
+                  style="width: 196px;"
+                />
+              </a>
+            </div>
+            <button
+              class="navbar-toggler"
+              type="button"
+              data-toggle="collapse"
+              data-target="#MainNavbar"
+              aria-controls="MainNavbar"
+              aria-expanded="false"
+              aria-label="Toggle navigation"
+            >
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="MainNavbar">
+              <ul class="navbar-nav ml-auto">
+                <li class="nav-item active">
+                  <a class="nav-link" href="index.html">HOME </a>
+                </li>
+                <li class="nav-item dropdown">
+                  <a
+                    class="nav-link dropdown-toggle"
+                    href="collections.html"
+                    id="navbarDropdown"
+                    role="button"
+                    data-toggle="dropdown"
+                    aria-haspopup="true"
+                    aria-expanded="false"
+                  >
+                    SHOPE
+                  </a>
+                  <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="#">Laptops</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="#">Phones</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="#">Computers</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="#">Hardware</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="#">ETC</a>
+                  </div>
+                </li>
+                <li class="nav-item">
+                  <a
+                    class="nav-link position-relative"
+                    href="Cart.html"
+                    aria-disabled="true"
+                    >CART<span class="cart-badge-navbar">0</span></a
+                  >
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#" aria-disabled="true">ABOUT US</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#" aria-disabled="true">HELP</a>
+                </li>
+              </ul>
+            </div>
+          </nav>
+
+          <!-- hidden search bar -->
+          <div class="search-container d-none justify-content-center">
+            <form class="form-inline">
+              <input
+                class="form-control mr-sm-2"
+                type="search"
+                placeholder="Search"
+                aria-label="Search"
+              />
+              <button class="btn btn-outline-info my-2 my-sm-0" type="submit">
+                Search
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+
+      <!-- main section -->
+      <div class="container py-5">
+        <div class="row">
+          <div class="col-12 col-lg-6 mb-5 mb-lg-0">
+            <h2>GET IN TOUCH WITH US</h2>
+            <span class="mb-4"><hr /></span>
+
+            <div class="row">
+              <div class="col-6">
+                <div class="form-group">
+                  <label for="name">Your Name</label>
+                  <input
+                    class="form-control"
+                    type="text"
+                    name="name"
+                    id="name"
+                  />
+                </div>
+              </div>
+              <div class="col-6">
+                <div class="form-group">
+                  <label for="email">Your Email (required)</label>
+                  <input
+                    class="form-control"
+                    type="email"
+                    name="email"
+                    id="email"
+                  />
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="phone">Your Phone Number</label>
+              <input class="form-control" type="text" name="phone" id="phone" />
+            </div>
+            <div class="form-group">
+              <label for="message">Your Message</label>
+              <textarea
+                class="form-control w-100"
+                name="message"
+                id="message"
+                rows="5"
+              ></textarea>
+            </div>
+            <button class="btn btn-info px-5 text-uppercase rounded-0">
+              send a message
+            </button>
+          </div>
+          <div class="col-12 col-lg-6 mt-5 mt-lg-0">
+            <h2>INFORMATION ABOUT US</h2>
+            <span class="mb-4"><hr /></span>
+            <p>
+              Consectetur aliquet a erat per sem nisi leo placerat dui a
+              adipiscing a sagittis vestibulum. Sagittis posuere id nam quis
+              vestibulum faucibus a est tristique ridiculus sed.
+            </p>
+            <p>
+              Sagittis posuere id nam quis vestibulum vestibulum a facilisi at
+              elit hendrerit scelerisque sodales nam dis orci non aliquet enim.
+            </p>
+            <h2 class="mb-4">CONTACT US</h2>
+            <div class="row mb-4">
+              <div class="col-12 col-lg-6 d-flex align-items-center mb-4">
+                <img
+                  width="30"
+                  height="30"
+                  src="https://image.flaticon.com/icons/svg/2089/2089181.svg"
+                  class="mr-3"
+                />
+                <div>
+                  <span class="d-block">Tel: 877-45-44-33</span>
+                  <span class="d-block">E-Mail: shop@store.uk</span>
+                </div>
+              </div>
+              <div class="col-12 col-lg-6 d-flex align-items-center mb-4">
+                <img
+                  width="30"
+                  height="30"
+                  src="https://image.flaticon.com/icons/svg/2088/2088617.svg"
+                  class="mr-3"
+                />
+                <div>
+                  <span class="d-block">Support forum</span>
+                  <span class="d-block">for over 24h</span>
+                </div>
+              </div>
+              <div
+                class="col-12 col-lg-6 d-flex align-items-center mb-4 mb-lg-0"
+              >
+                <img
+                  width="30"
+                  height="30"
+                  src="https://image.flaticon.com/icons/svg/2928/2928989.svg"
+                  class="mr-3"
+                />
+                <div>
+                  <span class="d-block">20 Margaret St, London</span>
+                  <span class="d-block">Great Britain, 3NM98-LK</span>
+                </div>
+              </div>
+              <div
+                class="col-12 col-lg-6 d-flex align-items-center mb-4 mb-lg-0"
+              >
+                <img
+                  width="30"
+                  height="30"
+                  src="https://image.flaticon.com/icons/svg/709/709790.svg"
+                  class="loaded"
+                />
+                <div>
+                  <span class="d-block">Free standard shipping</span>
+                  <span class="d-block">on all orders.</span>
+                </div>
+              </div>
+            </div>
+            <div>
+              <img
+                width="30"
+                height="30"
+                src="https://image.flaticon.com/icons/svg/2111/2111398.svg"
+                class="mr-3"
+              />
+              <img
+                width="30"
+                height="30"
+                src="https://image.flaticon.com/icons/svg/1409/1409937.svg"
+                class="mr-3"
+              />
+              <img
+                width="35"
+                height="35"
+                src="https://image.flaticon.com/icons/svg/855/855502.svg"
+                class="mr-3"
+                class="loaded"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- footer -->
+      <footer class="fluid-container black-bg pt-5 pb-3">
+        <div class="d-flex justify-content-center">
+          <span class="px-2"><i class="fa fa-facebook text-white"></i></span
+          ><span class="px-2"><i class="fa fa-twitter text-white"></i></span
+          ><span class="px-2"><i class="fa fa-envelope text-white"></i></span>
+        </div>
+        <div class="fluid-container px-5">
+          <div class="row py-5 text-white">
+            <div class="col-xs-12 col-sm-6 col-md-3 col-lg-2 my-2">
+              <h5 class="mb-4">
+                <span class="border-bottom">OUR</span> STORES
+              </h5>
+              <ul class="list-unstyled">
+                <li>Ha Noi</li>
+                <li>New York</li>
+                <li>London SF</li>
+                <li>Los Angeles</li>
+                <li>Chicago</li>
+                <li>Las Vegas</li>
+              </ul>
+            </div>
+            <div class="col-xs-12 col-sm-6 col-md-3 col-lg-2 my-2">
+              <h5 class="mb-4">
+                <span class="border-bottom">INF</span>ORMATION
+              </h5>
+              <ul class="list-unstyled">
+                <li>About Store</li>
+                <li>New Collection</li>
+                <li>Woman Dress</li>
+                <li>Contact Us</li>
+                <li>Latest News</li>
+                <li>Our Sitemap</li>
+              </ul>
+            </div>
+            <div class="col-xs-12 col-sm-6 col-md-3 col-lg-2 my-2">
+              <h5 class="mb-4">
+                <span class="border-bottom">USE</span>FUL LINKS
+              </h5>
+              <ul class="list-unstyled">
+                <li>Privacy Policy</li>
+                <li>Returns</li>
+                <li>Terms & Conditions</li>
+                <li>Contact Us</li>
+                <li>Latest News</li>
+                <li>Our Sitemap</li>
+              </ul>
+            </div>
+            <div class="col-xs-12 col-sm-6 col-md-3 col-lg-2 my-2">
+              <h5 class="mb-4">
+                <span class="border-bottom">FOO</span>TER MENU
+              </h5>
+              <ul class="list-unstyled">
+                <li>Instagram profile</li>
+                <li>New Collection</li>
+                <li>Woman Dress</li>
+                <li>Contact Us</li>
+                <li>Latest News</li>
+                <li>Purchase Theme</li>
+              </ul>
+            </div>
+            <div class="col-xs-12 col-md-4 col-lg-4 my-2 d-flex flex-column">
+              <h5 class="mb-4">
+                <span class="border-bottom">ABO</span>UT THE STORE
+              </h5>
+              <p>
+                STORE - worldwide fashion store since 1978. We sell over 1000+
+                branded products on our web-site.
+              </p>
+              <span class="mb-2"
+                ><i class="fa fa-location-arrow mr-2"></i> 451 Wall Street, USA,
+                New York</span
+              >
+              <span
+                ><i class="fa fa-mobile mr-2"></i> Phone: (064) 332-1233</span
+              >
+            </div>
+          </div>
+          <div
+            class="border-top text-white d-flex justify-content-center align-items-center"
+          >
+            <span class="pt-3"
+              >2019 Created by The4 Studio. Premium e-commerce solutions.</span
+            >
+          </div>
+        </div>
+      </footer>
+    </div>
+    <!--JavaScript -->
+    <script src="../dist/bundle.js"></script>
+
+    <!-- fontAwesome Js File-->
+    <script
+      src="https://kit.fontawesome.com/aab7f370d2.js"
+      crossorigin="anonymous"
+    ></script>
+
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script
+      src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+      integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+      integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+      integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>
