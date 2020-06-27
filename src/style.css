@@ -301,6 +301,28 @@
 }
 /*  */
 
+.img-Selection .active {
+  filter: opacity(50%);
+}
+
+.selectedSize {
+  border-bottom: solid 2px Black;
+}
+.flash {
+  animation: flash 1s steps(5, start) infinite;
+}
+
+/* animations */
+@keyframes flash {
+  0%,
+  50% {
+    opacity: 0;
+  }
+  51%,
+  100% {
+    opacity: 1;
+  }
+}
 /*  Extra small devices (portrait phones, less than 576px)
  No media query for `xs` since this is the default in Bootstrap */
 

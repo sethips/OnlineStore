@@ -1,12 +1,28 @@
-<!-- main section -->
 <div class="container">
   <div class="row">
     <div class="col-sm-12 col-md-6 mb-5">
       <div class="row">
-        <div class="col-3 order-sm-2 order-lg-1"></div>
+        <div class="col-6 col-lg-3 order-sm-2 order-lg-1 img-Selection">
+          <div class="d-flex flex-row flex-lg-column">
+            <img
+              src="https://cdn.shopify.com/s/files/1/0102/4383/3952/products/jewelry-12_8a0e17aa-c879-4127-98ea-6242dbf9568c_2048x.jpg"
+              alt=""
+              class="img-fluid mb-3 custom-cursor active"
+            />
+            <img
+              src="https://cdn.shopify.com/s/files/1/0102/4383/3952/products/jewelry-2_a1d9a402-b051-4c85-8761-6e2a489eddcc_2048x.jpg"
+              alt=""
+              class="img-fluid custom-cursor"
+            />
+          </div>
+        </div>
         <div class="col-12 col-lg-9 order-sm-1 order-lg-2">
-          <div class="card border-0">
-            <img src="${product.pictures[0]}" class="img-fluid" alt="" />
+          <div class="card border-0 mb-3">
+            <img
+              src="https://cdn.shopify.com/s/files/1/0102/4383/3952/products/jewelry-12_8a0e17aa-c879-4127-98ea-6242dbf9568c_2048x.jpg"
+              class="img-fluid product-main-image"
+              alt=""
+            />
           </div>
         </div>
       </div>
@@ -14,9 +30,9 @@
 
     <!-- title and description -->
     <div class="col-sm-12 col-md-6 px-4">
-      <h1 class="my-3 FontSize28">${product.name}</h1>
+      <h1 class="my-3 FontSize28">Jeptum ring earrings</h1>
       <p class="my-3">
-        <span class="money h2 text-info">${product.price}</span>
+        <span class="money h2 text-info">299$</span>
       </p>
       <p class="my-3">
         <span class="text-danger"> 11 sold in last 15 hours</span>
@@ -68,14 +84,20 @@
       <!-- color section -->
       <div class="d-flex align-items-center my-4">
         <span>Color: </span>
-        <div
-          class="pb-1 ml-3"
-          style="border-bottom: solid 2px ${product.color[0]};"
-        >
+        <div class="pb-1 ml-3" style="border-bottom: solid 2px Black;">
           <div
             class="rounded-circle"
-            style="width: 25px; height: 25px; background-color: ${product.color[0]};"
+            style="width: 25px; height: 25px; background-color: Black;"
           ></div>
+        </div>
+      </div>
+      <!-- size section -->
+      <div class="d-none align-items-center my-4">
+        <span>Size: </span>
+        <div class="w-100">
+          <span class="font-weight-bold mx-4 px-2 selectedSize">L</span
+          ><span class="font-weight-bold mx-4 px-2">M</span
+          ><span class="font-weight-bold mx-4 px-2">S</span>
         </div>
       </div>
 
@@ -142,9 +164,7 @@
         class="d-flex flex-column font-weight-bold text-muted my-3"
         style="font-size: 14px;"
       >
-        <span class="my-2">
-          Vendor: <span class="vendor">${product.Vendor}</span></span
-        >
+        <span class="my-2"> Vendor: <span class="vendor">Basel</span></span>
         <span class="my-2"> SKU: <span class="stock">N/A</span></span>
         <span class="my-2">
           Share: <i class="fa fa-facebook custom-cursor mx-2"></i>
@@ -232,22 +252,34 @@
         <div class="col-sm-12 col-md-6 ml-sm-4 ml-md-0">
           <div class="firstWrapper" id="#description">
             <h5 class="mb-4 font-weight-bold" style="font-size: 18px;">
-              ${product.description.title-1}
+              PARTURIENT ADIPISCING
             </h5>
             <p style="font-size: 14px;">
-              ${product.description.p-1[0]}
+              Blandit parturient adipiscing faucibus fringilla vestibulum
+              ultrices integer dolor parturient parturient at porta platea
+              inceptos. Habitant dui ut fringilla eleifend tincidunt scelerisque
+              porta a tortor adipiscing ullamcorper etiam imperdiet pulvinar vel
+              facilisis potenti facilisis mi parturient sed per egestas vivamus
+              a auctor eu curae. Id dui bibendum non enim accumsan leo habitant
+              diam eu.
             </p>
 
             <p style="font-size: 14px;">
-              ${product.description.p-1[1]}
+              Etiam fermentum parturient Sociosqu leo mus odio ad vestibulum.
+              Adipiscing praesent a ut mi nostra sed. Proin a taciti adipiscing
+              tempor turpis. Mi netus eros nisi vulputate etiam. Massa mi
+              suspendisse ligula vestibu.
             </p>
 
             <h5 class="my-4 font-weight-bold" style="font-size: 18px;">
-              ${product.description.title-2}
+              FACILISIS MI PARTURIENT
             </h5>
 
             <p style="font-size: 14px;">
-              ${product.description.p-2[0]}
+              Etiam fermentum parturient Sociosqu leo mus odio ad vestibulum.
+              Adipiscing praesent a ut mi nostra sed. Proin a taciti adipiscing
+              tempor turpis. Mi netus eros nisi vulputate etiam. Massa mi
+              suspendisse ligula vestibu.
             </p>
           </div>
         </div>
@@ -322,11 +354,11 @@
                 </div>
                 <!-- Carousel controls -->
                 <!-- <a class="carousel-control left carousel-control-prev" href="#myCarousel" data-slide="prev">
-                            <i class="fa fa-angle-left"></i>
-                        </a>
-                        <a class="carousel-control right carousel-control-next" href="#myCarousel" data-slide="next">
-                            <i class="fa fa-angle-right"></i>
-                        </a> -->
+                      <i class="fa fa-angle-left"></i>
+                  </a>
+                  <a class="carousel-control right carousel-control-next" href="#myCarousel" data-slide="next">
+                      <i class="fa fa-angle-right"></i>
+                  </a> -->
               </div>
             </div>
           </div>
@@ -341,7 +373,7 @@
     >
       <div class="w-100 h-100 d-flex justify-content-center py-5">
         <h4>Color:</h4>
-        <h4>${product.color[0]}</h4>
+        <h4>Black</h4>
       </div>
     </div>
     <div
