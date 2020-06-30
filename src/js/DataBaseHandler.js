@@ -15,3 +15,11 @@ export function getProductById(productId) {
     }
   }
 }
+
+export function getPriceByProductIdAndColor(productID, color) {
+  for (const product of jsonDataBase.productsDataBase) {
+    if (product.id == productID) {
+      return product.price[product.color.indexOf(color)];
+    }
+  }
+}

@@ -2,6 +2,7 @@
 import * as DataBaseHandler from './DataBaseHandler';
 import * as Ui_Updater from './UI-Updater';
 import * as DomModules from './DomModules';
+import * as mainLogic from './mainLogic';
 
 // Local Variables
 const DomElements = DomModules.DOMElements;
@@ -76,9 +77,7 @@ DomElements.body.addEventListener('click', (e) => {
       e.target.parentNode.style.borderBottomStyle = 'Solid';
       //check if each color has it own price
       if (visitedProduct.price.length > 1) {
-        console.log('here');
         let priceID = e.target.id.substring(e.target.id.indexOf('-') + 1);
-        console.log(priceID);
         document.querySelector('.itemPrice').textContent =
           visitedProduct.price[priceID] + '$';
       }
@@ -114,5 +113,6 @@ DomElements.body.addEventListener('click', (e) => {
   //
   // add to cart button click event
   if (e.target.id === 'cartButton') {
+    mainLogic.addProductToCart();
   }
 });
