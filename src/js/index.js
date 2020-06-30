@@ -18,6 +18,9 @@ if (!sessionStorage.getItem('startTimer')) {
 //
 // product.html product template insert on Load
 document.addEventListener('DOMContentLoaded', () => {
+  // check cart number of items
+  mainLogic.incrementOrDecrementCartBadge();
+
   if (document.querySelector('#InsertTemplateHere')) {
     // get product id from URL
     let productParameterString = window.location.search;
@@ -28,25 +31,25 @@ document.addEventListener('DOMContentLoaded', () => {
     visitedProduct = DataBaseHandler.getProductById(productParameter);
     const productTemplate = Ui_Updater.CreatProductTemplate(visitedProduct);
     Ui_Updater.displayProduct(productTemplate);
-  }
 
-  // get timer dom elements
-  const daysDomEl = document.querySelector('.days');
-  const hoursDomEl = document.querySelector('.hours');
-  const minutesDomEl = document.querySelector('.minutes');
-  const secondsDomEl = document.querySelector('.seconds');
-  //get timer initial starting time from sessionStorage
-  const startingTime = sessionStorage.getItem('startTimer');
-  // timer set to 7 hours
-  const timeDiffInSec = Ui_Updater.getTimeDiff(startingTime, 7);
-  // start Timer and display It On dom
-  Ui_Updater.startTimer(
-    timeDiffInSec,
-    daysDomEl,
-    hoursDomEl,
-    minutesDomEl,
-    secondsDomEl
-  );
+    // get timer dom elements
+    const daysDomEl = document.querySelector('.days');
+    const hoursDomEl = document.querySelector('.hours');
+    const minutesDomEl = document.querySelector('.minutes');
+    const secondsDomEl = document.querySelector('.seconds');
+    //get timer initial starting time from sessionStorage
+    const startingTime = sessionStorage.getItem('startTimer');
+    // timer set to 7 hours
+    const timeDiffInSec = Ui_Updater.getTimeDiff(startingTime, 7);
+    // start Timer and display It On dom
+    Ui_Updater.startTimer(
+      timeDiffInSec,
+      daysDomEl,
+      hoursDomEl,
+      minutesDomEl,
+      secondsDomEl
+    );
+  }
 });
 
 //

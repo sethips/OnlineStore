@@ -25,6 +25,8 @@ export function addProductToCart() {
       JSON.stringify(productToAdd)
     );
   }
+
+  incrementOrDecrementCartBadge();
 }
 
 // ------
@@ -109,4 +111,22 @@ function addRepeatedProduct(cartProductKey, price, quantity) {
     parseInt(product.product_quantity) + parseInt(quantity);
 
   return product;
+}
+
+export function incrementOrDecrementCartBadge() {
+  let productCount = Object.entries(localStorage).length;
+
+  if (productCount >= 1) {
+    document.querySelector('.cart-badge-navbar').style.display = 'block';
+    document.querySelector('.cart-badge').style.display = 'block';
+
+    document.querySelector('.cart-badge-navbar').textContent = productCount;
+    document.querySelector('.cart-badge').textContent = productCount;
+  } else {
+    document.querySelector('.cart-badge-navbar').style.display = 'none';
+    document.querySelector('.cart-badge').style.display = 'none';
+
+    document.querySelector('.cart-badge-navbar').textContent = productCount;
+    document.querySelector('.cart-badge').textContent = productCount;
+  }
 }
