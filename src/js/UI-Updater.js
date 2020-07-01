@@ -1,3 +1,6 @@
+import * as mainLogic from './mainLogic';
+import * as dataBaseHandler from './DataBaseHandler';
+
 // get images from json database
 function getImages(arr) {
   let imagesHtmlTemplate = '';
@@ -207,6 +210,7 @@ function getDescription(arr) {
   return descriptionHtmlTemplate;
 }
 
+//--------
 export function CreatProductTemplate(product) {
   let productSectionTemplate = `<div class="container">
                                   <div class="row">
@@ -306,19 +310,19 @@ export function CreatProductTemplate(product) {
                                       <!-- number of items -->
                                       <div class="input-group w-25 my-3">
                                         <div class="input-group-prepend">
-                                          <button class="btn btn-light btn-sm input-group-text custom-cursor product-count"
+                                          <button class="btn btn-light btn-sm input-group-text px-2 custom-cursor product-count"
                                           id="decrease">-</button>
                                         </div>
                                         <input
                                           type="text"
-                                          class="form-control bg-white text-center order-quantity"
+                                          class="form-control bg-white text-center px-1 order-quantity"
                                           placeholder=""
                                           aria-label=""
                                           value="1"
                                           readonly
                                         />
                                         <div class="input-group-append">
-                                          <button class="btn btn-light btn-sm input-group-text custom-cursor product-count" id="increase">+</button>
+                                          <button class="btn btn-light btn-sm input-group-text px-2 custom-cursor product-count" id="increase">+</button>
                                         </div>
                                       </div>
 
@@ -616,12 +620,145 @@ export function CreatProductTemplate(product) {
   return productSectionTemplate;
 }
 
+//--------
+export function creatCartPageTemplate() {
+  let cartContent = mainLogic.getCartContent();
+  let cartPageTemplate = '';
+
+  for (const product of cartContent) {
+    let productPicture = dataBaseHandler.getProductMainPic(product.product_id);
+    cartPageTemplate += `
+                          <tr class="d-flex flex-column d-lg-table-row bg-light top-buffer">
+                            <td class="d-none d-lg-table-cell align-middle">
+                              <button
+                                type="button"
+                                class="close text-danger border border-danger rounded-circle"
+                                aria-label="Close"
+                                style="width: 25px; height: 25px; outline: none;"
+                              >
+                                <span aria-hidden="true">&times;</span>
+                              </button>
+                            </td>
+                            <td class="align-middle">
+                              <button
+                                type="button"
+                                class="close text-danger d-lg-none border border-danger rounded-circle"
+                                aria-label="Close"
+                                style="width: 25px; height: 25px; outline: none;"
+                              >
+                                <span aria-hidden="true">&times;</span>
+                              </button>
+                              <img
+                                width="80"
+                                height="100"
+                                class="img-fluid"
+                                src="${productPicture}"
+                                alt="watches"
+                              />
+                            </td>
+                            <td scope="row" class="text-center text-lg-left align-middle">
+                              <div class="w-100 d-flex d-lg-none">
+                                <span class="text-uppercase">Product:</span
+                                ><span class="ml-auto">${product.product_name}</span>
+                              </div>
+                              <span class="d-none d-lg-block">${product.product_name} </span>
+                              <span class="d-block text-muted text-right text-lg-left small">Color: ${product.product_color}</span>
+                              <span class="d-block text-muted text-right text-lg-left small">Size: ${product.product_size}</span>
+                            </td>
+                            <td class="align-middle">
+                              <div class="d-flex d-lg-none">
+                                <span class="text-uppercase">price:</span>
+                                <span class="ml-auto">${product.product_price}$</span>
+                              </div>
+                              <span class="d-none d-lg-block">${product.product_price}$</span>
+                            </td>
+                            <td class="align-middle">
+                              <div class="d-flex d-lg-none">
+                                <span class="text-uppercase">Quantity:</span>
+                                <div class="input-group ml-auto" style="width: 100px;">
+                                  <div class="input-group-prepend">
+                                    <button
+                                      class="btn btn-light btn-sm input-group-text px-2 custom-cursor product-count"
+                                      id="decrease"
+                                    >
+                                      -
+                                    </button>
+                                  </div>
+                                  <input
+                                    type="text"
+                                    class="form-control bg-white text-center px-1 order-quantity"
+                                    placeholder=""
+                                    aria-label=""
+                                    value="${product.product_quantity}"
+                                    readonly
+                                  />
+                                  <div class="input-group-append">
+                                    <button
+                                      class="btn btn-light btn-sm input-group-text px-2 custom-cursor product-count"
+                                      id="increase"
+                                    >
+                                      +
+                                    </button>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="d-none d-lg-flex input-group mx-auto" style="width: 100px;">
+                                <div class="input-group-prepend">
+                                  <button
+                                    class="btn btn-light btn-sm input-group-text px-2 custom-cursor product-count"
+                                    id="decrease"
+                                  >
+                                    -
+                                  </button>
+                                </div>
+                                <input
+                                  type="text"
+                                  class="form-control bg-white text-center px-1 order-quantity"
+                                  placeholder=""
+                                  aria-label=""
+                                  value="${product.product_quantity}"
+                                  readonly
+                                />
+                                <div class="input-group-append">
+                                  <button
+                                    class="btn btn-light btn-sm input-group-text px-2 custom-cursor product-count"
+                                    id="increase"
+                                  >
+                                    +
+                                  </button>
+                                </div>
+                              </div>
+                            </td>
+                            <td class="align-middle">
+                              <div class="d-flex d-lg-none">
+                                <span class="text-uppercase">Total:</span>
+                                <span class="ml-auto">${product.product_price}$</span>
+                              </div>
+                              <span class="d-none d-lg-block">${product.product_price}$</span>
+                            </td>
+                          </tr>`;
+  }
+
+  return cartPageTemplate;
+}
+
+export function displayCart(templateString) {
+  if (templateString) {
+    document
+      .querySelector('#CartPageInsertTemplateHere')
+      .insertAdjacentHTML('beforeend', templateString);
+  } else {
+    alert('empty cart page');
+  }
+}
+
+//--------
 export function displayProduct(templateString) {
   if (templateString) {
     document
-      .querySelector('#InsertTemplateHere')
+      .querySelector('#ProductPageInsertTemplateHere')
       .insertAdjacentHTML('beforeend', templateString);
   } else {
-    alert('empty param');
+    alert('empty product page');
   }
 }

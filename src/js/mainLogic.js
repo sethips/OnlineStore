@@ -113,6 +113,7 @@ function addRepeatedProduct(cartProductKey, price, quantity) {
   return product;
 }
 
+//--------
 export function incrementOrDecrementCartBadge() {
   let productCount = Object.entries(localStorage).length;
 
@@ -129,4 +130,14 @@ export function incrementOrDecrementCartBadge() {
     document.querySelector('.cart-badge-navbar').textContent = productCount;
     document.querySelector('.cart-badge').textContent = productCount;
   }
+}
+
+// get the cart content from local storage as an array of object
+export function getCartContent() {
+  let cartContent = [];
+  Object.entries(localStorage).forEach((keyValueArr) => {
+    cartContent.push(JSON.parse(keyValueArr[1]));
+  });
+
+  return cartContent;
 }

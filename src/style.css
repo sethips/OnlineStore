@@ -312,6 +312,10 @@
   animation: flash 1s steps(5, start) infinite;
 }
 
+.top-buffer {
+  margin-top: 20px;
+}
+
 /* animations */
 @keyframes flash {
   0%,

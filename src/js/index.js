@@ -21,7 +21,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // check cart number of items
   mainLogic.incrementOrDecrementCartBadge();
 
-  if (document.querySelector('#InsertTemplateHere')) {
+  if (document.querySelector('#ProductPageInsertTemplateHere')) {
     // get product id from URL
     let productParameterString = window.location.search;
     let productParameter = parseInt(
@@ -49,6 +49,12 @@ document.addEventListener('DOMContentLoaded', () => {
       minutesDomEl,
       secondsDomEl
     );
+  }
+
+  // cart.html populate on load
+  if (document.querySelector('#CartPageInsertTemplateHere')) {
+    let cartPageTemplate = Ui_Updater.creatCartPageTemplate();
+    Ui_Updater.displayCart(cartPageTemplate);
   }
 });
 
@@ -105,11 +111,25 @@ DomElements.body.addEventListener('click', (e) => {
       (e.target.id === 'decrease') &
       (parseInt(document.querySelector('.order-quantity').value) > 1)
     ) {
-      document.querySelector('.order-quantity').value =
-        parseInt(document.querySelector('.order-quantity').value) - 1;
+      // // cart.html has two order-quantity inputs for responsiveness
+      if (Array.from(document.querySelectorAll('.order-quantity')).length > 1) {
+        document.querySelectorAll('.order-quantity').forEach((elementNode) => {
+          elementNode.value = parseInt(elementNode.value) - 1;
+        });
+      } else {
+        document.querySelector('.order-quantity').value =
+          parseInt(document.querySelector('.order-quantity').value) - 1;
+      }
     } else if (e.target.id === 'increase') {
-      document.querySelector('.order-quantity').value =
-        parseInt(document.querySelector('.order-quantity').value) + 1;
+      // // cart.html has two order-quantity inputs for responsiveness
+      if (Array.from(document.querySelectorAll('.order-quantity')).length > 1) {
+        document.querySelectorAll('.order-quantity').forEach((elementNode) => {
+          elementNode.value = parseInt(elementNode.value) + 1;
+        });
+      } else {
+        document.querySelector('.order-quantity').value =
+          parseInt(document.querySelector('.order-quantity').value) + 1;
+      }
     }
   }
 
