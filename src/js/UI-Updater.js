@@ -311,18 +311,18 @@ export function CreatProductTemplate(product) {
                                       <div class="input-group w-25 my-3">
                                         <div class="input-group-prepend">
                                           <button class="btn btn-light btn-sm input-group-text px-2 custom-cursor product-count"
-                                          id="decrease">-</button>
+                                          id="decrease-1">-</button>
                                         </div>
                                         <input
                                           type="text"
-                                          class="form-control bg-white text-center px-1 order-quantity"
+                                          class="form-control bg-white text-center px-1 order-quantity-1"
                                           placeholder=""
                                           aria-label=""
                                           value="1"
                                           readonly
                                         />
                                         <div class="input-group-append">
-                                          <button class="btn btn-light btn-sm input-group-text px-2 custom-cursor product-count" id="increase">+</button>
+                                          <button class="btn btn-light btn-sm input-group-text px-2 custom-cursor product-count" id="increase-1">+</button>
                                         </div>
                                       </div>
 
@@ -624,6 +624,7 @@ export function CreatProductTemplate(product) {
 export function creatCartPageTemplate() {
   let cartContent = mainLogic.getCartContent();
   let cartPageTemplate = '';
+  let increaseDecreaseIndex = 1;
 
   for (const product of cartContent) {
     let productPicture = dataBaseHandler.getProductMainPic(product.product_id);
@@ -668,9 +669,9 @@ export function creatCartPageTemplate() {
                             <td class="align-middle">
                               <div class="d-flex d-lg-none">
                                 <span class="text-uppercase">price:</span>
-                                <span class="ml-auto">${product.product_price}$</span>
+                                <span class="ml-auto unit-price-${increaseDecreaseIndex}">${product.unit_price}$</span>
                               </div>
-                              <span class="d-none d-lg-block">${product.product_price}$</span>
+                              <span class="d-none d-lg-block unit-price-${increaseDecreaseIndex}">${product.unit_price}$</span>
                             </td>
                             <td class="align-middle">
                               <div class="d-flex d-lg-none">
@@ -678,15 +679,15 @@ export function creatCartPageTemplate() {
                                 <div class="input-group ml-auto" style="width: 100px;">
                                   <div class="input-group-prepend">
                                     <button
-                                      class="btn btn-light btn-sm input-group-text px-2 custom-cursor product-count"
-                                      id="decrease"
+                                      class="btn btn-light btn-sm input-group-text px-2 custom-cursor product-count cart-${product.cart_id}"
+                                      id="decrease-${increaseDecreaseIndex}"
                                     >
                                       -
                                     </button>
                                   </div>
                                   <input
                                     type="text"
-                                    class="form-control bg-white text-center px-1 order-quantity"
+                                    class="form-control bg-white text-center px-1 order-quantity-${increaseDecreaseIndex}"
                                     placeholder=""
                                     aria-label=""
                                     value="${product.product_quantity}"
@@ -694,8 +695,8 @@ export function creatCartPageTemplate() {
                                   />
                                   <div class="input-group-append">
                                     <button
-                                      class="btn btn-light btn-sm input-group-text px-2 custom-cursor product-count"
-                                      id="increase"
+                                      class="btn btn-light btn-sm input-group-text px-2 custom-cursor product-count cart-${product.cart_id}"
+                                      id="increase-${increaseDecreaseIndex}"
                                     >
                                       +
                                     </button>
@@ -705,15 +706,15 @@ export function creatCartPageTemplate() {
                               <div class="d-none d-lg-flex input-group mx-auto" style="width: 100px;">
                                 <div class="input-group-prepend">
                                   <button
-                                    class="btn btn-light btn-sm input-group-text px-2 custom-cursor product-count"
-                                    id="decrease"
+                                    class="btn btn-light btn-sm input-group-text px-2 custom-cursor product-count cart-${product.cart_id}"
+                                    id="decrease-${increaseDecreaseIndex}"
                                   >
                                     -
                                   </button>
                                 </div>
                                 <input
                                   type="text"
-                                  class="form-control bg-white text-center px-1 order-quantity"
+                                  class="form-control bg-white text-center px-1 order-quantity-${increaseDecreaseIndex}"
                                   placeholder=""
                                   aria-label=""
                                   value="${product.product_quantity}"
@@ -721,8 +722,8 @@ export function creatCartPageTemplate() {
                                 />
                                 <div class="input-group-append">
                                   <button
-                                    class="btn btn-light btn-sm input-group-text px-2 custom-cursor product-count"
-                                    id="increase"
+                                    class="btn btn-light btn-sm input-group-text px-2 custom-cursor product-count cart-${product.cart_id}"
+                                    id="increase-${increaseDecreaseIndex}"
                                   >
                                     +
                                   </button>
@@ -732,11 +733,13 @@ export function creatCartPageTemplate() {
                             <td class="align-middle">
                               <div class="d-flex d-lg-none">
                                 <span class="text-uppercase">Total:</span>
-                                <span class="ml-auto">${product.product_price}$</span>
+                                <span class="ml-auto totalPrice-${increaseDecreaseIndex}">${product.product_price}$</span>
                               </div>
-                              <span class="d-none d-lg-block">${product.product_price}$</span>
+                              <span class="d-none d-lg-block totalPrice-${increaseDecreaseIndex}">${product.product_price}$</span>
                             </td>
                           </tr>`;
+
+    increaseDecreaseIndex++;
   }
 
   return cartPageTemplate;

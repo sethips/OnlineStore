@@ -32,6 +32,10 @@ export function addProductToCart() {
 // ------
 function getProductProperties() {
   let addedProduct = {};
+
+  // get cart id from how many items in the local storage
+  addedProduct.cart_id = Object.entries(localStorage).length;
+
   // get product id
   addedProduct.product_id = window.location.search.substring(
     window.location.search.indexOf('=') + 1
@@ -58,13 +62,19 @@ function getProductProperties() {
     }
   });
 
+  //get product unit price
+  addedProduct.unit_price = databaseHandler.getPriceByProductIdAndColor(
+    addedProduct.product_id,
+    addedProduct.product_color
+  );
+
   //get quantity
   addedProduct.product_quantity = document.querySelector(
-    '.order-quantity'
+    '.order-quantity-1'
   ).value;
-
-  //get the price
   let quantity = parseInt(addedProduct.product_quantity);
+
+  // get product price
   addedProduct.product_price =
     databaseHandler.getPriceByProductIdAndColor(
       addedProduct.product_id,
@@ -140,4 +150,51 @@ export function getCartContent() {
   });
 
   return cartContent;
+}
+
+//decrease or increase product count in local storage and calculate tha total price
+export function editProductCountInLocalStorage(e, id) {
+  // decrease the total price on the cart.html page
+  if (document.querySelector(`.totalPrice-${id}`)) {
+    let unitPriceText = document.querySelector(`.unit-price-${id}`).textContent;
+    let unit_price = parseInt(
+      unitPriceText.substring(0, unitPriceText.indexOf('$'))
+    );
+    let quantity = parseInt(
+      document.querySelector(`.order-quantity-${id}`).value
+    );
+
+    document.querySelectorAll(`.totalPrice-${id}`).forEach((element) => {
+      element.textContent = unit_price * quantity + '$';
+    });
+
+    //* edit the local storage product values
+
+    //get the string cart-? from button classes
+    let currentLocalStorageItem = e.target.className.substr(
+      e.target.className.indexOf('cart')
+    );
+    // get tha cart number and convert it to int
+    currentLocalStorageItem = currentLocalStorageItem.substring(
+      currentLocalStorageItem.indexOf('-') + 1
+    );
+
+    // edit the local storage entry using cart number
+    Object.entries(localStorage).forEach((localStorageElement) => {
+      let parsedLocalStorageElement = JSON.parse(localStorageElement[1]);
+      if (
+        parsedLocalStorageElement.cart_id === parseInt(currentLocalStorageItem)
+      ) {
+        parsedLocalStorageElement.product_quantity = document.querySelector(
+          `.order-quantity-${id}`
+        ).value;
+        parsedLocalStorageElement.product_price = unit_price * quantity;
+
+        localStorage.setItem(
+          localStorageElement[0],
+          JSON.stringify(parsedLocalStorageElement)
+        );
+      }
+    });
+  }
 }

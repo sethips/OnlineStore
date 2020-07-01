@@ -107,33 +107,54 @@ DomElements.body.addEventListener('click', (e) => {
 
   // product.html increase and decrease product count events
   if (e.target.className.includes('product-count')) {
+    let id = e.target.id.substring(e.target.id.indexOf('-') + 1);
     if (
-      (e.target.id === 'decrease') &
-      (parseInt(document.querySelector('.order-quantity').value) > 1)
+      (e.target.id === `decrease-${id}`) &
+      (parseInt(document.querySelector(`.order-quantity-${id}`).value) > 1)
     ) {
-      // // cart.html has two order-quantity inputs for responsiveness
-      if (Array.from(document.querySelectorAll('.order-quantity')).length > 1) {
-        document.querySelectorAll('.order-quantity').forEach((elementNode) => {
-          elementNode.value = parseInt(elementNode.value) - 1;
-        });
+      // cart.html has two order-quantity inputs for responsiveness
+      if (
+        Array.from(document.querySelectorAll(`.order-quantity-${id}`)).length >
+        1
+      ) {
+        document
+          .querySelectorAll(`.order-quantity-${id}`)
+          .forEach((elementNode) => {
+            elementNode.value = parseInt(elementNode.value) - 1;
+          });
       } else {
-        document.querySelector('.order-quantity').value =
-          parseInt(document.querySelector('.order-quantity').value) - 1;
+        document.querySelector(`.order-quantity-${id}`).value =
+          parseInt(document.querySelector(`.order-quantity-${id}`).value) - 1;
       }
-    } else if (e.target.id === 'increase') {
-      // // cart.html has two order-quantity inputs for responsiveness
-      if (Array.from(document.querySelectorAll('.order-quantity')).length > 1) {
-        document.querySelectorAll('.order-quantity').forEach((elementNode) => {
-          elementNode.value = parseInt(elementNode.value) + 1;
-        });
+
+      // decrease the total price on the cart.html page
+      if (document.querySelector(`.totalPrice-${id}`)) {
+        mainLogic.editProductCountInLocalStorage(e, id);
+      }
+    } else if (e.target.id === `increase-${id}`) {
+      // cart.html has two order-quantity inputs for responsiveness
+      if (
+        Array.from(document.querySelectorAll(`.order-quantity-${id}`)).length >
+        1
+      ) {
+        document
+          .querySelectorAll(`.order-quantity-${id}`)
+          .forEach((elementNode) => {
+            elementNode.value = parseInt(elementNode.value) + 1;
+          });
       } else {
-        document.querySelector('.order-quantity').value =
-          parseInt(document.querySelector('.order-quantity').value) + 1;
+        document.querySelector(`.order-quantity-${id}`).value =
+          parseInt(document.querySelector(`.order-quantity-${id}`).value) + 1;
+      }
+
+      // decrease the total price on the cart.html page
+      if (document.querySelector(`.totalPrice-${id}`)) {
+        mainLogic.editProductCountInLocalStorage(e, id);
       }
     }
   }
 
-  //
+  //----
   // add to cart button click event
   if (e.target.id === 'cartButton') {
     mainLogic.addProductToCart();
