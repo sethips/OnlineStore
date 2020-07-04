@@ -31,3 +31,7 @@ export function getProductMainPic(productID) {
     }
   }
 }
+
+export function getProductCoupons() {
+  return jsonDataBase.coupons;
+}

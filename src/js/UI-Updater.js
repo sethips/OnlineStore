@@ -629,25 +629,27 @@ export function creatCartPageTemplate() {
   for (const product of cartContent) {
     let productPicture = dataBaseHandler.getProductMainPic(product.product_id);
     cartPageTemplate += `
-                          <tr class="d-flex flex-column d-lg-table-row bg-light top-buffer">
+                          <tr class="d-flex flex-column d-lg-table-row bg-light top-buffer" id="row-${product.cart_id}">
                             <td class="d-none d-lg-table-cell align-middle">
                               <button
                                 type="button"
-                                class="close text-danger border border-danger rounded-circle"
+                                class="close text-danger border border-danger rounded-circle closeBtn"
                                 aria-label="Close"
+                                id="closeBtn-${product.cart_id}"
                                 style="width: 25px; height: 25px; outline: none;"
                               >
-                                <span aria-hidden="true">&times;</span>
+                                <span class="closeBtn" aria-hidden="true">&times;</span>
                               </button>
                             </td>
                             <td class="align-middle">
                               <button
                                 type="button"
-                                class="close text-danger d-lg-none border border-danger rounded-circle"
+                                class="close text-danger d-lg-none border border-danger rounded-circle closeBtn"
                                 aria-label="Close"
+                                id="closeBtn-${product.cart_id}"
                                 style="width: 25px; height: 25px; outline: none;"
                               >
-                                <span aria-hidden="true">&times;</span>
+                                <span class="closeBtn" aria-hidden="true">&times;</span>
                               </button>
                               <img
                                 width="80"
@@ -745,13 +747,40 @@ export function creatCartPageTemplate() {
   return cartPageTemplate;
 }
 
+// ----
 export function displayCart(templateString) {
   if (templateString) {
     document
       .querySelector('#CartPageInsertTemplateHere')
       .insertAdjacentHTML('beforeend', templateString);
   } else {
-    alert('empty cart page');
+    showEmptyCartPage();
+  }
+}
+
+//display cart total in the cart.html
+export function displayCartTotal(totalAmount) {
+  document.querySelector('#subtotal').textContent = totalAmount + '$';
+  document.querySelector('#total').textContent = totalAmount + '$';
+
+  // cart bottom section calculate the free shipping option
+  if (totalAmount <= 1000) {
+    document.querySelector('.progress').style.display = 'flex';
+    document.querySelector('.free_shipping').style.display = 'none';
+    document.querySelector('.remaining_free_shipping').style.display = 'block';
+    document.querySelector('.amount_to_spend').textContent =
+      1000 - totalAmount + '$';
+
+    document.querySelector('.progress-bar').style.width = `${Math.floor(
+      (totalAmount / 1000) * 100
+    )}%`;
+    document.querySelector('.progress-bar').textContent = `${Math.floor(
+      (totalAmount / 1000) * 100
+    )}%`;
+  } else {
+    document.querySelector('.progress').style.display = 'none';
+    document.querySelector('.free_shipping').style.display = 'block';
+    document.querySelector('.remaining_free_shipping').style.display = 'none';
   }
 }
 
@@ -762,6 +791,11 @@ export function displayProduct(templateString) {
       .querySelector('#ProductPageInsertTemplateHere')
       .insertAdjacentHTML('beforeend', templateString);
   } else {
-    alert('empty product page');
+    showEmptyCartPage();
   }
+}
+export function showEmptyCartPage() {
+  document.querySelector('#fullCart').classList.add('d-none');
+  document.querySelector('#emptyCart').classList.remove('d-none');
+  document.querySelector('#emptyCart').classList.add('d-flex');
 }

@@ -55,6 +55,8 @@ document.addEventListener('DOMContentLoaded', () => {
   if (document.querySelector('#CartPageInsertTemplateHere')) {
     let cartPageTemplate = Ui_Updater.creatCartPageTemplate();
     Ui_Updater.displayCart(cartPageTemplate);
+    const cartTotal = mainLogic.calculateCartTotal();
+    Ui_Updater.displayCartTotal(cartTotal);
   }
 });
 
@@ -130,6 +132,8 @@ DomElements.body.addEventListener('click', (e) => {
       // decrease the total price on the cart.html page
       if (document.querySelector(`.totalPrice-${id}`)) {
         mainLogic.editProductCountInLocalStorage(e, id);
+        const cartTotal = mainLogic.calculateCartTotal();
+        Ui_Updater.displayCartTotal(cartTotal);
       }
     } else if (e.target.id === `increase-${id}`) {
       // cart.html has two order-quantity inputs for responsiveness
@@ -150,6 +154,8 @@ DomElements.body.addEventListener('click', (e) => {
       // decrease the total price on the cart.html page
       if (document.querySelector(`.totalPrice-${id}`)) {
         mainLogic.editProductCountInLocalStorage(e, id);
+        const cartTotal = mainLogic.calculateCartTotal();
+        Ui_Updater.displayCartTotal(cartTotal);
       }
     }
   }
@@ -159,4 +165,71 @@ DomElements.body.addEventListener('click', (e) => {
   if (e.target.id === 'cartButton') {
     mainLogic.addProductToCart();
   }
+
+  // delete product from cart
+  if (e.target.className.includes('closeBtn')) {
+    let rowID = 0;
+    if (e.target.id) {
+      rowID = e.target.id.substring(e.target.id.indexOf('-') + 1);
+    } else {
+      rowID = e.target.parentNode.id.substring(
+        e.target.parentNode.id.indexOf('-') + 1
+      );
+    }
+    let elementToDelete = document.querySelector(`#row-${rowID}`);
+    elementToDelete.classList.add('tableRowAnimation');
+    setTimeout(() => {
+      elementToDelete.parentNode.removeChild(elementToDelete);
+    }, 500);
+
+    Object.entries(localStorage).forEach((element) => {
+      let parsedElement = JSON.parse(element[1]);
+      if (parsedElement.cart_id === parseInt(rowID)) {
+        localStorage.removeItem(element[0]);
+      }
+    });
+    const cartTotal = mainLogic.calculateCartTotal();
+    Ui_Updater.displayCartTotal(cartTotal);
+    mainLogic.incrementOrDecrementCartBadge();
+
+    if (localStorage.length === 0) {
+      Ui_Updater.showEmptyCartPage();
+    }
+  }
 });
+
+// coupon code apply event
+// check if coupon section is available
+if (document.querySelector('#coupon')) {
+  const couponTextInput = document.querySelector('#coupon');
+  const discountTableRow = document.querySelector('#discount');
+  const discountAmount = document.querySelector('#discountAmount');
+  const couponWarningText = document.querySelector('#couponWaringText');
+  // enter keypress event
+  couponTextInput.addEventListener('keypress', (e) => {
+    if (e.keyCode === 13) {
+      const discount = mainLogic.checkCoupon(couponTextInput.value);
+
+      // if the discount code exist in the json DataBase
+      if (discount) {
+        discountTableRow.classList.remove('d-none');
+        const discountTotal = Math.floor(
+          (mainLogic.calculateCartTotal() * discount) / 100
+        );
+        discountAmount.textContent = '-' + discountTotal + '$';
+        document.querySelector('#total').textContent =
+          mainLogic.calculateCartTotal() - discountTotal + '$';
+      } else {
+        discountTableRow.classList.add('d-none');
+        setTimeout(() => {
+          couponWarningText.textContent = '*type your code and press Enter';
+          couponWarningText.classList.remove('text-danger');
+        }, 3000);
+        couponWarningText.textContent = '*invalid coupon code';
+        couponWarningText.classList.add('text-danger');
+        document.querySelector('#total').textContent =
+          mainLogic.calculateCartTotal() + '$';
+      }
+    }
+  });
+}

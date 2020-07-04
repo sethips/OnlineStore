@@ -198,3 +198,23 @@ export function editProductCountInLocalStorage(e, id) {
     });
   }
 }
+
+// calculate cart total
+export function calculateCartTotal() {
+  let totalAmount = 0;
+  Object.entries(localStorage).forEach((element) => {
+    let parsedElement = JSON.parse(element[1]);
+    totalAmount += parsedElement.product_price;
+  });
+
+  return totalAmount;
+}
+
+export function checkCoupon(couponCode) {
+  const coupons = databaseHandler.getProductCoupons();
+  for (const code of coupons) {
+    if (code.substring(0, code.indexOf('=')) === couponCode) {
+      return parseInt(code.substring(code.indexOf('=') + 1));
+    }
+  }
+}

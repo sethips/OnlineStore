@@ -218,5 +218,6 @@
       "stock": 100,
       "Vendor": "Basel"
     }
-  ]
+  ],
+  "coupons": ["SALE10=10", "SALE20=20", "SALE30=30"]
 }

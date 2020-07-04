@@ -327,6 +327,29 @@
     opacity: 1;
   }
 }
+
+.tableRowAnimation {
+  animation: fade-out 0.5s;
+}
+
+/* cart product remove animation  */
+@-webkit-keyframes fade-out {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+@keyframes fade-out {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
 /*  Extra small devices (portrait phones, less than 576px)
  No media query for `xs` since this is the default in Bootstrap */
 
