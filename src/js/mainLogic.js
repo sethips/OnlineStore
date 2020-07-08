@@ -1,5 +1,5 @@
 import * as databaseHandler from './DataBaseHandler';
-
+//--------
 export function addProductToCart() {
   let productToAdd = getProductProperties();
 
@@ -29,12 +29,41 @@ export function addProductToCart() {
   incrementOrDecrementCartBadge();
 }
 
+// ---------
+function getCurrentIndexFromLocalStorage() {
+  let localStorageCartItems = [];
+  Object.keys(localStorage).forEach((key) => {
+    if (key.substring(0, key.indexOf('-')) === 'product') {
+      localStorageCartItems.push(key);
+    }
+  });
+  if (localStorageCartItems.length > 0) {
+    let indexArr = localStorageCartItems.sort();
+    let fullIndex = indexArr[indexArr.length - 1];
+    return parseInt(fullIndex.substring(fullIndex.indexOf('-') + 1)) + 1;
+  } else {
+    return 1; // index of next item to add to the card
+  }
+}
+//----------
+export function getHowManyProductInCart() {
+  let counter = 0;
+  Object.entries(localStorage).forEach((element) => {
+    if (element[0].substring(0, element[0].indexOf('-')) === 'product') {
+      counter++;
+    }
+  });
+
+  return counter;
+}
+
 // ------
 function getProductProperties() {
   let addedProduct = {};
 
   // get cart id from how many items in the local storage
-  addedProduct.cart_id = Object.entries(localStorage).length;
+  //addedProduct.cart_id = Object.entries(localStorage).length; OLD
+  addedProduct.cart_id = getHowManyProductInCart();
 
   // get product id
   addedProduct.product_id = window.location.search.substring(
@@ -84,27 +113,20 @@ function getProductProperties() {
   return addedProduct;
 }
 
-// ---------
-function getCurrentIndexFromLocalStorage() {
-  if (Object.keys(localStorage).length !== 0) {
-    let indexArr = Object.keys(localStorage).sort();
-    let fullIndex = indexArr[indexArr.length - 1];
-    return parseInt(fullIndex.substring(fullIndex.indexOf('-') + 1)) + 1;
-  } else {
-    return 1; // index of next item to add to the card
-  }
-}
-
 // --------
 function checkIfProductInCart(productId, color, size) {
   for (const cartProduct of Object.entries(localStorage)) {
-    let currentProduct = JSON.parse(cartProduct[1]);
     if (
-      currentProduct.product_id === productId &&
-      currentProduct.product_color === color &&
-      currentProduct.product_size === size
+      cartProduct[0].substring(0, cartProduct[0].indexOf('-')) === 'product'
     ) {
-      return cartProduct[0];
+      let currentProduct = JSON.parse(cartProduct[1]);
+      if (
+        currentProduct.product_id === productId &&
+        currentProduct.product_color === color &&
+        currentProduct.product_size === size
+      ) {
+        return cartProduct[0];
+      }
     }
   }
 
@@ -125,7 +147,7 @@ function addRepeatedProduct(cartProductKey, price, quantity) {
 
 //--------
 export function incrementOrDecrementCartBadge() {
-  let productCount = Object.entries(localStorage).length;
+  let productCount = getHowManyProductInCart();
 
   if (productCount >= 1) {
     document.querySelector('.cart-badge-navbar').style.display = 'block';
@@ -146,7 +168,11 @@ export function incrementOrDecrementCartBadge() {
 export function getCartContent() {
   let cartContent = [];
   Object.entries(localStorage).forEach((keyValueArr) => {
-    cartContent.push(JSON.parse(keyValueArr[1]));
+    if (
+      keyValueArr[0].substring(0, keyValueArr[0].indexOf('-')) === 'product'
+    ) {
+      cartContent.push(JSON.parse(keyValueArr[1]));
+    }
   });
 
   return cartContent;
@@ -203,10 +229,13 @@ export function editProductCountInLocalStorage(e, id) {
 export function calculateCartTotal() {
   let totalAmount = 0;
   Object.entries(localStorage).forEach((element) => {
-    let parsedElement = JSON.parse(element[1]);
-    totalAmount += parsedElement.product_price;
+    if (element[0].substring(0, element[0].indexOf('-')) === 'product') {
+      let parsedElement = JSON.parse(element[1]);
+      totalAmount += parsedElement.product_price;
+    }
   });
 
+  //localStorage.setItem('cartTotal', totalAmount);
   return totalAmount;
 }
 
@@ -217,4 +246,16 @@ export function checkCoupon(couponCode) {
       return parseInt(code.substring(code.indexOf('=') + 1));
     }
   }
+}
+
+// calculate discount
+export function calculateDiscount(discount) {
+  const discountAmount = document.querySelector('#discountAmount');
+  const discountTableRow = document.querySelector('#discount');
+
+  discountTableRow.classList.remove('d-none');
+  const discountTotal = Math.floor((calculateCartTotal() * discount) / 100);
+  discountAmount.textContent = '-' + discountTotal + '$';
+  document.querySelector('#total').textContent =
+    calculateCartTotal() - discountTotal + '$';
 }

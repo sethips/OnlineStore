@@ -761,7 +761,20 @@ export function displayCart(templateString) {
 //display cart total in the cart.html
 export function displayCartTotal(totalAmount) {
   document.querySelector('#subtotal').textContent = totalAmount + '$';
+  sessionStorage.setItem('subtotal', totalAmount);
   document.querySelector('#total').textContent = totalAmount + '$';
+  sessionStorage.setItem('total', totalAmount);
+
+  // check if discount is available and apply it
+  if (sessionStorage.getItem('discount')) {
+    let discountAmount = Math.floor(
+      (parseInt(sessionStorage.getItem('discount')) * totalAmount) / 100
+    );
+    let total = totalAmount - discountAmount;
+    sessionStorage.setItem('discountAmount', discountAmount);
+    sessionStorage.setItem('total', total);
+    mainLogic.calculateDiscount(sessionStorage.getItem('discount'));
+  }
 
   // cart bottom section calculate the free shipping option
   if (totalAmount <= 1000) {

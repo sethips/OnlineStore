@@ -163,6 +163,16 @@ DomElements.body.addEventListener('click', (e) => {
   //----
   // add to cart button click event
   if (e.target.id === 'cartButton') {
+    e.target.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" style="margin: auto; background: none; display: block; shape-rendering: auto;" width="24px" height="24px" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid">
+    <circle cx="50" cy="50" fill="none" stroke="#ffffff" stroke-width="5" r="46" stroke-dasharray="216.76989309769573 74.25663103256524" transform="rotate(353.677 50.0001 50.0001)">
+      <animateTransform attributeName="transform" type="rotate" repeatCount="indefinite" dur="0.5s" values="0 50 50;360 50 50" keyTimes="0;1"></animateTransform>
+    </circle></svg>`;
+
+    setTimeout(() => {
+      e.target.innerHTML = '';
+      e.target.textContent = 'ADD TO CART';
+    }, 500);
+
     mainLogic.addProductToCart();
   }
 
@@ -177,23 +187,60 @@ DomElements.body.addEventListener('click', (e) => {
       );
     }
     let elementToDelete = document.querySelector(`#row-${rowID}`);
-    elementToDelete.classList.add('tableRowAnimation');
-    setTimeout(() => {
-      elementToDelete.parentNode.removeChild(elementToDelete);
-    }, 500);
+    // elementToDelete.classList.add('tableRowAnimation');
+    // setTimeout(() => {
+    elementToDelete.parentNode.removeChild(elementToDelete);
+    // }, 500);
 
     Object.entries(localStorage).forEach((element) => {
-      let parsedElement = JSON.parse(element[1]);
-      if (parsedElement.cart_id === parseInt(rowID)) {
-        localStorage.removeItem(element[0]);
+      if (element[0].substring(0, element[0].indexOf('-')) === 'product') {
+        let parsedElement = JSON.parse(element[1]);
+        if (parsedElement.cart_id === parseInt(rowID)) {
+          localStorage.removeItem(element[0]);
+        }
       }
     });
     const cartTotal = mainLogic.calculateCartTotal();
     Ui_Updater.displayCartTotal(cartTotal);
     mainLogic.incrementOrDecrementCartBadge();
 
-    if (localStorage.length === 0) {
+    if (mainLogic.getHowManyProductInCart() === 0) {
       Ui_Updater.showEmptyCartPage();
+    }
+  }
+
+  // clear cart button press
+  if (e.target.id === 'clearCart') {
+    Object.keys(localStorage).forEach((key) => {
+      if (key.substring(0, key.indexOf('-')) === 'product') {
+        localStorage.removeItem(key);
+      }
+    });
+
+    Ui_Updater.showEmptyCartPage();
+    mainLogic.incrementOrDecrementCartBadge();
+  }
+
+  // check if conditions are accepted
+  const conditionCheckBox = document.querySelector('#agreeWithCondition');
+  const conditionText = document.querySelector('.conditionText');
+  const messageToSeller = document.querySelector('#specialInstruction');
+  if (e.target.id === 'proceedToCheckout') {
+    if (conditionCheckBox.checked) {
+      // save customer message
+      if (messageToSeller.value) {
+        const message = messageToSeller.value;
+        sessionStorage.setItem('message', message);
+      }
+
+      // go to checkout from
+      window.location.href = '';
+    } else {
+      // highlight condition checkbox
+      conditionText.classList.add('blink_me');
+      setTimeout(() => {
+        conditionText.classList.remove('blink_me');
+      }, 500);
     }
   }
 });
@@ -203,7 +250,6 @@ DomElements.body.addEventListener('click', (e) => {
 if (document.querySelector('#coupon')) {
   const couponTextInput = document.querySelector('#coupon');
   const discountTableRow = document.querySelector('#discount');
-  const discountAmount = document.querySelector('#discountAmount');
   const couponWarningText = document.querySelector('#couponWaringText');
   // enter keypress event
   couponTextInput.addEventListener('keypress', (e) => {
@@ -212,13 +258,8 @@ if (document.querySelector('#coupon')) {
 
       // if the discount code exist in the json DataBase
       if (discount) {
-        discountTableRow.classList.remove('d-none');
-        const discountTotal = Math.floor(
-          (mainLogic.calculateCartTotal() * discount) / 100
-        );
-        discountAmount.textContent = '-' + discountTotal + '$';
-        document.querySelector('#total').textContent =
-          mainLogic.calculateCartTotal() - discountTotal + '$';
+        sessionStorage.setItem('discount', discount);
+        mainLogic.calculateDiscount(discount);
       } else {
         discountTableRow.classList.add('d-none');
         setTimeout(() => {

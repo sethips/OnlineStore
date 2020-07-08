@@ -312,8 +312,22 @@
   animation: flash 1s steps(5, start) infinite;
 }
 
+.blink_me {
+  animation: blinker 0.3s linear infinite;
+}
+
+@keyframes blinker {
+  50% {
+    color: red;
+    font-weight: bold;
+  }
+}
+
 .top-buffer {
   margin-top: 20px;
+}
+.text-14 {
+  font-size: 14px;
 }
 
 /* animations */
@@ -325,28 +339,6 @@
   51%,
   100% {
     opacity: 1;
-  }
-}
-
-.tableRowAnimation {
-  animation: fade-out 0.5s;
-}
-
-/* cart product remove animation  */
-@-webkit-keyframes fade-out {
-  0% {
-    opacity: 1;
-  }
-  100% {
-    opacity: 0;
-  }
-}
-@keyframes fade-out {
-  0% {
-    opacity: 1;
-  }
-  100% {
-    opacity: 0;
   }
 }
 

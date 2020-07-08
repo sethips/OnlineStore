@@ -156,20 +156,18 @@
         class="fluid-container black-bg text-white d-lg-flex justify-content-center"
       >
         <ul class="list-unstyled mb-0 p-3 text-center">
-          <li
-            class="list-inline-item px-2 custom-cursor"
-            style="font-size: 30px;"
-          >
+          <li class="list-inline-item px-2" style="font-size: 30px;">
             Cart
           </li>
-          <li class="d-flex align-items-center justify-content-center">
-            <img
+          <li class="d-flex">
+            <a class="d-flex align-items-center justify-content-center text-white" href="index.html"><img
               width="15"
               height="15"
               src="https://image.flaticon.com/icons/svg/846/846551.svg"
               class="invert-color-toWhite mr-2"
             />
-            <span class="mx-1">Home</span>
+            <span class="mx-1">Home<span></a>
+            
             <span class="mx-1">/</span>
             <span class="mx-1">Cart</span>
           </li>
@@ -204,14 +202,9 @@
         </div>
 
         <div class="row my-4">
-          <div class="col-12 col-lg-4 mt-3 mt-lg-0 order-2 order-lg-1">
-            <button class="btn btn-dark rounded-0 px-4 w-100">
+          <div class="col-12 col-lg-4 mt-3 mt-lg-0">
+            <button class="btn btn-dark rounded-0 px-4 w-100" id="clearCart">
               Clear Shipping Cart
-            </button>
-          </div>
-          <div class="col-12 col-lg-4 offset-lg-4 order-1 order-lg-2">
-            <button class="btn btn-light rounded-0 px-4 w-100">
-              Update Cart
             </button>
           </div>
         </div>
@@ -225,7 +218,7 @@
               <textarea
                 class="p-3"
                 name="MessageForSeller"
-                id=""
+                id="specialInstruction"
                 rows="7"
                 style="width: 100%;"
               ></textarea>
@@ -294,16 +287,25 @@
               </table>
               <div class="d-flex align-items-center pr-2" id="couponWaring">
                 <span class="small ml-auto pr-1" id="couponWaringText"
-                  >*type your code and press Enter</span
+                  ><span class="text-danger font-weight-bold">*</span>type your
+                  code and press Enter</span
                 >
               </div>
               <div class="d-flex align-items-center pl-2 mt-2">
-                <input type="checkbox" name="" id="" class="mr-2" />
-                <span class="small"
+                <input
+                  type="checkbox"
+                  name=""
+                  id="agreeWithCondition"
+                  class="mr-2"
+                />
+                <span class="small conditionText"
                   >I agree with the terms and conditions.</span
                 >
               </div>
-              <button class="btn btn-lg btn-info w-100 my-4">
+              <button
+                class="btn btn-lg btn-info w-100 my-4"
+                id="proceedToCheckout"
+              >
                 PROCEED TO CHECKOUT
               </button>
             </div>
@@ -326,14 +328,14 @@
         </div>
         <div><h3 class="my-4">YOUR CART IS CURRENTLY EMPTY.</h3></div>
 
-        <div class="text-center w-50">
+        <div class="col-12 col-lg-6 text-center">
           <p class="my-4text-center text-muted">
             Before proceed to checkout you must add some products to your
             shopping cart. You will find a lot of interesting products on our
             "Shop" page.
           </p>
         </div>
-        <div>
+        <div class="mt-2">
           <a class="btn btn-info rounded-0" href="index.html">RETURN TO SHOP</a>
         </div>
       </div>
