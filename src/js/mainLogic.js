@@ -1,4 +1,5 @@
 import * as databaseHandler from './DataBaseHandler';
+import countries from 'countries-list';
 //--------
 export function addProductToCart() {
   let productToAdd = getProductProperties();
@@ -147,20 +148,25 @@ function addRepeatedProduct(cartProductKey, price, quantity) {
 
 //--------
 export function incrementOrDecrementCartBadge() {
-  let productCount = getHowManyProductInCart();
+  if (
+    document.querySelector('.cart-badge-navbar') ||
+    document.querySelector('.cart-badge')
+  ) {
+    let productCount = getHowManyProductInCart();
 
-  if (productCount >= 1) {
-    document.querySelector('.cart-badge-navbar').style.display = 'block';
-    document.querySelector('.cart-badge').style.display = 'block';
+    if (productCount >= 1) {
+      document.querySelector('.cart-badge-navbar').style.display = 'block';
+      document.querySelector('.cart-badge').style.display = 'block';
 
-    document.querySelector('.cart-badge-navbar').textContent = productCount;
-    document.querySelector('.cart-badge').textContent = productCount;
-  } else {
-    document.querySelector('.cart-badge-navbar').style.display = 'none';
-    document.querySelector('.cart-badge').style.display = 'none';
+      document.querySelector('.cart-badge-navbar').textContent = productCount;
+      document.querySelector('.cart-badge').textContent = productCount;
+    } else {
+      document.querySelector('.cart-badge-navbar').style.display = 'none';
+      document.querySelector('.cart-badge').style.display = 'none';
 
-    document.querySelector('.cart-badge-navbar').textContent = productCount;
-    document.querySelector('.cart-badge').textContent = productCount;
+      document.querySelector('.cart-badge-navbar').textContent = productCount;
+      document.querySelector('.cart-badge').textContent = productCount;
+    }
   }
 }
 
@@ -258,4 +264,48 @@ export function calculateDiscount(discount) {
   discountAmount.textContent = '-' + discountTotal + '$';
   document.querySelector('#total').textContent =
     calculateCartTotal() - discountTotal + '$';
+}
+
+// get countries list
+export function getCountriesListInHtml() {
+  const countryCodes = Object.keys(countries.countries);
+  const countryNames = countryCodes.map((countryCode) => {
+    return countries.countries[countryCode].name;
+  });
+
+  const htmlSortedCountries = countryNames.sort().map((countryName) => {
+    return `<option value="${countryName}">${countryName}</option>`;
+  });
+  return htmlSortedCountries.join('');
+}
+
+//Get user ip address from jsonip.com and save it to sessionStorage
+export function getIpAddress() {
+  let userIpAddress = '';
+  fetch('https://jsonip.com/')
+    .then((response) => {
+      return response.json();
+    })
+    .then((jsonResponse) => {
+      userIpAddress = jsonResponse.ip;
+      sessionStorage.setItem('ipAddress', userIpAddress);
+    })
+    .catch((err) => alert(err));
+}
+
+// get geoLocationFrom ip address
+export function getGeoLocation(ipAddress) {
+  const apiAccessKey = '5ccaac31a6b0b3b1b8847556bddd1b9a';
+  let country = null;
+  fetch(`http://api.ipstack.com/${ipAddress}?access_key=${apiAccessKey}`)
+    .then((response) => {
+      return response.json();
+    })
+    .then((jsonResponse) => {
+      country = jsonResponse.country_name;
+      sessionStorage.setItem('country', country);
+    })
+    .catch((err) => {
+      alert(err);
+    });
 }

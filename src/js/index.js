@@ -8,6 +8,21 @@ import * as mainLogic from './mainLogic';
 const DomElements = DomModules.DOMElements;
 let visitedProduct = '';
 
+//Get user ip address and country
+if (!sessionStorage.getItem('ipAddress')) {
+  // write ipAddress to sessionStorage
+  mainLogic.getIpAddress();
+
+  // get country from ip address
+  if (!sessionStorage.getItem('country')) {
+    let geoLocationInterval = setInterval(() => {
+      if (sessionStorage.getItem('ipAddress')) {
+        mainLogic.getGeoLocation(sessionStorage.getItem('ipAddress'));
+        clearInterval(geoLocationInterval);
+      }
+    }, 200);
+  }
+}
 // sessionStorage
 //set timer initial starting time to sessionStorage
 if (!sessionStorage.getItem('startTimer')) {
@@ -16,7 +31,7 @@ if (!sessionStorage.getItem('startTimer')) {
 
 // dom element load event
 //
-// product.html product template insert on Load
+// insert code on any page Load
 document.addEventListener('DOMContentLoaded', () => {
   // check cart number of items
   mainLogic.incrementOrDecrementCartBadge();
@@ -57,6 +72,47 @@ document.addEventListener('DOMContentLoaded', () => {
     Ui_Updater.displayCart(cartPageTemplate);
     const cartTotal = mainLogic.calculateCartTotal();
     Ui_Updater.displayCartTotal(cartTotal);
+  }
+
+  // checkout.html auto fill address if already filled and countries load
+  if (document.querySelectorAll('.shippingAddressSection')) {
+    //  countries load
+    if (document.querySelector('#countries')) {
+      document
+        .querySelector('#countries')
+        .insertAdjacentHTML('beforeend', mainLogic.getCountriesListInHtml());
+
+      // select current country based on the ip address
+      if (sessionStorage.getItem('country')) {
+        document.querySelector('#countries').value = sessionStorage.getItem(
+          'country'
+        );
+      } else {
+        let currentCountry = setInterval(() => {
+          if (sessionStorage.getItem('country')) {
+            document.querySelector('#countries').value = sessionStorage.getItem(
+              'country'
+            );
+            clearInterval(currentCountry);
+          }
+        });
+      }
+    }
+
+    // auto fill address
+    if (localStorage.getItem('shipTo')) {
+      const shippingAddress = JSON.parse(localStorage.getItem('shipTo'));
+
+      document.querySelector('#emailOrPhone').value =
+        shippingAddress.emailOrPhone;
+    } else if (sessionStorage.getItem('shipTo')) {
+      console.log('im here');
+      const shippingAddress = JSON.parse(localStorage.getItem('shipTo'));
+
+      console.log(shippingAddress);
+      //   document.querySelector('#emailOrPhone').value =
+      //     shippingAddress.emailOrPhone;
+    }
   }
 });
 
@@ -241,6 +297,98 @@ DomElements.body.addEventListener('click', (e) => {
       setTimeout(() => {
         conditionText.classList.remove('blink_me');
       }, 500);
+    }
+  }
+
+  // checkout.html continue to shipping button press
+
+  if (e.target.id === 'continueToShipping') {
+    //
+    // contact info section
+    // email of phone section (required)
+    const shippingAddress = {};
+    const emailOrPhone = document.querySelector('#emailOrPhone');
+    const emailRegExp = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+    const phoneRegEp = /^(\()?\d{3}(\))?(-|\s)?\d{3}(-|\s)\d{4}$/;
+    if (
+      phoneRegEp.test(emailOrPhone.value) ||
+      emailRegExp.test(emailOrPhone.value)
+    ) {
+      emailOrPhone.classList.remove('border', 'border-danger');
+      document.querySelector('.emailWarningText').classList.add('d-none');
+      shippingAddress.emailOrPhone = emailOrPhone.value; // save input as a phoneNumber or email
+    } else {
+      emailOrPhone.classList.add('border', 'border-danger');
+      document.querySelector('.emailWarningText').classList.remove('d-none');
+    }
+
+    //FirstName input (optional)
+    const firstName = document.querySelector('#FirstName');
+    if (firstName.value) {
+      shippingAddress.firstName = firstName.value;
+    }
+
+    //LastName input (required)
+    const lastName = document.querySelector('#LastName');
+    if (lastName.value) {
+      lastName.classList.remove('border', 'border-danger');
+      document.querySelector('.lastNameWarningText').classList.add('d-none');
+      shippingAddress.lastName = lastName.value;
+    } else {
+      lastName.classList.add('border', 'border-danger');
+      document.querySelector('.lastNameWarningText').classList.remove('d-none');
+    }
+
+    // address input (required)
+    const address = document.querySelector('#Address');
+    if (address.value) {
+      address.classList.remove('border', 'border-danger');
+      document.querySelector('.addressWarningText').classList.add('d-none');
+      shippingAddress.address = address.value;
+    } else {
+      address.classList.add('border', 'border-danger');
+      document.querySelector('.addressWarningText').classList.remove('d-none');
+    }
+
+    //secAddress input (optional)
+    const secAddress = document.querySelector('#secAddress');
+    if (secAddress.value) {
+      shippingAddress.secAddress = secAddress.value;
+    }
+
+    //zipCode input (required)
+    const zipCode = document.querySelector('#zipCode');
+    if (zipCode.value) {
+      zipCode.classList.remove('border', 'border-danger');
+      document.querySelector('.zipCodeWarningText').classList.add('d-none');
+      shippingAddress.zipCode = zipCode.value;
+    } else {
+      zipCode.classList.add('border', 'border-danger');
+      document.querySelector('.zipCodeWarningText').classList.remove('d-none');
+    }
+
+    // city input (required)
+    const city = document.querySelector('#City');
+    if (city.value) {
+      city.classList.remove('border', 'border-danger');
+      document.querySelector('.cityWarningText').classList.add('d-none');
+      shippingAddress.city = city.value;
+    } else {
+      city.classList.add('border', 'border-danger');
+      document.querySelector('.cityWarningText').classList.remove('d-none');
+    }
+    //
+
+    const country = document.querySelector('#countries');
+    if (country.value) {
+      shippingAddress.county = country.value;
+    }
+
+    // check if save for next time checked
+    if (document.querySelector('#SaveForNextTime').checked) {
+      localStorage.setItem('shipTo', JSON.stringify(shippingAddress));
+    } else {
+      sessionStorage.setItem('shipTo', JSON.stringify(shippingAddress));
     }
   }
 });
