@@ -314,9 +314,9 @@ DomElements.body.addEventListener('click', (e) => {
     const shippingAddress = {};
     const emailOrPhone = document.querySelector('#emailOrPhone');
     const emailRegExp = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-    const phoneRegEp = /^(\()?\d{3}(\))?(-|\s)?\d{3}(-|\s)\d{4}$/;
+    const phoneRegExp = /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/im;
     if (
-      phoneRegEp.test(emailOrPhone.value) ||
+      phoneRegExp.test(emailOrPhone.value) ||
       emailRegExp.test(emailOrPhone.value)
     ) {
       emailOrPhone.classList.remove('border', 'border-danger');

@@ -908,7 +908,7 @@ export function displaySummaryTotal() {
   ${discountPart}
   <div class="d-flex py-1">
     <span class="text-14 text-muted">Shipping</span>
-    <span class="ml-auto" style="font-size: 12px">Calculated at next step</span>
+    <span class="ml-auto text-muted" style="font-size: 12px">Calculated at next step</span>
   </div>
   <hr />
   <div class="d-flex">
