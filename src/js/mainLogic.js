@@ -1,5 +1,6 @@
 import * as databaseHandler from './DataBaseHandler';
 import countries from 'countries-list';
+import * as ui_updater from './UI-Updater';
 //--------
 export function addProductToCart() {
   let productToAdd = getProductProperties();
@@ -97,6 +98,8 @@ function getProductProperties() {
     addedProduct.product_id,
     addedProduct.product_color
   );
+  // add two decimal point
+  addedProduct.unit_price = addedProduct.unit_price;
 
   //get quantity
   addedProduct.product_quantity = document.querySelector(
@@ -110,6 +113,8 @@ function getProductProperties() {
       addedProduct.product_id,
       addedProduct.product_color
     ) * quantity;
+  // add two decimal point
+  addedProduct.product_price = addedProduct.product_price;
 
   return addedProduct;
 }
@@ -237,12 +242,28 @@ export function calculateCartTotal() {
   Object.entries(localStorage).forEach((element) => {
     if (element[0].substring(0, element[0].indexOf('-')) === 'product') {
       let parsedElement = JSON.parse(element[1]);
-      totalAmount += parsedElement.product_price;
+      totalAmount += parseInt(parsedElement.product_price);
     }
   });
 
   //localStorage.setItem('cartTotal', totalAmount);
   return totalAmount;
+}
+
+// save cartTotal to sessionStorage
+export function saveCartTotalToSessionStorage(subtotal, cartTotal) {
+  if (subtotal) {
+    sessionStorage.setItem('subtotal', subtotal);
+  }
+  if (cartTotal) {
+    sessionStorage.setItem('total', cartTotal);
+  }
+}
+
+export function calculateDiscountTotal(discount) {
+  let cartTotal = calculateCartTotal();
+
+  return (cartTotal * discount) / 100;
 }
 
 export function checkCoupon(couponCode) {
@@ -254,19 +275,13 @@ export function checkCoupon(couponCode) {
   }
 }
 
-// calculate discount
-export function calculateDiscount(discount) {
-  const discountAmount = document.querySelector('#discountAmount');
-  const discountTableRow = document.querySelector('#discount');
+// calculate discount and call ui-updater displayDiscount to display it in the cart page
+// export function calculateDiscount(discount) {
+//   const discountTotal = calculateDiscountTotal(discount);
+//   ui_updater.displayDiscount(discountTotal);
+// }
 
-  discountTableRow.classList.remove('d-none');
-  const discountTotal = Math.floor((calculateCartTotal() * discount) / 100);
-  discountAmount.textContent = '-' + discountTotal + '$';
-  document.querySelector('#total').textContent =
-    calculateCartTotal() - discountTotal + '$';
-}
-
-// get countries list
+// get countries list from installed npm package countries
 export function getCountriesListInHtml() {
   const countryCodes = Object.keys(countries.countries);
   const countryNames = countryCodes.map((countryCode) => {

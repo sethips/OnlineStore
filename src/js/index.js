@@ -99,19 +99,24 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     }
 
-    // auto fill address
+    // auto fill address if it exist in the localStorage or sessionStorage
     if (localStorage.getItem('shipTo')) {
-      const shippingAddress = JSON.parse(localStorage.getItem('shipTo'));
-
-      document.querySelector('#emailOrPhone').value =
-        shippingAddress.emailOrPhone;
+      let addressToShipTo = JSON.parse(localStorage.getItem('shipTo'));
+      Ui_Updater.autoFillAddress(addressToShipTo);
     } else if (sessionStorage.getItem('shipTo')) {
-      console.log('im here');
-      const shippingAddress = JSON.parse(localStorage.getItem('shipTo'));
+      let addressToShipTo = JSON.parse(sessionStorage.getItem('shipTo'));
+      Ui_Updater.autoFillAddress(addressToShipTo);
+    }
+  }
 
-      console.log(shippingAddress);
-      //   document.querySelector('#emailOrPhone').value =
-      //     shippingAddress.emailOrPhone;
+  if (document.querySelector('#summarySection')) {
+    const cartContent = mainLogic.getCartContent();
+    if (cartContent) {
+      cartContent.forEach((productInCart) => {
+        Ui_Updater.addCartElementToSummarySection(productInCart);
+      });
+
+      Ui_Updater.displaySummaryTotal();
     }
   }
 });
@@ -301,11 +306,11 @@ DomElements.body.addEventListener('click', (e) => {
   }
 
   // checkout.html continue to shipping button press
-
   if (e.target.id === 'continueToShipping') {
     //
     // contact info section
     // email of phone section (required)
+    let infoMissing = 0;
     const shippingAddress = {};
     const emailOrPhone = document.querySelector('#emailOrPhone');
     const emailRegExp = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
@@ -318,6 +323,7 @@ DomElements.body.addEventListener('click', (e) => {
       document.querySelector('.emailWarningText').classList.add('d-none');
       shippingAddress.emailOrPhone = emailOrPhone.value; // save input as a phoneNumber or email
     } else {
+      infoMissing++;
       emailOrPhone.classList.add('border', 'border-danger');
       document.querySelector('.emailWarningText').classList.remove('d-none');
     }
@@ -335,6 +341,7 @@ DomElements.body.addEventListener('click', (e) => {
       document.querySelector('.lastNameWarningText').classList.add('d-none');
       shippingAddress.lastName = lastName.value;
     } else {
+      infoMissing++;
       lastName.classList.add('border', 'border-danger');
       document.querySelector('.lastNameWarningText').classList.remove('d-none');
     }
@@ -346,6 +353,7 @@ DomElements.body.addEventListener('click', (e) => {
       document.querySelector('.addressWarningText').classList.add('d-none');
       shippingAddress.address = address.value;
     } else {
+      infoMissing++;
       address.classList.add('border', 'border-danger');
       document.querySelector('.addressWarningText').classList.remove('d-none');
     }
@@ -363,6 +371,7 @@ DomElements.body.addEventListener('click', (e) => {
       document.querySelector('.zipCodeWarningText').classList.add('d-none');
       shippingAddress.zipCode = zipCode.value;
     } else {
+      infoMissing++;
       zipCode.classList.add('border', 'border-danger');
       document.querySelector('.zipCodeWarningText').classList.remove('d-none');
     }
@@ -374,6 +383,7 @@ DomElements.body.addEventListener('click', (e) => {
       document.querySelector('.cityWarningText').classList.add('d-none');
       shippingAddress.city = city.value;
     } else {
+      infoMissing++;
       city.classList.add('border', 'border-danger');
       document.querySelector('.cityWarningText').classList.remove('d-none');
     }
@@ -381,15 +391,36 @@ DomElements.body.addEventListener('click', (e) => {
 
     const country = document.querySelector('#countries');
     if (country.value) {
-      shippingAddress.county = country.value;
+      shippingAddress.country = country.value;
     }
 
-    // check if save for next time checked
-    if (document.querySelector('#SaveForNextTime').checked) {
-      localStorage.setItem('shipTo', JSON.stringify(shippingAddress));
-    } else {
-      sessionStorage.setItem('shipTo', JSON.stringify(shippingAddress));
+    // check if all required infos are entered
+    if (infoMissing === 0) {
+      // check if save for next time checked
+      if (document.querySelector('#SaveForNextTime').checked) {
+        localStorage.setItem('shipTo', JSON.stringify(shippingAddress));
+      } else {
+        sessionStorage.setItem('shipTo', JSON.stringify(shippingAddress));
+      }
     }
+  }
+
+  //checkout.html showSummary button click
+  if (
+    e.target.id === 'showSummary' ||
+    e.target.parentNode.id === 'showSummary'
+  ) {
+    document
+      .querySelector('#showSummaryChevron')
+      .classList.toggle('chevronRotate');
+
+    // change summary text
+    document.querySelector('#showSummaryText').textContent ===
+    'Show order summary'
+      ? (document.querySelector('#showSummaryText').textContent =
+          'Hide order summary')
+      : (document.querySelector('#showSummaryText').textContent =
+          'Show order summary');
   }
 });
 
@@ -407,7 +438,7 @@ if (document.querySelector('#coupon')) {
       // if the discount code exist in the json DataBase
       if (discount) {
         sessionStorage.setItem('discount', discount);
-        mainLogic.calculateDiscount(discount);
+        Ui_Updater.displayDiscount(mainLogic.calculateDiscountTotal(discount));
       } else {
         discountTableRow.classList.add('d-none');
         setTimeout(() => {

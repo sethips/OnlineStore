@@ -165,8 +165,6 @@
   color: black;
 }
 
-.nav-tabs {
-}
 .custom-nav > .nav-link {
   color: rgba(0, 0, 0, 0.5);
   font-size: 20px;
@@ -340,6 +338,13 @@
   100% {
     opacity: 1;
   }
+}
+#showSummaryChevron {
+  transition: all 0.1s ease-in-out;
+}
+.chevronRotate {
+  transform: rotate(90deg);
+  transition: all 0.1s ease-in-out;
 }
 
 /*  Extra small devices (portrait phones, less than 576px)

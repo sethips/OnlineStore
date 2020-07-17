@@ -761,19 +761,23 @@ export function displayCart(templateString) {
 //display cart total in the cart.html
 export function displayCartTotal(totalAmount) {
   document.querySelector('#subtotal').textContent = totalAmount + '$';
-  sessionStorage.setItem('subtotal', totalAmount);
   document.querySelector('#total').textContent = totalAmount + '$';
-  sessionStorage.setItem('total', totalAmount);
+  mainLogic.saveCartTotalToSessionStorage(totalAmount, totalAmount);
 
   // check if discount is available and apply it
   if (sessionStorage.getItem('discount')) {
-    let discountAmount = Math.floor(
-      (parseInt(sessionStorage.getItem('discount')) * totalAmount) / 100
+    let discountAmount = mainLogic.calculateDiscountTotal(
+      sessionStorage.getItem('discount')
     );
     let total = totalAmount - discountAmount;
     sessionStorage.setItem('discountAmount', discountAmount);
-    sessionStorage.setItem('total', total);
-    mainLogic.calculateDiscount(sessionStorage.getItem('discount'));
+    // sessionStorage.setItem('total', total);
+    mainLogic.saveCartTotalToSessionStorage(null, total);
+    // mainLogic.calculateDiscount(sessionStorage.getItem('discount'));
+
+    displayDiscount(discountAmount);
+
+    document.querySelector('#total').textContent = total + '$';
   }
 
   // cart bottom section calculate the free shipping option
@@ -797,6 +801,18 @@ export function displayCartTotal(totalAmount) {
   }
 }
 
+// display discount in cart page
+export function displayDiscount(discountTotal) {
+  const discountAmount = document.querySelector('#discountAmount');
+  const discountTableRow = document.querySelector('#discount');
+
+  discountTableRow.classList.remove('d-none');
+
+  discountAmount.textContent = '-' + discountTotal + '$';
+  document.querySelector('#total').textContent =
+    mainLogic.calculateCartTotal() - discountTotal + '$';
+}
+
 //--------
 export function displayProduct(templateString) {
   if (templateString) {
@@ -811,4 +827,111 @@ export function showEmptyCartPage() {
   document.querySelector('#fullCart').classList.add('d-none');
   document.querySelector('#emptyCart').classList.remove('d-none');
   document.querySelector('#emptyCart').classList.add('d-flex');
+}
+
+// auto fill user address if already in localStorage or sessionStorage
+// Checkout.html address Section
+export function autoFillAddress(addressToShipTo) {
+  document.querySelector('#emailOrPhone').value = addressToShipTo.emailOrPhone;
+  addressToShipTo.firstName
+    ? (document.querySelector('#FirstName').value = addressToShipTo.firstName)
+    : (document.querySelector('#FirstName').value = '');
+  document.querySelector('#LastName').value = addressToShipTo.lastName;
+  document.querySelector('#Address').value = addressToShipTo.address;
+  addressToShipTo.secAddress
+    ? (document.querySelector('#secAddress').value = addressToShipTo.secAddress)
+    : (document.querySelector('#secAddress').value = '');
+  document.querySelector('#zipCode').value = addressToShipTo.zipCode;
+  document.querySelector('#City').value = addressToShipTo.city;
+  document.querySelector('#countries').value = addressToShipTo.country;
+}
+
+// Checkout.html page summarySection
+export function addCartElementToSummarySection(cartItem) {
+  let templateString = `<div class="d-flex align-items-center my-4">
+  <div class="position-relative">
+    <img
+      src="${dataBaseHandler.getProductMainPic(cartItem.product_id)}"
+      alt=""
+      width="60"
+      class="border rounded px-1"
+    />
+    <span
+      class="position-absolute border bg-secondary rounded-circle text-white text-center align-middle"
+      style="
+        right: -10px;
+        top: -10px;
+        z-index: 10;
+        width: 20px;
+        height: 20px;
+        font-size: 12px;
+      "
+      >${cartItem.product_quantity}</span
+    >
+  </div>
+  <span class="ml-2">
+    <span class="d-block text-14"
+      >${cartItem.product_name}</span
+    >
+    <span class="d-block text-14 text-black-50">${cartItem.product_color}</span>
+  </span>
+  <span class="ml-auto text-14">
+    <span>${cartItem.product_price}$</span>
+  </span>
+</div>
+`;
+
+  document
+    .querySelector('#summarySection')
+    .insertAdjacentHTML('beforeend', templateString);
+}
+
+// Checkout.html page summarySection
+export function displaySummaryTotal() {
+  // first check if discount code was submitted
+  let discountPart = '';
+  if (sessionStorage.getItem('discount')) {
+    discountPart = `<div class="d-flex py-1">
+    <span class="text-14 text-muted">discount</span>
+    <span class="ml-auto text-14">- ${mainLogic.calculateDiscountTotal(
+      sessionStorage.getItem('discount')
+    )}$</span>
+  </div>`;
+  }
+
+  // -------
+  let templateString = `<hr />
+  <div class="d-flex py-1">
+    <span class="text-14 text-muted">Subtotal</span>
+    <span class="ml-auto text-14">${mainLogic.calculateCartTotal()}$</span>
+  </div>
+  ${discountPart}
+  <div class="d-flex py-1">
+    <span class="text-14 text-muted">Shipping</span>
+    <span class="ml-auto" style="font-size: 12px">Calculated at next step</span>
+  </div>
+  <hr />
+  <div class="d-flex">
+    <span class="text-14">Total</span>
+    <span class="ml-auto"
+      ><span class="mr-3 text-muted" style="font-size: 12px;"
+        >USD</span
+      >${
+        discountPart !== ''
+          ? mainLogic.calculateCartTotal() -
+            mainLogic.calculateDiscountTotal(sessionStorage.getItem('discount'))
+          : mainLogic.calculateCartTotal()
+      }$</span
+    >`;
+
+  document
+    .querySelector('#summarySection')
+    .insertAdjacentHTML('beforeend', templateString);
+
+  document.querySelector('#summaryTotalPrice').textContent =
+    discountPart !== ''
+      ? mainLogic.calculateCartTotal() -
+        mainLogic.calculateDiscountTotal(sessionStorage.getItem('discount')) +
+        '$'
+      : mainLogic.calculateCartTotal() + '$';
 }

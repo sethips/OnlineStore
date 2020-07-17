@@ -16,12 +16,110 @@
       integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
       crossorigin="anonymous"
     />
+    <link rel="stylesheet" href="style.css" />
   </head>
   <body>
     <div class="container my-0 py-0">
       <div class="row">
-        <div class="col-12 col-lg-7 py-5 border-right">
+        <div class="col-12 col-lg-7 py-5 border-lg">
           <span class="h2">Checkout</span>
+          <!-- this section will be displayed on smaller device only -->
+          <div class="d-block d-lg-none my-4">
+            <div class="d-flex">
+              <span
+                class="d-flex align-items-center text-primary custom-cursor"
+                data-toggle="collapse"
+                data-target="#collapseThisDiv"
+                id="showSummary"
+              >
+                <img
+                  width="20"
+                  height="20"
+                  src="https://image.flaticon.com/icons/svg/3036/3036969.svg"
+                  class="mr-2"
+                  style="
+                    filter: invert(31%) sepia(44%) saturate(5859%)
+                      hue-rotate(202deg) brightness(107%) contrast(104%);
+                  "
+                />
+                <span id="showSummaryText">Show order summary</span>
+                <img
+                  width="10"
+                  height="10"
+                  src="https://image.flaticon.com/icons/svg/748/748073.svg"
+                  class="mx-2"
+                  id="showSummaryChevron"
+                  style="
+                    filter: invert(31%) sepia(44%) saturate(5859%)
+                      hue-rotate(202deg) brightness(107%) contrast(104%);
+                  "
+                /> </span
+              ><span class="ml-auto">
+                <span class="h6" id="summaryTotalPrice"></span>
+              </span>
+            </div>
+            <div class="collapse" id="collapseThisDiv">
+              <div id="summarySection">
+                <!-- <div class="d-flex align-items-center my-4">
+                  <div class="position-relative">
+                    <img
+                      src="https://cdn.shopify.com/s/files/1/0102/4383/3952/products/jewelry-12_8a0e17aa-c879-4127-98ea-6242dbf9568c_2048x.jpg"
+                      alt=""
+                      width="60"
+                      class="border rounded px-1"
+                    />
+                    <span
+                      class="position-absolute border bg-secondary rounded-circle text-white text-center align-middle"
+                      style="
+                        right: -10px;
+                        top: -10px;
+                        z-index: 10;
+                        width: 20px;
+                        height: 20px;
+                        font-size: 12px;
+                      "
+                      >1</span
+                    >
+                  </div>
+                  <span class="ml-2">
+                    <span class="d-block text-14"
+                      >Eingerless gloves in camel</span
+                    >
+                    <span class="d-block text-14 text-black-50">Black</span>
+                  </span>
+                  <span class="ml-auto text-14">
+                    <span>320$</span>
+                  </span>
+                </div>
+
+                <hr />
+
+                <div class="d-flex">
+                  <span class="text-14">Subtotal</span>
+                  <span class="ml-auto text-14">$689.00</span>
+                </div>
+                <div class="d-flex">
+                  <span class="text-14">discount</span>
+                  <span class="ml-auto text-14">$68.00</span>
+                </div>
+                <div class="d-flex">
+                  <span class="text-14">Shipping</span>
+                  <span class="ml-auto text-14">Calculated at next step</span>
+                </div>
+                <hr />
+                <div class="d-flex">
+                  <span class="text-14">Total</span>
+                  <span class="ml-auto"
+                    ><span class="mr-3 text-muted" style="font-size: 12px;"
+                      >USD</span
+                    >689.00$</span
+                  >
+                </div> -->
+              </div>
+            </div>
+          </div>
+          <!--  -->
+          <!--  -->
           <ol class="breadcrumb bg-transparent pl-0">
             <li class="breadcrumb-item text-14">
               <a href="cart.html">cart</a>
@@ -161,7 +259,8 @@
             </section>
           </section>
         </div>
-        <div class="col bg-light py-5">
+        <div class="col d-none d-lg-block bg-light py-5 border-left">
+          <!-- only show on large devices -->
           <div class="col-12">
             <div class="d-flex align-items-center my-4">
               <div class="position-relative">
