@@ -881,9 +881,9 @@ export function addCartElementToSummarySection(cartItem) {
 </div>
 `;
 
-  document
-    .querySelector('#summarySection')
-    .insertAdjacentHTML('beforeend', templateString);
+  document.querySelectorAll('#summarySection').forEach((nodeElement) => {
+    nodeElement.insertAdjacentHTML('beforeend', templateString);
+  });
 }
 
 // Checkout.html page summarySection
@@ -924,9 +924,13 @@ export function displaySummaryTotal() {
       }$</span
     >`;
 
-  document
-    .querySelector('#summarySection')
-    .insertAdjacentHTML('beforeend', templateString);
+  // document
+  //   .querySelector('#summarySection')
+  //   .insertAdjacentHTML('beforeend', templateString);
+
+  document.querySelectorAll('#summarySection').forEach((nodeElement) => {
+    nodeElement.insertAdjacentHTML('beforeend', templateString);
+  });
 
   document.querySelector('#summaryTotalPrice').textContent =
     discountPart !== ''
