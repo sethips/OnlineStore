@@ -128,136 +128,191 @@
             <li class="breadcrumb-item text-14">shipping</li>
             <li class="breadcrumb-item text-14">Payment</li>
           </ol>
-          <section id="mainSection" class="shippingAddressSection">
-            <h5>Contact information</h5>
-            <div class="form-group">
-              <div class="my-2">
+
+          <!-- page dynamic section  -->
+          <div id="dynamicSection">
+            <!-- checkout.html address section -->
+            <!-- <div id="addressSection">
+              <h5>Contact information</h5>
+              <div class="form-group">
+                <div class="my-2">
+                  <input
+                    type="text"
+                    class="form-control mt-3"
+                    id="emailOrPhone"
+                    placeholder="Email or mobile phone number"
+                  />
+                  <span class="d-none text-danger emailWarningText"
+                    >Enter an email or mobile phone number</span
+                  >
+                </div>
+                <input class="mr-2" type="checkbox" name="" id="subscribed" />
+                <label class="text-black-50 text-14"
+                  >Keep me up to date on news and exclusive offers</label
+                >
+              </div>
+
+              <div>
+                <h5>Shipping address</h5>
+                <div class="row my-3">
+                  <div class="col-12 col-md-6 mb-3 mb-md-0">
+                    <input
+                      type="text"
+                      name=""
+                      id="FirstName"
+                      class="form-control"
+                      placeholder="First name (optional)"
+                    />
+                  </div>
+                  <div class="col-12 col-md-6">
+                    <input
+                      type="text"
+                      name=""
+                      id="LastName"
+                      class="form-control"
+                      placeholder="Last name"
+                    />
+                    <span class="d-none text-danger lastNameWarningText"
+                      >Enter a last name</span
+                    >
+                  </div>
+                </div>
                 <input
                   type="text"
+                  name=""
+                  id="Address"
                   class="form-control mt-3"
-                  id="emailOrPhone"
-                  placeholder="Email or mobile phone number"
+                  placeholder="Address"
                 />
-                <span class="d-none text-danger emailWarningText"
-                  >Enter an email or mobile phone number</span
+                <span class="d-none text-danger addressWarningText"
+                  >Enter an Address</span
                 >
+                <input
+                  type="text"
+                  name=""
+                  id="secAddress"
+                  class="form-control my-3"
+                  placeholder="Apartment, suite, etc. (optional)  "
+                />
+                <div class="row my-3">
+                  <div class="col-12 col-md-6 mb-3 mb-md-0">
+                    <input
+                      type="text"
+                      name=""
+                      id="zipCode"
+                      class="form-control"
+                      placeholder="Postal code"
+                    />
+                    <span class="d-none text-danger zipCodeWarningText"
+                      >Enter a ZIP / postal code</span
+                    >
+                  </div>
+                  <div class="col-12 col-md-6">
+                    <input
+                      type="text"
+                      name=""
+                      id="City"
+                      class="form-control"
+                      placeholder="City"
+                    />
+                    <span class="d-none text-danger cityWarningText"
+                      >Enter a City</span
+                    >
+                  </div>
+                </div>
+                <div class="position-relative my-3">
+                  <label
+                    for=""
+                    class="position-absolute pl-2 text-black-50 text-14"
+                    >country/region</label
+                  >
+                  <select
+                    class="w-100 form-control h-auto pt-4 pl-2"
+                    name=""
+                    id="countries"
+                  >
+                    <option disabled="disabled" value="---">---</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <input
+                    class="mr-2"
+                    type="checkbox"
+                    name=""
+                    id="SaveForNextTime"
+                  />
+                  <label class="text-black-50 text-14"
+                    >Save this information for next time</label
+                  >
+                </div>
               </div>
-              <input class="mr-2" type="checkbox" name="" id="" />
-              <label class="text-black-50 text-14"
-                >Keep me up to date on news and exclusive offers</label
+            </div> -->
+
+            <!-- checkout.html shipping section -->
+            <!-- <div class="d-none" id="shippingSection">
+              <div class="p-3 border rounded text-14">
+                <div class="d-flex">
+                  <span class="mr-5 text-muted">Contact</span>
+                  <span class="" id="emailOrPhoneNumber"></span>
+                  <span
+                    class="ml-auto custom-cursor ml-3"
+                    id="changeEmailOrPhone"
+                    style="color: #1990c6;"
+                    >Change</span
+                  >
+                </div>
+
+                <hr style="width: 90%;" />
+                <div class="d-flex">
+                  <span class="mr-5 text-muted">Ship to</span>
+                  <span id="addressToShipTo"></span>
+                  <span
+                    class="ml-auto custom-cursor ml-3"
+                    id="changeShippingAddress"
+                    style="color: #1990c6;"
+                    >Change</span
+                  >
+                </div>
+              </div>
+
+              <h4 class="mb-3 mt-5">Shipping method</h4>
+
+              <div class="p-3 border rounded d-flex">
+                <div class="custom-control custom-radio">
+                  <input
+                    type="radio"
+                    id="freeShipping"
+                    name="shipping method"
+                    class="custom-control-input"
+                    checked
+                  />
+                  <label
+                    class="custom-control-label text-muted"
+                    for="shipping method"
+                    >International Shipping</label
+                  >
+                </div>
+                <span class="font-weight-bold ml-auto">Free</span>
+              </div>
+            </div> -->
+          </div>
+
+          <!-- bottom section -->
+          <div class="row mt-4">
+            <div class="col d-flex align-items-center">
+              <span class="custom-cursor text-primary" id="returnBtn"
+                >&#60; Return to cart</span
               >
             </div>
-
-            <section>
-              <h5>Shipping address</h5>
-              <div class="row my-3">
-                <div class="col-12 col-md-6">
-                  <input
-                    type="text"
-                    name=""
-                    id="FirstName"
-                    class="form-control"
-                    placeholder="First name (optional)"
-                  />
-                </div>
-                <div class="col-12 col-md-6">
-                  <input
-                    type="text"
-                    name=""
-                    id="LastName"
-                    class="form-control"
-                    placeholder="Last name"
-                  />
-                  <span class="d-none text-danger lastNameWarningText"
-                    >Enter a last name</span
-                  >
-                </div>
-              </div>
-              <input
-                type="text"
-                name=""
-                id="Address"
-                class="form-control mt-3"
-                placeholder="Address"
-              />
-              <span class="d-none text-danger addressWarningText"
-                >Enter an Address</span
+            <div class="col">
+              <button
+                class="btn btn-lg btn-primary w-100"
+                id="continueToShipping"
               >
-              <input
-                type="text"
-                name=""
-                id="secAddress"
-                class="form-control my-3"
-                placeholder="Apartment, suite, etc. (optional)  "
-              />
-              <div class="row my-3">
-                <div class="col-12 col-md-6">
-                  <input
-                    type="text"
-                    name=""
-                    id="zipCode"
-                    class="form-control"
-                    placeholder="Postal code"
-                  />
-                  <span class="d-none text-danger zipCodeWarningText"
-                    >Enter a ZIP / postal code</span
-                  >
-                </div>
-                <div class="col-12 col-md-6">
-                  <input
-                    type="text"
-                    name=""
-                    id="City"
-                    class="form-control"
-                    placeholder="City"
-                  />
-                  <span class="d-none text-danger cityWarningText"
-                    >Enter a City</span
-                  >
-                </div>
-              </div>
-              <div class="position-relative my-3">
-                <label
-                  for=""
-                  class="position-absolute pl-2 text-black-50 text-14"
-                  >country/region</label
-                >
-                <select
-                  class="w-100 form-control h-auto pt-4 pl-2"
-                  name=""
-                  id="countries"
-                >
-                  <option disabled="disabled" value="---">---</option>
-                </select>
-              </div>
-              <div class="form-group">
-                <input
-                  class="mr-2"
-                  type="checkbox"
-                  name=""
-                  id="SaveForNextTime"
-                />
-                <label class="text-black-50 text-14"
-                  >Save this information for next time</label
-                >
-              </div>
-              <div class="row">
-                <div class="col d-flex align-items-center">
-                  <a href="cart.html">
-                    <span>&#60; Return to cart</span>
-                  </a>
-                </div>
-                <div class="col">
-                  <button
-                    class="btn btn-lg btn-primary"
-                    id="continueToShipping"
-                  >
-                    Continue to shipping
-                  </button>
-                </div>
-              </div>
-            </section>
-          </section>
+                Continue to shipping
+              </button>
+            </div>
+          </div>
         </div>
         <div class="col d-none d-lg-block bg-light py-5 border-left">
           <!-- only show on large devices -->

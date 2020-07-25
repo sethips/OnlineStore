@@ -76,12 +76,12 @@ function getPrice(arr) {
   let priceHtmlTemplate = '';
   if (arr.length > 1) {
     priceHtmlTemplate += `<span class="money h2 text-info">
-    ${arr[0]}$</span> <span class="mx-2">-</span>`;
+    ${arr[0].toFixed(2)}$</span> <span class="mx-2">-</span>`;
     priceHtmlTemplate += `<span class="money h2 text-info">
-    ${arr[arr.length - 1]}$</span>`;
+    ${arr[arr.length - 1].toFixed(2)}$</span>`;
   } else {
     priceHtmlTemplate += `<span class="money h2 text-info">
-    ${arr[0]} $</span>`;
+    ${arr[0].toFixed(2)} $</span>`;
   }
   return priceHtmlTemplate;
 }
@@ -90,7 +90,9 @@ function getPrice(arr) {
 function getPriceForEachColor(priceArr) {
   if (priceArr.length > 1) {
     return `<div class="d-flex align-items-center my-4">
-              <span class="money h2 text-info itemPrice">${priceArr[0]}$</span>
+              <span class="money h2 text-info itemPrice">${priceArr[0].toFixed(
+                2
+              )}$</span>
             </div>`;
   } else {
     return `<div class="d-none align-items-center my-4">
@@ -629,7 +631,9 @@ export function creatCartPageTemplate() {
   for (const product of cartContent) {
     let productPicture = dataBaseHandler.getProductMainPic(product.product_id);
     cartPageTemplate += `
-                          <tr class="d-flex flex-column d-lg-table-row bg-light top-buffer" id="row-${product.cart_id}">
+                          <tr class="d-flex flex-column d-lg-table-row bg-light top-buffer" id="row-${
+                            product.cart_id
+                          }">
                             <td class="d-none d-lg-table-cell align-middle">
                               <button
                                 type="button"
@@ -662,18 +666,30 @@ export function creatCartPageTemplate() {
                             <td scope="row" class="text-center text-lg-left align-middle">
                               <div class="w-100 d-flex d-lg-none">
                                 <span class="text-uppercase">Product:</span
-                                ><span class="ml-auto">${product.product_name}</span>
+                                ><span class="ml-auto">${
+                                  product.product_name
+                                }</span>
                               </div>
-                              <span class="d-none d-lg-block">${product.product_name} </span>
-                              <span class="d-block text-muted text-right text-lg-left small">Color: ${product.product_color}</span>
-                              <span class="d-block text-muted text-right text-lg-left small">Size: ${product.product_size}</span>
+                              <span class="d-none d-lg-block">${
+                                product.product_name
+                              } </span>
+                              <span class="d-block text-muted text-right text-lg-left small">Color: ${
+                                product.product_color
+                              }</span>
+                              <span class="d-block text-muted text-right text-lg-left small">Size: ${
+                                product.product_size
+                              }</span>
                             </td>
                             <td class="align-middle">
                               <div class="d-flex d-lg-none">
                                 <span class="text-uppercase">price:</span>
-                                <span class="ml-auto unit-price-${increaseDecreaseIndex}">${product.unit_price}$</span>
+                                <span class="ml-auto unit-price-${increaseDecreaseIndex}">${product.unit_price.toFixed(
+      2
+    )}$</span>
                               </div>
-                              <span class="d-none d-lg-block unit-price-${increaseDecreaseIndex}">${product.unit_price}$</span>
+                              <span class="d-none d-lg-block unit-price-${increaseDecreaseIndex}">${product.unit_price.toFixed(
+      2
+    )}$</span>
                             </td>
                             <td class="align-middle">
                               <div class="d-flex d-lg-none">
@@ -681,7 +697,9 @@ export function creatCartPageTemplate() {
                                 <div class="input-group ml-auto" style="width: 100px;">
                                   <div class="input-group-prepend">
                                     <button
-                                      class="btn btn-light btn-sm input-group-text px-2 custom-cursor product-count cart-${product.cart_id}"
+                                      class="btn btn-light btn-sm input-group-text px-2 custom-cursor product-count cart-${
+                                        product.cart_id
+                                      }"
                                       id="decrease-${increaseDecreaseIndex}"
                                     >
                                       -
@@ -697,7 +715,9 @@ export function creatCartPageTemplate() {
                                   />
                                   <div class="input-group-append">
                                     <button
-                                      class="btn btn-light btn-sm input-group-text px-2 custom-cursor product-count cart-${product.cart_id}"
+                                      class="btn btn-light btn-sm input-group-text px-2 custom-cursor product-count cart-${
+                                        product.cart_id
+                                      }"
                                       id="increase-${increaseDecreaseIndex}"
                                     >
                                       +
@@ -708,7 +728,9 @@ export function creatCartPageTemplate() {
                               <div class="d-none d-lg-flex input-group mx-auto" style="width: 100px;">
                                 <div class="input-group-prepend">
                                   <button
-                                    class="btn btn-light btn-sm input-group-text px-2 custom-cursor product-count cart-${product.cart_id}"
+                                    class="btn btn-light btn-sm input-group-text px-2 custom-cursor product-count cart-${
+                                      product.cart_id
+                                    }"
                                     id="decrease-${increaseDecreaseIndex}"
                                   >
                                     -
@@ -724,7 +746,9 @@ export function creatCartPageTemplate() {
                                 />
                                 <div class="input-group-append">
                                   <button
-                                    class="btn btn-light btn-sm input-group-text px-2 custom-cursor product-count cart-${product.cart_id}"
+                                    class="btn btn-light btn-sm input-group-text px-2 custom-cursor product-count cart-${
+                                      product.cart_id
+                                    }"
                                     id="increase-${increaseDecreaseIndex}"
                                   >
                                     +
@@ -735,9 +759,13 @@ export function creatCartPageTemplate() {
                             <td class="align-middle">
                               <div class="d-flex d-lg-none">
                                 <span class="text-uppercase">Total:</span>
-                                <span class="ml-auto totalPrice-${increaseDecreaseIndex}">${product.product_price}$</span>
+                                <span class="ml-auto totalPrice-${increaseDecreaseIndex}">${product.product_price.toFixed(
+      2
+    )}$</span>
                               </div>
-                              <span class="d-none d-lg-block totalPrice-${increaseDecreaseIndex}">${product.product_price}$</span>
+                              <span class="d-none d-lg-block totalPrice-${increaseDecreaseIndex}">${product.product_price.toFixed(
+      2
+    )}$</span>
                             </td>
                           </tr>`;
 
@@ -760,8 +788,9 @@ export function displayCart(templateString) {
 
 //display cart total in the cart.html
 export function displayCartTotal(totalAmount) {
-  document.querySelector('#subtotal').textContent = totalAmount + '$';
-  document.querySelector('#total').textContent = totalAmount + '$';
+  document.querySelector('#subtotal').textContent =
+    totalAmount.toFixed(2) + '$';
+  document.querySelector('#total').textContent = totalAmount.toFixed(2) + '$';
   mainLogic.saveCartTotalToSessionStorage(totalAmount, totalAmount);
 
   // check if discount is available and apply it
@@ -777,7 +806,7 @@ export function displayCartTotal(totalAmount) {
 
     displayDiscount(discountAmount);
 
-    document.querySelector('#total').textContent = total + '$';
+    document.querySelector('#total').textContent = total.toFixed(2) + '$';
   }
 
   // cart bottom section calculate the free shipping option
@@ -786,7 +815,7 @@ export function displayCartTotal(totalAmount) {
     document.querySelector('.free_shipping').style.display = 'none';
     document.querySelector('.remaining_free_shipping').style.display = 'block';
     document.querySelector('.amount_to_spend').textContent =
-      1000 - totalAmount + '$';
+      (1000 - totalAmount).toFixed(2) + '$';
 
     document.querySelector('.progress-bar').style.width = `${Math.floor(
       (totalAmount / 1000) * 100
@@ -808,9 +837,13 @@ export function displayDiscount(discountTotal) {
 
   discountTableRow.classList.remove('d-none');
 
-  discountAmount.textContent = '-' + discountTotal + '$';
+  discountAmount.textContent = '-' + discountTotal.toFixed(2) + '$';
   document.querySelector('#total').textContent =
-    mainLogic.calculateCartTotal() - discountTotal + '$';
+    (mainLogic.calculateCartTotal() - discountTotal).toFixed(2) + '$';
+
+  document.querySelector('#coupon').value = dataBaseHandler.getCouponName(
+    sessionStorage.getItem('discount')
+  );
 }
 
 //--------
@@ -823,6 +856,8 @@ export function displayProduct(templateString) {
     showEmptyCartPage();
   }
 }
+
+//---------
 export function showEmptyCartPage() {
   document.querySelector('#fullCart').classList.add('d-none');
   document.querySelector('#emptyCart').classList.remove('d-none');
@@ -833,6 +868,7 @@ export function showEmptyCartPage() {
 // Checkout.html address Section
 export function autoFillAddress(addressToShipTo) {
   document.querySelector('#emailOrPhone').value = addressToShipTo.emailOrPhone;
+  document.querySelector('#subscribed').checked = addressToShipTo.subscribed;
   addressToShipTo.firstName
     ? (document.querySelector('#FirstName').value = addressToShipTo.firstName)
     : (document.querySelector('#FirstName').value = '');
@@ -844,9 +880,12 @@ export function autoFillAddress(addressToShipTo) {
   document.querySelector('#zipCode').value = addressToShipTo.zipCode;
   document.querySelector('#City').value = addressToShipTo.city;
   document.querySelector('#countries').value = addressToShipTo.country;
+
+  document.querySelector('#SaveForNextTime').checked =
+    addressToShipTo.saveInfosForNextTime;
 }
 
-// Checkout.html page summarySection
+// Checkout.html add cart product to summary
 export function addCartElementToSummarySection(cartItem) {
   let templateString = `<div class="d-flex align-items-center my-4">
   <div class="position-relative">
@@ -876,7 +915,7 @@ export function addCartElementToSummarySection(cartItem) {
     <span class="d-block text-14 text-black-50">${cartItem.product_color}</span>
   </span>
   <span class="ml-auto text-14">
-    <span>${cartItem.product_price}$</span>
+    <span>${cartItem.product_price.toFixed(2)}$</span>
   </span>
 </div>
 `;
@@ -893,9 +932,9 @@ export function displaySummaryTotal() {
   if (sessionStorage.getItem('discount')) {
     discountPart = `<div class="d-flex py-1">
     <span class="text-14 text-muted">discount</span>
-    <span class="ml-auto text-14">- ${mainLogic.calculateDiscountTotal(
-      sessionStorage.getItem('discount')
-    )}$</span>
+    <span class="ml-auto text-14">- ${mainLogic
+      .calculateDiscountTotal(sessionStorage.getItem('discount'))
+      .toFixed(2)}$</span>
   </div>`;
   }
 
@@ -903,39 +942,488 @@ export function displaySummaryTotal() {
   let templateString = `<hr />
   <div class="d-flex py-1">
     <span class="text-14 text-muted">Subtotal</span>
-    <span class="ml-auto text-14">${mainLogic.calculateCartTotal()}$</span>
+    <span class="ml-auto text-14">${mainLogic
+      .calculateCartTotal()
+      .toFixed(2)}$</span>
   </div>
   ${discountPart}
   <div class="d-flex py-1">
     <span class="text-14 text-muted">Shipping</span>
-    <span class="ml-auto text-muted" style="font-size: 12px">Calculated at next step</span>
+    <span class="ml-auto" id="shippingFees" style="font-size:12px">Calculated at next step</span>
   </div>
   <hr />
   <div class="d-flex">
     <span class="text-14">Total</span>
-    <span class="ml-auto"
-      ><span class="mr-3 text-muted" style="font-size: 12px;"
-        >USD</span
-      >${
-        discountPart !== ''
-          ? mainLogic.calculateCartTotal() -
-            mainLogic.calculateDiscountTotal(sessionStorage.getItem('discount'))
-          : mainLogic.calculateCartTotal()
-      }$</span
+    <span class="ml-auto" id="summaryTotalAmount"
+      >${mainLogic.calculateCartTotalWithdiscountAndShipping()}$</span
     >`;
-
-  // document
-  //   .querySelector('#summarySection')
-  //   .insertAdjacentHTML('beforeend', templateString);
 
   document.querySelectorAll('#summarySection').forEach((nodeElement) => {
     nodeElement.insertAdjacentHTML('beforeend', templateString);
   });
 
   document.querySelector('#summaryTotalPrice').textContent =
-    discountPart !== ''
-      ? mainLogic.calculateCartTotal() -
-        mainLogic.calculateDiscountTotal(sessionStorage.getItem('discount')) +
-        '$'
-      : mainLogic.calculateCartTotal() + '$';
+    mainLogic.calculateCartTotalWithdiscountAndShipping() + '$';
+}
+
+export function changeShippingFee(fee) {
+  document.querySelectorAll('#shippingFees').forEach((nodeElement) => {
+    nodeElement.style.fontSize = '14px';
+    nodeElement.textContent =
+      fee !== 0 ? parseInt(fee).toFixed(2) + '$' : 'Free';
+  });
+
+  document.querySelectorAll('#summaryTotalAmount').forEach((nodeElement) => {
+    nodeElement.textContent =
+      mainLogic.calculateCartTotalWithdiscountAndShipping() + '$';
+  });
+
+  document.querySelector('#summaryTotalPrice').textContent =
+    mainLogic.calculateCartTotalWithdiscountAndShipping() + '$';
+}
+
+// checkout.html payment section address to ship to
+export function autoFillShippingMethodSection() {
+  //
+
+  document.querySelector('#returnBtn').innerHTML =
+    '&#60; Return to information';
+  let fee = sessionStorage.getItem('shippingFee');
+  changeShippingFee(fee);
+
+  // get where to ship from localStorage or sessionStorage
+  if (localStorage.getItem('shipTo')) {
+    let parsedAddress = JSON.parse(localStorage.getItem('shipTo'));
+
+    document.querySelector('#emailOrPhoneNumber').textContent =
+      parsedAddress.emailOrPhone;
+
+    document.querySelector('#addressToShipTo').textContent = `${
+      parsedAddress.address
+    }, ${parsedAddress.secAddress ? parsedAddress.secAddress + ',' : ''} ${
+      parsedAddress.zipCode
+    }, ${parsedAddress.city}, ${parsedAddress.country}`;
+  } else if (sessionStorage.getItem('shipTo')) {
+    let parsedAddress = JSON.parse(sessionStorage.getItem('shipTo'));
+
+    document.querySelector('#emailOrPhoneNumber').textContent =
+      parsedAddress.emailOrPhone;
+
+    document.querySelector('#addressToShipTo').textContent = `${
+      parsedAddress.address
+    }, ${parsedAddress.secAddress ? parsedAddress.secAddress + ',' : ''} ${
+      parsedAddress.zipCode
+    }, ${parsedAddress.city}, ${parsedAddress.country}`;
+  }
+}
+
+//checkout.html show shipping information section
+export function showShippingInformationSection() {
+  let htmlTemplate = `<div id="addressSection">
+  <h5>Contact information</h5>
+  <div class="form-group">
+    <div class="my-2">
+      <input
+        type="text"
+        class="form-control mt-3"
+        id="emailOrPhone"
+        placeholder="Email or mobile phone number"
+      />
+      <span class="d-none text-danger emailWarningText"
+        >Enter an email or mobile phone number</span
+      >
+    </div>
+    <input class="mr-2" type="checkbox" name="" id="subscribed" />
+    <label class="text-black-50 text-14"
+      >Keep me up to date on news and exclusive offers</label
+    >
+  </div>
+
+  <div>
+    <h5>Shipping address</h5>
+    <div class="row my-3">
+      <div class="col-12 col-md-6 mb-3 mb-md-0">
+        <input
+          type="text"
+          name=""
+          id="FirstName"
+          class="form-control"
+          placeholder="First name (optional)"
+        />
+      </div>
+      <div class="col-12 col-md-6">
+        <input
+          type="text"
+          name=""
+          id="LastName"
+          class="form-control"
+          placeholder="Last name"
+        />
+        <span class="d-none text-danger lastNameWarningText"
+          >Enter a last name</span
+        >
+      </div>
+    </div>
+    <input
+      type="text"
+      name=""
+      id="Address"
+      class="form-control mt-3"
+      placeholder="Address"
+    />
+    <span class="d-none text-danger addressWarningText"
+      >Enter an Address</span
+    >
+    <input
+      type="text"
+      name=""
+      id="secAddress"
+      class="form-control my-3"
+      placeholder="Apartment, suite, etc. (optional)  "
+    />
+    <div class="row my-3">
+      <div class="col-12 col-md-6 mb-3 mb-md-0">
+        <input
+          type="text"
+          name=""
+          id="zipCode"
+          class="form-control"
+          placeholder="Postal code"
+        />
+        <span class="d-none text-danger zipCodeWarningText"
+          >Enter a ZIP / postal code</span
+        >
+      </div>
+      <div class="col-12 col-md-6">
+        <input
+          type="text"
+          name=""
+          id="City"
+          class="form-control"
+          placeholder="City"
+        />
+        <span class="d-none text-danger cityWarningText"
+          >Enter a City</span
+        >
+      </div>
+    </div>
+    <div class="position-relative my-3">
+      <label
+        for=""
+        class="position-absolute pl-2 text-black-50 text-14"
+        >country/region</label
+      >
+      <select
+        class="w-100 form-control h-auto pt-4 pl-2"
+        name=""
+        id="countries"
+      >
+        <option disabled="disabled" value="---">---</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <input
+        class="mr-2"
+        type="checkbox"
+        name=""
+        id="SaveForNextTime"
+      />
+      <label class="text-black-50 text-14"
+        >Save this information for next time</label
+      >
+    </div>
+  </div>
+</div>`;
+
+  document.querySelector('#dynamicSection').innerHTML = '';
+  document
+    .querySelector('#dynamicSection')
+    .insertAdjacentHTML('afterbegin', htmlTemplate);
+}
+
+//checkout.html show shipping Method section
+export function showShippingMethod() {
+  let index = 0;
+  let shippingMethods = dataBaseHandler
+    .getShippingMethods()
+    .map((shippingMethod) => {
+      let checkedOrNot = index === 0 ? 'checked' : '';
+      let partialHtmlTemplate = `<div class="p-3 border rounded mb-3 d-flex" id='shippingMethods'>
+        <div class="custom-control custom-radio">
+         <input type="radio" id="shippingMethod-${index}" name="shippingMethod" class="custom-control-input custom-cursor" ${checkedOrNot}>
+        <label class="custom-control-label custom-cursor" for="shippingMethod-${index}">${
+        shippingMethod[0]
+      }</label>
+      </div>
+        <span class="font-weight-bold ml-auto" id='shippingFee-${index}'>${
+        shippingMethod[1] === 0 ? 'Free' : shippingMethod[1] + '$'
+      }</span>
+      </div>`;
+      index++;
+      return partialHtmlTemplate;
+    });
+
+  let htmlTemplate = `<div id="shippingSection">
+  <div class="p-3 border rounded text-14">
+    <div class="d-flex">
+      <span class="mr-5 text-muted">Contact</span>
+      <span class="" id="emailOrPhoneNumber"></span>
+      <span
+        class="ml-auto custom-cursor ml-3"
+        id="changeEmailOrPhone"
+        style="color: #1990c6;"
+        >Change</span
+      >
+    </div>
+
+    <hr />
+    <div class="d-flex">
+      <span class="mr-5 text-muted">Ship to</span>
+      <span id="addressToShipTo"></span>
+      <span
+        class="ml-auto custom-cursor ml-3"
+        id="changeShippingAddress"
+        style="color: #1990c6;"
+        >Change</span
+      >
+    </div>
+  </div>
+
+  <h4 class="mb-3 mt-5">Shipping method</h4>
+
+  ${shippingMethods.join('')}
+</div>`;
+
+  document.querySelector('#dynamicSection').innerHTML = '';
+  document
+    .querySelector('#dynamicSection')
+    .insertAdjacentHTML('afterbegin', htmlTemplate);
+
+  //Display the shipping amount and add event listener to shipping radio buttons
+  setTimeout(() => {
+    let fee = mainLogic.getShippingFees();
+    sessionStorage.setItem('shippingFee', fee);
+    changeShippingFee(fee);
+    document.querySelectorAll('input[type = radio]').forEach((radioButton) => {
+      radioButton.addEventListener('change', () => {
+        fee = mainLogic.getShippingFees();
+        sessionStorage.setItem('shippingFee', fee);
+        changeShippingFee(fee);
+      });
+    });
+  }, 10);
+}
+
+export function showPaymentSection() {
+  let htmlTemplate = `<div id="paymentSection">
+  <div class="p-3 border rounded text-14">
+    <div class="d-flex">
+      <span class="mr-5 text-muted">Contact</span>
+      <span class="" id="emailOrPhoneNumber"></span>
+      <span
+        class="ml-auto custom-cursor ml-3"
+        id="changeEmailOrPhone"
+        style="color: #1990c6;"
+        >Change</span
+      >
+    </div>
+
+    <hr />
+    <div class="d-flex">
+      <span class="mr-5 text-muted">Ship to</span>
+      <span id="addressToShipTo"></span>
+      <span
+        class="ml-auto custom-cursor ml-3"
+        id="changeShippingAddress"
+        style="color: #1990c6;"
+        >Change</span
+      >
+    </div>
+
+    <hr />
+    <div class="d-flex">
+      <span class="mr-5 text-muted">Method</span>
+      <span id="methodOfShipping"></span>
+      <span
+        class="ml-auto custom-cursor ml-3"
+        id="changeShippingMethod"
+        style="color: #1990c6;"
+        >Change</span
+      >
+    </div>
+  </div>
+
+  <h4 class="mb-3 mt-5">Payment</h4>
+
+  <div class="p-3 border rounded bg-light">
+    <img
+      src="https://scdplumbing.co.uk/wp-content/uploads/2019/02/paypal.png"
+      alt=""
+      class="img-fluid"
+    />
+    <div class="row my-3">
+      <div class="col-12 col-md-6 mb-3">
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <span class="input-group-text">
+              <img
+                width="20"
+                height="20"
+                src="https://image.flaticon.com/icons/svg/1828/1828439.svg"
+              />
+            </span>
+          </div>
+          <input
+            type="text"
+            class="form-control"
+            id="creditCardOwner"
+            placeholder="Owner's name"
+          />
+        </div>
+        <span class="d-none text-danger cardNameWarningText"
+        >Enter owner full name</span>
+      </div>
+      <div class="col-12 col-md-6">
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <span class="input-group-text">
+              <img
+                width="20"
+                height="20"
+                src="https://image.flaticon.com/icons/svg/2922/2922931.svg"
+              />
+            </span>
+          </div>
+          <input
+            type="text"
+            class="form-control"
+            id="creditCardNumber"
+            placeholder="Credit card number"
+            maxlength="19"
+          />
+        </div>
+        <span class="d-none text-danger cardNumberWarningText"
+        >Enter card number</span>
+      </div>
+    </div>
+    <div class="row my-3">
+      <div class="col-12 col-md-6 mb-3">
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <span class="input-group-text">
+              <img
+                width="20"
+                height="20"
+                src="https://image.flaticon.com/icons/svg/2370/2370264.svg"
+              />
+            </span>
+          </div>
+          <input
+            type="month"
+            class="form-control"
+            id="creditCardExpDate"
+            placeholder="MM"
+            maxlength="2"
+          />          
+        </div>
+        <span class="d-none text-danger cardDateWarningText"
+        >Enter card exp date</span>
+      </div>
+      <div class="col-12 col-md-6 mb-3">
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <span class="input-group-text">
+              <img
+                width="20"
+                height="20"
+                src="https://image.flaticon.com/icons/svg/962/962805.svg"
+                class="loaded"
+              />
+            </span>
+          </div>
+          <input
+            type="text"
+            class="form-control"
+            id="creditCardCVV"
+            placeholder="CVV"
+            maxlength = "3"
+          />
+        </div>
+        <span class="d-none text-danger cardCvvWarningText"
+        >Enter card CVV</span>
+      </div>
+
+      <div class="col-12">
+        <input class="mr-2" type="checkbox" name="" id="saveCard" />
+        <label class="text-black-50 text-14"
+        >Save Credit Card information for next time</label>
+    </div>
+      
+    </div>
+  </div>
+</div>`;
+
+  document.querySelector('#dynamicSection').innerHTML = '';
+  document
+    .querySelector('#dynamicSection')
+    .insertAdjacentHTML('afterbegin', htmlTemplate);
+
+  // add event listener to format the credit crd number
+  document.querySelector('#creditCardNumber').addEventListener('keyup', (e) => {
+    e.target.value = mainLogic.formatCardNumber(e.target.value);
+  });
+
+  autofillCreditCardInfos();
+}
+
+export function autoFillPaymentInfosSection() {
+  document.querySelector('#returnBtn').innerHTML =
+    '&#60; Return to shipping method';
+
+  // get where to ship from localStorage or sessionStorage
+  if (localStorage.getItem('shipTo')) {
+    let parsedAddress = JSON.parse(localStorage.getItem('shipTo'));
+
+    document.querySelector('#emailOrPhoneNumber').textContent =
+      parsedAddress.emailOrPhone;
+
+    document.querySelector('#addressToShipTo').textContent = `${
+      parsedAddress.address
+    }, ${parsedAddress.secAddress ? parsedAddress.secAddress + ',' : ''} ${
+      parsedAddress.zipCode
+    }, ${parsedAddress.city}, ${parsedAddress.country}`;
+  } else if (sessionStorage.getItem('shipTo')) {
+    let parsedAddress = JSON.parse(sessionStorage.getItem('shipTo'));
+
+    document.querySelector('#emailOrPhoneNumber').textContent =
+      parsedAddress.emailOrPhone;
+
+    document.querySelector('#addressToShipTo').textContent = `${
+      parsedAddress.address
+    }, ${parsedAddress.secAddress ? parsedAddress.secAddress + ',' : ''} ${
+      parsedAddress.zipCode
+    }, ${parsedAddress.city}, ${parsedAddress.country}`;
+  }
+
+  document.querySelector(
+    '#methodOfShipping'
+  ).textContent = dataBaseHandler.getShippingMethodName(
+    sessionStorage.getItem('shippingFee')
+  );
+}
+
+export function autofillCreditCardInfos() {
+  if (
+    localStorage.getItem('cardInfos') ||
+    sessionStorage.getItem('cardInfos')
+  ) {
+    let card =
+      JSON.parse(localStorage.getItem('cardInfos')) ??
+      JSON.parse(sessionStorage.getItem('cardInfos'));
+    document.querySelector('#creditCardOwner').value = card.name;
+    document.querySelector('#creditCardNumber').value = card.number;
+    document.querySelector('#creditCardExpDate').value = card.expMonth;
+    document.querySelector('#creditCardCVV').value = card.cvv;
+    document.querySelector('#saveCard').checked = card.saved;
+  }
 }

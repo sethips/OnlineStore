@@ -3,12 +3,17 @@ import * as DataBaseHandler from './DataBaseHandler';
 import * as Ui_Updater from './UI-Updater';
 import * as DomModules from './DomModules';
 import * as mainLogic from './mainLogic';
+import sweetAlert from 'sweetalert';
 
 // Local Variables
 const DomElements = DomModules.DOMElements;
 let visitedProduct = '';
+const loadingSvg = `<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" style="margin: auto; background: none; display: block; shape-rendering: auto;" width="24px" height="24px" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid">
+<circle cx="50" cy="50" fill="none" stroke="#ffffff" stroke-width="5" r="46" stroke-dasharray="216.76989309769573 74.25663103256524" transform="rotate(353.677 50.0001 50.0001)">
+  <animateTransform attributeName="transform" type="rotate" repeatCount="indefinite" dur="0.5s" values="0 50 50;360 50 50" keyTimes="0;1"></animateTransform>
+</circle></svg>`;
 
-//Get user ip address and country
+//! Get user ip address and country
 if (!sessionStorage.getItem('ipAddress')) {
   // write ipAddress to sessionStorage
   mainLogic.getIpAddress();
@@ -31,12 +36,16 @@ if (!sessionStorage.getItem('startTimer')) {
 
 // dom element load event
 //
-// insert code on any page Load
+// insert code on any page Load respectively
 document.addEventListener('DOMContentLoaded', () => {
   // check cart number of items
   mainLogic.incrementOrDecrementCartBadge();
 
+  //! insert product infos into product page
   if (document.querySelector('#ProductPageInsertTemplateHere')) {
+    //save current location to sessionStorage
+    sessionStorage.setItem('currentPage', 'ProductPage');
+
     // get product id from URL
     let productParameterString = window.location.search;
     let productParameter = parseInt(
@@ -66,15 +75,34 @@ document.addEventListener('DOMContentLoaded', () => {
     );
   }
 
-  // cart.html populate on load
+  //! cart.html populate on load
   if (document.querySelector('#CartPageInsertTemplateHere')) {
+    // save current location to sessionStorage
+    sessionStorage.setItem('currentPage', 'CartPage');
+
     let cartPageTemplate = Ui_Updater.creatCartPageTemplate();
     Ui_Updater.displayCart(cartPageTemplate);
     const cartTotal = mainLogic.calculateCartTotal();
     Ui_Updater.displayCartTotal(cartTotal);
   }
 
-  // checkout.html auto fill address if already filled and countries load
+  //! checkout.html load shipping method instead of shipping information section when shipping infos already submitted
+  if (document.querySelector('#dynamicSection')) {
+    if (
+      (sessionStorage.getItem('shipTo') || localStorage.getItem('shipTo')) &&
+      sessionStorage.getItem('currentPage') === 'shippingMethod'
+    ) {
+      Ui_Updater.showShippingMethod();
+      Ui_Updater.autoFillShippingMethodSection();
+      document.querySelector('#continueToShipping').textContent =
+        'Continue to payment';
+      document.querySelector('#continueToShipping').id = 'ContinueToPayment';
+    } else {
+      Ui_Updater.showShippingInformationSection();
+    }
+  }
+
+  //! checkout.html auto fill address if already filled and load countries
   if (document.querySelectorAll('.shippingAddressSection')) {
     //  countries load
     if (document.querySelector('#countries')) {
@@ -100,15 +128,21 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // auto fill address if it exist in the localStorage or sessionStorage
-    if (localStorage.getItem('shipTo')) {
-      let addressToShipTo = JSON.parse(localStorage.getItem('shipTo'));
-      Ui_Updater.autoFillAddress(addressToShipTo);
-    } else if (sessionStorage.getItem('shipTo')) {
-      let addressToShipTo = JSON.parse(sessionStorage.getItem('shipTo'));
-      Ui_Updater.autoFillAddress(addressToShipTo);
+    if (
+      document.querySelector('#dynamicSection') &&
+      document.querySelector('#addressSection')
+    ) {
+      if (localStorage.getItem('shipTo')) {
+        let addressToShipTo = JSON.parse(localStorage.getItem('shipTo'));
+        Ui_Updater.autoFillAddress(addressToShipTo);
+      } else if (sessionStorage.getItem('shipTo')) {
+        let addressToShipTo = JSON.parse(sessionStorage.getItem('shipTo'));
+        Ui_Updater.autoFillAddress(addressToShipTo);
+      }
     }
   }
 
+  //! add cart content to summary section in checkout page
   if (document.querySelector('#summarySection')) {
     const cartContent = mainLogic.getCartContent();
     if (cartContent) {
@@ -125,7 +159,7 @@ document.addEventListener('DOMContentLoaded', () => {
 //
 //  body all click events
 DomElements.body.addEventListener('click', (e) => {
-  // product.html product image selection event
+  //! product.html product image selection event
   if (e.target.className.includes('preview-img')) {
     if (e.target.src !== document.querySelector('.product-main-image').src) {
       for (const element of e.target.parentNode.children) {
@@ -136,7 +170,7 @@ DomElements.body.addEventListener('click', (e) => {
     }
   }
 
-  // product.html product color selection event
+  //! product.html product color selection event
   if (e.target.className.includes('Color-Picker')) {
     for (const element of e.target.parentNode.parentNode.children) {
       if (!element.className.includes('color-text')) {
@@ -151,12 +185,12 @@ DomElements.body.addEventListener('click', (e) => {
       if (visitedProduct.price.length > 1) {
         let priceID = e.target.id.substring(e.target.id.indexOf('-') + 1);
         document.querySelector('.itemPrice').textContent =
-          visitedProduct.price[priceID] + '$';
+          visitedProduct.price[priceID].toFixed(2) + '$';
       }
     }
   }
 
-  // product.html product size selection event
+  //! product.html product size selection event
   if (e.target.className.includes('Size-Selector')) {
     if (!e.target.className.includes('selectedSize')) {
       for (const element of e.target.parentNode.children) {
@@ -168,7 +202,7 @@ DomElements.body.addEventListener('click', (e) => {
     }
   }
 
-  // product.html increase and decrease product count events
+  //! product.html increase and decrease product count events
   if (e.target.className.includes('product-count')) {
     let id = e.target.id.substring(e.target.id.indexOf('-') + 1);
     if (
@@ -222,12 +256,9 @@ DomElements.body.addEventListener('click', (e) => {
   }
 
   //----
-  // add to cart button click event
+  //! product.html add to cart button click event
   if (e.target.id === 'cartButton') {
-    e.target.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" style="margin: auto; background: none; display: block; shape-rendering: auto;" width="24px" height="24px" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid">
-    <circle cx="50" cy="50" fill="none" stroke="#ffffff" stroke-width="5" r="46" stroke-dasharray="216.76989309769573 74.25663103256524" transform="rotate(353.677 50.0001 50.0001)">
-      <animateTransform attributeName="transform" type="rotate" repeatCount="indefinite" dur="0.5s" values="0 50 50;360 50 50" keyTimes="0;1"></animateTransform>
-    </circle></svg>`;
+    e.target.innerHTML = loadingSvg;
 
     setTimeout(() => {
       e.target.innerHTML = '';
@@ -237,7 +268,7 @@ DomElements.body.addEventListener('click', (e) => {
     mainLogic.addProductToCart();
   }
 
-  // delete product from cart
+  //! cart.html delete product from cart
   if (e.target.className.includes('closeBtn')) {
     let rowID = 0;
     if (e.target.id) {
@@ -270,19 +301,33 @@ DomElements.body.addEventListener('click', (e) => {
     }
   }
 
-  // clear cart button press
+  //! cart.html clear cart button press
   if (e.target.id === 'clearCart') {
-    Object.keys(localStorage).forEach((key) => {
-      if (key.substring(0, key.indexOf('-')) === 'product') {
-        localStorage.removeItem(key);
+    sweetAlert({
+      'background-color': '#f4f4f4',
+      title: 'Are you sure?',
+      text: 'You will clear your cart',
+      icon: 'warning',
+      buttons: {
+        cancel: 'Cancel',
+        Clear: true,
+      },
+    }).then((response) => {
+      // check if user accepted to clear
+      if (response) {
+        Object.keys(localStorage).forEach((key) => {
+          if (key.substring(0, key.indexOf('-')) === 'product') {
+            localStorage.removeItem(key);
+          }
+        });
+
+        Ui_Updater.showEmptyCartPage();
+        mainLogic.incrementOrDecrementCartBadge();
       }
     });
-
-    Ui_Updater.showEmptyCartPage();
-    mainLogic.incrementOrDecrementCartBadge();
   }
 
-  // check if conditions are accepted
+  //! cart.html proceedTo Checkout and check if conditions are accepted
   const conditionCheckBox = document.querySelector('#agreeWithCondition');
   const conditionText = document.querySelector('.conditionText');
   const messageToSeller = document.querySelector('#specialInstruction');
@@ -295,7 +340,10 @@ DomElements.body.addEventListener('click', (e) => {
       }
 
       // go to checkout from
-      window.location.href = '';
+      window.location.href = 'checkout.html';
+
+      //save current location to sessionStorage
+      sessionStorage.setItem('currentPage', 'checkoutPage');
     } else {
       // highlight condition checkbox
       conditionText.classList.add('blink_me');
@@ -305,7 +353,7 @@ DomElements.body.addEventListener('click', (e) => {
     }
   }
 
-  // checkout.html continue to shipping button press
+  //! checkout.html continue to shipping button press
   if (e.target.id === 'continueToShipping') {
     //
     // contact info section
@@ -327,6 +375,9 @@ DomElements.body.addEventListener('click', (e) => {
       emailOrPhone.classList.add('border', 'border-danger');
       document.querySelector('.emailWarningText').classList.remove('d-none');
     }
+
+    //check if user subscribe to news letter
+    shippingAddress.subscribed = document.querySelector('#subscribed').checked;
 
     //FirstName input (optional)
     const firstName = document.querySelector('#FirstName');
@@ -394,18 +445,35 @@ DomElements.body.addEventListener('click', (e) => {
       shippingAddress.country = country.value;
     }
 
+    shippingAddress.saveInfosForNextTime = document.querySelector(
+      '#SaveForNextTime'
+    ).checked;
+
     // check if all required infos are entered
     if (infoMissing === 0) {
       // check if save for next time checked
       if (document.querySelector('#SaveForNextTime').checked) {
         localStorage.setItem('shipTo', JSON.stringify(shippingAddress));
+        sessionStorage.removeItem('shipTo');
       } else {
         sessionStorage.setItem('shipTo', JSON.stringify(shippingAddress));
+        localStorage.removeItem('shipTo');
       }
+      // continue To Shipping button animation
+      e.target.innerHTML = loadingSvg;
+      setTimeout(() => {
+        e.target.innerHTML = '';
+        e.target.textContent = 'Continue to payment';
+        e.target.id = 'ContinueToPayment';
+        Ui_Updater.showShippingMethod();
+        Ui_Updater.autoFillShippingMethodSection();
+      }, 300);
+
+      sessionStorage.setItem('currentPage', 'shippingMethod');
     }
   }
 
-  //checkout.html showSummary button click
+  //! checkout.html showSummary button click
   if (
     e.target.id === 'showSummary' ||
     e.target.parentNode.id === 'showSummary'
@@ -422,10 +490,126 @@ DomElements.body.addEventListener('click', (e) => {
       : (document.querySelector('#showSummaryText').textContent =
           'Show order summary');
   }
+
+  //! checkout.html change button or return to information buttons click
+  if (
+    e.target.id === 'changeEmailOrPhone' ||
+    e.target.id === 'changeShippingAddress' ||
+    e.target.id === 'returnBtn'
+  ) {
+    sessionStorage.setItem('currentPage', 'checkoutPage');
+    location.reload();
+  }
+
+  //! checkout.html continue to payment button press
+  if (e.target.id === 'ContinueToPayment') {
+    Ui_Updater.showPaymentSection();
+    Ui_Updater.autoFillPaymentInfosSection();
+    sessionStorage.setItem('currentPage', 'paymentPage');
+    setTimeout(() => {
+      e.target.textContent = 'Checkout';
+      e.target.id = 'checkout';
+    }, 300);
+  }
+
+  //! checkout.html payment checkout button press
+  if (e.target.id === 'checkout') {
+    let missingInput = 0;
+    const card = new Object();
+
+    if (document.querySelector('#creditCardOwner').value) {
+      if (
+        !document
+          .querySelector('.cardNameWarningText')
+          .classList.contains('d-none')
+      ) {
+        document.querySelector('.cardNameWarningText').classList.add('d-none');
+      }
+      card.name = document.querySelector('#creditCardOwner').value;
+    } else {
+      missingInput++;
+      document.querySelector('.cardNameWarningText').classList.remove('d-none');
+    }
+
+    if (document.querySelector('#creditCardNumber').value) {
+      if (
+        !document
+          .querySelector('.cardNumberWarningText')
+          .classList.contains('d-none')
+      ) {
+        document
+          .querySelector('.cardNumberWarningText')
+          .classList.add('d-none');
+      }
+      card.number = document.querySelector('#creditCardNumber').value;
+    } else {
+      missingInput++;
+      document
+        .querySelector('.cardNumberWarningText')
+        .classList.remove('d-none');
+    }
+
+    if (document.querySelector('#creditCardExpDate').value) {
+      if (
+        !document
+          .querySelector('.cardDateWarningText')
+          .classList.contains('d-none')
+      ) {
+        document.querySelector('.cardDateWarningText').classList.add('d-none');
+      }
+      card.expMonth = document.querySelector('#creditCardExpDate').value;
+    } else {
+      missingInput++;
+      document.querySelector('.cardDateWarningText').classList.remove('d-none');
+    }
+
+    if (document.querySelector('#creditCardCVV').value) {
+      if (
+        !document
+          .querySelector('.cardCvvWarningText')
+          .classList.contains('d-none')
+      ) {
+        document.querySelector('.cardCvvWarningText').classList.add('d-none');
+      }
+      card.cvv = document.querySelector('#creditCardCVV').value;
+    } else {
+      missingInput++;
+      document.querySelector('.cardCvvWarningText').classList.remove('d-none');
+    }
+
+    document.querySelector('#saveCard').checked
+      ? (card.saved = true)
+      : (card.saved = false);
+
+    if (missingInput === 0) {
+      e.target.innerHTML = loadingSvg;
+      document.querySelector('#saveCard').checked
+        ? localStorage.setItem('cardInfos', JSON.stringify(card))
+        : sessionStorage.setItem('cardInfos', JSON.stringify(card));
+      setTimeout(() => {
+        mainLogic.deleteAllProductsInCart();
+        mainLogic.removeMultipleItemsFromSessionStorage(
+          'total',
+          'shippingFee',
+          'subtotal',
+          'discountAmount',
+          'amountToPay',
+          'discount',
+          'currentPage'
+        );
+        location.href = 'orderStatus.html';
+      }, 1000);
+    }
+  }
+
+  // orderStatus.html button click
+  if (e.target.id === 'goBackToHome') {
+    location.href = 'index.html';
+  }
 });
 
 // coupon code apply event
-// check if coupon section is available
+//! cart.html check if coupon section is available
 if (document.querySelector('#coupon')) {
   const couponTextInput = document.querySelector('#coupon');
   const discountTableRow = document.querySelector('#discount');
@@ -440,6 +624,7 @@ if (document.querySelector('#coupon')) {
         sessionStorage.setItem('discount', discount);
         Ui_Updater.displayDiscount(mainLogic.calculateDiscountTotal(discount));
       } else {
+        sessionStorage.removeItem('discount');
         discountTableRow.classList.add('d-none');
         setTimeout(() => {
           couponWarningText.textContent = '*type your code and press Enter';

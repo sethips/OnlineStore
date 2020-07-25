@@ -219,5 +219,10 @@
       "Vendor": "Basel"
     }
   ],
-  "coupons": ["SALE10=10", "SALE20=20", "SALE30=30"]
+  "coupons": ["SALE10=10", "SALE20=20", "SALE30=30"],
+  "shipping-Methods": [
+    ["International Standard Shipping", 0],
+    ["International Fast Shipping", 30],
+    ["3 Days Shipping", 70]
+  ]
 }

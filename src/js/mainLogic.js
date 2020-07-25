@@ -59,6 +59,15 @@ export function getHowManyProductInCart() {
   return counter;
 }
 
+//------
+export function deleteAllProductsInCart() {
+  Object.entries(localStorage).forEach((element) => {
+    if (element[0].substring(0, element[0].indexOf('-')) === 'product') {
+      localStorage.removeItem(element[0]);
+    }
+  });
+}
+
 // ------
 function getProductProperties() {
   let addedProduct = {};
@@ -202,7 +211,7 @@ export function editProductCountInLocalStorage(e, id) {
     );
 
     document.querySelectorAll(`.totalPrice-${id}`).forEach((element) => {
-      element.textContent = unit_price * quantity + '$';
+      element.textContent = (unit_price * quantity).toFixed(2) + '$';
     });
 
     //* edit the local storage product values
@@ -250,6 +259,20 @@ export function calculateCartTotal() {
   return totalAmount;
 }
 
+//calculate cart total including discount and shipping fes if available
+export function calculateCartTotalWithdiscountAndShipping() {
+  let cartTotal = calculateCartTotal();
+  let discount = sessionStorage.getItem('discount')
+    ? calculateDiscountTotal(sessionStorage.getItem('discount'))
+    : 0;
+  let shipping = getShippingFees() ? getShippingFees() : 0;
+
+  let amountToPay = (cartTotal + shipping - discount).toFixed(2);
+
+  sessionStorage.setItem('amountToPay', amountToPay);
+  return amountToPay;
+}
+
 // save cartTotal to sessionStorage
 export function saveCartTotalToSessionStorage(subtotal, cartTotal) {
   if (subtotal) {
@@ -264,6 +287,20 @@ export function calculateDiscountTotal(discount) {
   let cartTotal = calculateCartTotal();
 
   return (cartTotal * discount) / 100;
+}
+
+//get shipping method price from json database
+export function getShippingFees() {
+  let fee;
+  document.querySelectorAll('input[type = radio]').forEach((nodeElement) => {
+    if (nodeElement.checked) {
+      let shippingIndex = nodeElement.id.substring(
+        nodeElement.id.indexOf('-') + 1
+      );
+      fee = databaseHandler.getShippingMethods()[shippingIndex][1];
+    }
+  });
+  return fee;
 }
 
 export function checkCoupon(couponCode) {
@@ -323,4 +360,21 @@ export function getGeoLocation(ipAddress) {
     .catch((err) => {
       alert(err);
     });
+}
+
+//! credit card formatting
+export function formatCardNumber(cardNumber) {
+  const regex = /^(\d{0,4})(\d{0,4})(\d{0,4})(\d{0,4})$/g;
+  const onlyNumbers = cardNumber.replace(/[^\d]/g, '');
+
+  return onlyNumbers.replace(regex, (regex, $1, $2, $3, $4) =>
+    [$1, $2, $3, $4].filter((group) => !!group).join(' ')
+  );
+}
+
+//-----
+export function removeMultipleItemsFromSessionStorage(...args) {
+  args.forEach((key) => {
+    sessionStorage.removeItem(key);
+  });
 }

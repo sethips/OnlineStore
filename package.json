@@ -19,6 +19,8 @@
     "webpack-dev-server": "^3.11.0"
   },
   "dependencies": {
-    "countries-list": "^2.5.4"
+    "countries-list": "^2.5.4",
+    "firebase": "^7.16.1",
+    "sweetalert": "^2.1.2"
   }
 }
