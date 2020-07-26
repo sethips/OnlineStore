@@ -310,10 +310,14 @@
   animation: flash 1s steps(5, start) infinite;
 }
 
-.blink_me {
-  animation: blinker 0.3s linear infinite;
+.swal-modal .swal-text {
+  text-align: center;
 }
 
+/* hide scroll bar in checkout.html summary section */
+::-webkit-scrollbar {
+  display: none;
+}
 @keyframes blinker {
   50% {
     color: red;

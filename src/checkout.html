@@ -9,6 +9,12 @@
       content="width=device-width, initial-scale=1, shrink-to-fit=no"
     />
 
+    <!-- GoogleFont -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Karla&family=Lora:ital@1&family=Lato:ital@1&display=swap"
+      rel="stylesheet"
+    />
+
     <!-- Bootstrap CSS -->
     <link
       rel="stylesheet"
@@ -16,15 +22,17 @@
       integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
       crossorigin="anonymous"
     />
+
+    <!-- Custom CSS -->
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
     <div class="container my-0 py-0">
       <div class="row">
         <div class="col-12 col-lg-7 py-5 border-lg">
-          <span class="h2">Checkout</span>
+          <span class="h1">Checkout</span>
           <!-- this section will be displayed on smaller device only -->
-          <div class="d-block d-lg-none my-4">
+          <div class="d-block d-lg-none my-4 border rounded px-2 py-3 bg-light">
             <div class="d-flex">
               <span
                 class="d-flex align-items-center text-primary custom-cursor"
@@ -42,7 +50,9 @@
                       hue-rotate(202deg) brightness(107%) contrast(104%);
                   "
                 />
-                <span id="showSummaryText">Show order summary</span>
+                <span id="showSummaryText" style="min-width: 157px;"
+                  >Show order summary</span
+                >
                 <img
                   width="10"
                   height="10"
@@ -59,254 +69,45 @@
               </span>
             </div>
             <div class="collapse" id="collapseThisDiv">
+              <hr />
               <div id="summarySection">
-                <!-- <div class="d-flex align-items-center my-4">
-                  <div class="position-relative">
-                    <img
-                      src="https://cdn.shopify.com/s/files/1/0102/4383/3952/products/jewelry-12_8a0e17aa-c879-4127-98ea-6242dbf9568c_2048x.jpg"
-                      alt=""
-                      width="60"
-                      class="border rounded px-1"
-                    />
-                    <span
-                      class="position-absolute border bg-secondary rounded-circle text-white text-center align-middle"
-                      style="
-                        right: -10px;
-                        top: -10px;
-                        z-index: 10;
-                        width: 20px;
-                        height: 20px;
-                        font-size: 12px;
-                      "
-                      >1</span
-                    >
-                  </div>
-                  <span class="ml-2">
-                    <span class="d-block text-14"
-                      >Eingerless gloves in camel</span
-                    >
-                    <span class="d-block text-14 text-black-50">Black</span>
-                  </span>
-                  <span class="ml-auto text-14">
-                    <span>320$</span>
-                  </span>
-                </div>
-
-                <hr />
-
-                <div class="d-flex">
-                  <span class="text-14">Subtotal</span>
-                  <span class="ml-auto text-14">$689.00</span>
-                </div>
-                <div class="d-flex">
-                  <span class="text-14">discount</span>
-                  <span class="ml-auto text-14">$68.00</span>
-                </div>
-                <div class="d-flex">
-                  <span class="text-14">Shipping</span>
-                  <span class="ml-auto text-14">Calculated at next step</span>
-                </div>
-                <hr />
-                <div class="d-flex">
-                  <span class="text-14">Total</span>
-                  <span class="ml-auto"
-                    ><span class="mr-3 text-muted" style="font-size: 12px;"
-                      >USD</span
-                    >689.00$</span
-                  >
-                </div> -->
+                <!-- html generated code here -->
               </div>
             </div>
           </div>
           <!--  -->
           <!--  -->
-          <ol class="breadcrumb bg-transparent pl-0">
+          <ol class="breadcrumb bg-transparent pl-0" id="placement">
             <li class="breadcrumb-item text-14">
-              <a href="cart.html">cart</a>
+              <a href="cart.html">Cart</a>
             </li>
-            <li class="breadcrumb-item text-14 active">information</li>
-            <li class="breadcrumb-item text-14">shipping</li>
-            <li class="breadcrumb-item text-14">Payment</li>
+            <li class="breadcrumb-item text-14 active">
+              <a>Information</a>
+            </li>
+            <li class="breadcrumb-item text-14">
+              <a>Shipping</a>
+            </li>
+            <li class="breadcrumb-item text-14"><a>Payment</a></li>
           </ol>
 
           <!-- page dynamic section  -->
           <div id="dynamicSection">
-            <!-- checkout.html address section -->
-            <!-- <div id="addressSection">
-              <h5>Contact information</h5>
-              <div class="form-group">
-                <div class="my-2">
-                  <input
-                    type="text"
-                    class="form-control mt-3"
-                    id="emailOrPhone"
-                    placeholder="Email or mobile phone number"
-                  />
-                  <span class="d-none text-danger emailWarningText"
-                    >Enter an email or mobile phone number</span
-                  >
-                </div>
-                <input class="mr-2" type="checkbox" name="" id="subscribed" />
-                <label class="text-black-50 text-14"
-                  >Keep me up to date on news and exclusive offers</label
-                >
-              </div>
-
-              <div>
-                <h5>Shipping address</h5>
-                <div class="row my-3">
-                  <div class="col-12 col-md-6 mb-3 mb-md-0">
-                    <input
-                      type="text"
-                      name=""
-                      id="FirstName"
-                      class="form-control"
-                      placeholder="First name (optional)"
-                    />
-                  </div>
-                  <div class="col-12 col-md-6">
-                    <input
-                      type="text"
-                      name=""
-                      id="LastName"
-                      class="form-control"
-                      placeholder="Last name"
-                    />
-                    <span class="d-none text-danger lastNameWarningText"
-                      >Enter a last name</span
-                    >
-                  </div>
-                </div>
-                <input
-                  type="text"
-                  name=""
-                  id="Address"
-                  class="form-control mt-3"
-                  placeholder="Address"
-                />
-                <span class="d-none text-danger addressWarningText"
-                  >Enter an Address</span
-                >
-                <input
-                  type="text"
-                  name=""
-                  id="secAddress"
-                  class="form-control my-3"
-                  placeholder="Apartment, suite, etc. (optional)  "
-                />
-                <div class="row my-3">
-                  <div class="col-12 col-md-6 mb-3 mb-md-0">
-                    <input
-                      type="text"
-                      name=""
-                      id="zipCode"
-                      class="form-control"
-                      placeholder="Postal code"
-                    />
-                    <span class="d-none text-danger zipCodeWarningText"
-                      >Enter a ZIP / postal code</span
-                    >
-                  </div>
-                  <div class="col-12 col-md-6">
-                    <input
-                      type="text"
-                      name=""
-                      id="City"
-                      class="form-control"
-                      placeholder="City"
-                    />
-                    <span class="d-none text-danger cityWarningText"
-                      >Enter a City</span
-                    >
-                  </div>
-                </div>
-                <div class="position-relative my-3">
-                  <label
-                    for=""
-                    class="position-absolute pl-2 text-black-50 text-14"
-                    >country/region</label
-                  >
-                  <select
-                    class="w-100 form-control h-auto pt-4 pl-2"
-                    name=""
-                    id="countries"
-                  >
-                    <option disabled="disabled" value="---">---</option>
-                  </select>
-                </div>
-                <div class="form-group">
-                  <input
-                    class="mr-2"
-                    type="checkbox"
-                    name=""
-                    id="SaveForNextTime"
-                  />
-                  <label class="text-black-50 text-14"
-                    >Save this information for next time</label
-                  >
-                </div>
-              </div>
-            </div> -->
-
-            <!-- checkout.html shipping section -->
-            <!-- <div class="d-none" id="shippingSection">
-              <div class="p-3 border rounded text-14">
-                <div class="d-flex">
-                  <span class="mr-5 text-muted">Contact</span>
-                  <span class="" id="emailOrPhoneNumber"></span>
-                  <span
-                    class="ml-auto custom-cursor ml-3"
-                    id="changeEmailOrPhone"
-                    style="color: #1990c6;"
-                    >Change</span
-                  >
-                </div>
-
-                <hr style="width: 90%;" />
-                <div class="d-flex">
-                  <span class="mr-5 text-muted">Ship to</span>
-                  <span id="addressToShipTo"></span>
-                  <span
-                    class="ml-auto custom-cursor ml-3"
-                    id="changeShippingAddress"
-                    style="color: #1990c6;"
-                    >Change</span
-                  >
-                </div>
-              </div>
-
-              <h4 class="mb-3 mt-5">Shipping method</h4>
-
-              <div class="p-3 border rounded d-flex">
-                <div class="custom-control custom-radio">
-                  <input
-                    type="radio"
-                    id="freeShipping"
-                    name="shipping method"
-                    class="custom-control-input"
-                    checked
-                  />
-                  <label
-                    class="custom-control-label text-muted"
-                    for="shipping method"
-                    >International Shipping</label
-                  >
-                </div>
-                <span class="font-weight-bold ml-auto">Free</span>
-              </div>
-            </div> -->
+            <!-- generated code goes here -->
           </div>
 
           <!-- bottom section -->
           <div class="row mt-4">
-            <div class="col d-flex align-items-center">
-              <span class="custom-cursor text-primary" id="returnBtn"
+            <div
+              class="col-12 col-md-6 d-flex align-items-center justify-content-center justify-content-md-start order-1 order-md-0"
+              id="returnBtnSection"
+            >
+              <span class="custom-cursor text-primary" id="returnToCartBtn"
                 >&#60; Return to cart</span
               >
             </div>
-            <div class="col">
+            <div class="col-12 col-md-6 mb-3" id="continueBtnSection">
               <button
-                class="btn btn-lg btn-primary w-100"
+                class="btn btn-info btn-block rounded-0"
                 id="continueToShipping"
               >
                 Continue to shipping
@@ -383,6 +184,7 @@
     <script
       src="https://kit.fontawesome.com/aab7f370d2.js"
       crossorigin="anonymous"
+      SameSite="none Secure"
     ></script>
 
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->

@@ -34,9 +34,8 @@ if (!sessionStorage.getItem('startTimer')) {
   sessionStorage.setItem('startTimer', new Date());
 }
 
-// dom element load event
-//
-// insert code on any page Load respectively
+//! dom element load event
+//! insert code on any page Load respectively
 document.addEventListener('DOMContentLoaded', () => {
   // check cart number of items
   mainLogic.incrementOrDecrementCartBadge();
@@ -90,15 +89,28 @@ document.addEventListener('DOMContentLoaded', () => {
   if (document.querySelector('#dynamicSection')) {
     if (
       (sessionStorage.getItem('shipTo') || localStorage.getItem('shipTo')) &&
-      sessionStorage.getItem('currentPage') === 'shippingMethod'
+      sessionStorage.getItem('currentPage') === 'checkoutPage/shippingMethod'
     ) {
       Ui_Updater.showShippingMethod();
       Ui_Updater.autoFillShippingMethodSection();
-      document.querySelector('#continueToShipping').textContent =
-        'Continue to payment';
-      document.querySelector('#continueToShipping').id = 'ContinueToPayment';
+      Ui_Updater.changeBottomRowBtn();
     } else {
       Ui_Updater.showShippingInformationSection();
+    }
+  }
+
+  //! checkout.html load payment section instead of shipping method when shipping method already submitted
+
+  if (document.querySelector('#dynamicSection')) {
+    if (
+      sessionStorage.getItem('shippingFee') &&
+      sessionStorage.getItem('currentPage') === 'checkoutPage/paymentPage'
+    ) {
+      Ui_Updater.showPaymentSection();
+      Ui_Updater.autoFillPaymentInfosSection();
+      Ui_Updater.changeBottomRowBtn();
+    } else {
+      // Ui_Updater.showShippingInformationSection();
     }
   }
 
@@ -146,10 +158,27 @@ document.addEventListener('DOMContentLoaded', () => {
   if (document.querySelector('#summarySection')) {
     const cartContent = mainLogic.getCartContent();
     if (cartContent) {
+      let summaryCartTemplate = '';
       cartContent.forEach((productInCart) => {
-        Ui_Updater.addCartElementToSummarySection(productInCart);
+        summaryCartTemplate += Ui_Updater.addCartElementToSummarySection(
+          productInCart
+        );
       });
 
+      // add all cart items to both summery section in checkout.html
+      document
+        .querySelectorAll('#summarySection')
+        .forEach((nodeElement, index) => {
+          // make summary section overflow when only in large screen
+          if (index === 1) {
+            nodeElement.insertAdjacentHTML(
+              'beforeend',
+              `<div style="max-height:70vh; overflow-y:scroll">${summaryCartTemplate}</div>`
+            );
+          } else {
+            nodeElement.insertAdjacentHTML('beforeend', summaryCartTemplate);
+          }
+        });
       Ui_Updater.displaySummaryTotal();
     }
   }
@@ -157,7 +186,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 //
 //
-//  body all click events
+//!  body all click events
 DomElements.body.addEventListener('click', (e) => {
   //! product.html product image selection event
   if (e.target.className.includes('preview-img')) {
@@ -343,15 +372,24 @@ DomElements.body.addEventListener('click', (e) => {
       window.location.href = 'checkout.html';
 
       //save current location to sessionStorage
-      sessionStorage.setItem('currentPage', 'checkoutPage');
+      sessionStorage.setItem('currentPage', 'checkoutPage/ShippingAddress');
     } else {
-      // highlight condition checkbox
-      conditionText.classList.add('blink_me');
-      setTimeout(() => {
-        conditionText.classList.remove('blink_me');
-      }, 500);
+      //  condition checkbox not checked
+      sweetAlert({
+        'background-color': '#f4f4f4',
+        text:
+          'YOU MUST AGREE WITH THE TERMS AND CONDITIONS OF SALES TO CHECK OUT.',
+        icon: 'warning',
+        buttons: false,
+      });
     }
   }
+
+  //! checkout.html return to cart btn
+  if (e.target.id === 'returnToCartBtn') {
+    location.href = '/src/cart.html';
+  }
+  //TODO checkout.html return to shipping method btn
 
   //! checkout.html continue to shipping button press
   if (e.target.id === 'continueToShipping') {
@@ -467,9 +505,10 @@ DomElements.body.addEventListener('click', (e) => {
         e.target.id = 'ContinueToPayment';
         Ui_Updater.showShippingMethod();
         Ui_Updater.autoFillShippingMethodSection();
+        Ui_Updater.changeBottomRowBtn();
       }, 300);
 
-      sessionStorage.setItem('currentPage', 'shippingMethod');
+      sessionStorage.setItem('currentPage', 'checkoutPage/shippingMethod');
     }
   }
 
@@ -486,7 +525,7 @@ DomElements.body.addEventListener('click', (e) => {
     document.querySelector('#showSummaryText').textContent ===
     'Show order summary'
       ? (document.querySelector('#showSummaryText').textContent =
-          'Hide order summary')
+          'Hide order summary ')
       : (document.querySelector('#showSummaryText').textContent =
           'Show order summary');
   }
@@ -495,20 +534,29 @@ DomElements.body.addEventListener('click', (e) => {
   if (
     e.target.id === 'changeEmailOrPhone' ||
     e.target.id === 'changeShippingAddress' ||
-    e.target.id === 'returnBtn'
+    e.target.id === 'ReturnToInformationBtn'
   ) {
-    sessionStorage.setItem('currentPage', 'checkoutPage');
+    sessionStorage.setItem('currentPage', 'checkoutPage/ShippingAddress');
+    location.reload();
+  }
+
+  //! checkout.html change button or return to shipping method buttons click
+  if (
+    e.target.id === 'changeShippingMethod' ||
+    e.target.id === 'ReturnToInShippingMethodBtn'
+  ) {
+    sessionStorage.setItem('currentPage', 'checkoutPage/shippingMethod');
     location.reload();
   }
 
   //! checkout.html continue to payment button press
   if (e.target.id === 'ContinueToPayment') {
+    sessionStorage.setItem('currentPage', 'checkoutPage/paymentPage');
     Ui_Updater.showPaymentSection();
     Ui_Updater.autoFillPaymentInfosSection();
-    sessionStorage.setItem('currentPage', 'paymentPage');
+
     setTimeout(() => {
-      e.target.textContent = 'Checkout';
-      e.target.id = 'checkout';
+      Ui_Updater.changeBottomRowBtn();
     }, 300);
   }
 

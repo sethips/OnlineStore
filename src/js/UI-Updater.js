@@ -631,29 +631,30 @@ export function creatCartPageTemplate() {
   for (const product of cartContent) {
     let productPicture = dataBaseHandler.getProductMainPic(product.product_id);
     cartPageTemplate += `
-                          <tr class="d-flex flex-column d-lg-table-row bg-light top-buffer" id="row-${
-                            product.cart_id
-                          }">
-                            <td class="d-none d-lg-table-cell align-middle">
+                          <tr class="d-flex flex-column d-lg-table-row bg-light top-buffer table-borderless"
+                          style="border-bottom: solid white 5px"
+                          id="row-${product.cart_id}">
+                            <td class="d-none d-lg-table-cell align-middle">                              
                               <button
                                 type="button"
-                                class="close text-danger border border-danger rounded-circle closeBtn"
+                                class="close closeBtn"
                                 aria-label="Close"
                                 id="closeBtn-${product.cart_id}"
-                                style="width: 25px; height: 25px; outline: none;"
-                              >
-                                <span class="closeBtn" aria-hidden="true">&times;</span>
+                                style="width: 25px; height: 25px; outline: none;">
+                                <img width="24" height="24" src="https://image.flaticon.com/icons/svg/992/992660.svg"
+                                class="img-fluid closeBtn">
                               </button>
                             </td>
                             <td class="align-middle">
                               <button
                                 type="button"
-                                class="close text-danger d-lg-none border border-danger rounded-circle closeBtn"
+                                class="close d-lg-none closeBtn"
                                 aria-label="Close"
                                 id="closeBtn-${product.cart_id}"
                                 style="width: 25px; height: 25px; outline: none;"
                               >
-                                <span class="closeBtn" aria-hidden="true">&times;</span>
+                              <img width="24" height="24" src="https://image.flaticon.com/icons/svg/992/992660.svg"
+                              class="img-fluid closeBtn">
                               </button>
                               <img
                                 width="80"
@@ -920,9 +921,7 @@ export function addCartElementToSummarySection(cartItem) {
 </div>
 `;
 
-  document.querySelectorAll('#summarySection').forEach((nodeElement) => {
-    nodeElement.insertAdjacentHTML('beforeend', templateString);
-  });
+  return templateString;
 }
 
 // Checkout.html page summarySection
@@ -986,8 +985,6 @@ export function changeShippingFee(fee) {
 export function autoFillShippingMethodSection() {
   //
 
-  document.querySelector('#returnBtn').innerHTML =
-    '&#60; Return to information';
   let fee = sessionStorage.getItem('shippingFee');
   changeShippingFee(fee);
 
@@ -1033,10 +1030,12 @@ export function showShippingInformationSection() {
         >Enter an email or mobile phone number</span
       >
     </div>
-    <input class="mr-2" type="checkbox" name="" id="subscribed" />
-    <label class="text-black-50 text-14"
-      >Keep me up to date on news and exclusive offers</label
-    >
+    <div class="d-flex">
+      <input class="mx-2 my-1" type="checkbox" name="subscribed" id="subscribed" />
+      <label for="subscribed" class="text-black-50 text-14 custom-cursor m-0"
+      >Keep me up to date on news and exclusive offers</label>
+    </div>   
+    
   </div>
 
   <div>
@@ -1121,15 +1120,15 @@ export function showShippingInformationSection() {
         <option disabled="disabled" value="---">---</option>
       </select>
     </div>
-    <div class="form-group">
+    <div class="form-group d-flex">    
       <input
-        class="mr-2"
+        class="my-1 mx-2 custom-cursor"
         type="checkbox"
         name=""
         id="SaveForNextTime"
       />
-      <label class="text-black-50 text-14"
-        >Save this information for next time</label
+      <label for="SaveForNextTime" class="text-black-50 text-14 custom-cursor"
+        >Save this information for next time</span
       >
     </div>
   </div>
@@ -1144,10 +1143,18 @@ export function showShippingInformationSection() {
 //checkout.html show shipping Method section
 export function showShippingMethod() {
   let index = 0;
+  let checkedIndex = 0;
   let shippingMethods = dataBaseHandler
     .getShippingMethods()
     .map((shippingMethod) => {
-      let checkedOrNot = index === 0 ? 'checked' : '';
+      // check if a shipping method was already selected
+      if (sessionStorage.getItem('shippingFee')) {
+        checkedIndex = dataBaseHandler.getShippingIndex(
+          sessionStorage.getItem('shippingFee')
+        );
+      }
+
+      let checkedOrNot = index === checkedIndex ? 'checked' : '';
       let partialHtmlTemplate = `<div class="p-3 border rounded mb-3 d-flex" id='shippingMethods'>
         <div class="custom-control custom-radio">
          <input type="radio" id="shippingMethod-${index}" name="shippingMethod" class="custom-control-input custom-cursor" ${checkedOrNot}>
@@ -1166,8 +1173,10 @@ export function showShippingMethod() {
   let htmlTemplate = `<div id="shippingSection">
   <div class="p-3 border rounded text-14">
     <div class="d-flex">
-      <span class="mr-5 text-muted">Contact</span>
-      <span class="" id="emailOrPhoneNumber"></span>
+      <span>
+        <span class="mr-5 text-muted">Contact</span>
+        <span class="d-block d-md-inline-block mt-1" id="emailOrPhoneNumber"></span>
+      </span>      
       <span
         class="ml-auto custom-cursor ml-3"
         id="changeEmailOrPhone"
@@ -1178,8 +1187,11 @@ export function showShippingMethod() {
 
     <hr />
     <div class="d-flex">
+    <span>
       <span class="mr-5 text-muted">Ship to</span>
-      <span id="addressToShipTo"></span>
+      <span class="d-block d-md-inline-block mt-1" id="addressToShipTo"></span>
+    </span>
+      
       <span
         class="ml-auto custom-cursor ml-3"
         id="changeShippingAddress"
@@ -1218,8 +1230,10 @@ export function showPaymentSection() {
   let htmlTemplate = `<div id="paymentSection">
   <div class="p-3 border rounded text-14">
     <div class="d-flex">
-      <span class="mr-5 text-muted">Contact</span>
-      <span class="" id="emailOrPhoneNumber"></span>
+      <span>
+        <span class="mr-5 text-muted">Contact</span>
+        <span class="d-block d-md-inline-block mt-1" id="emailOrPhoneNumber"></span>
+      </span>
       <span
         class="ml-auto custom-cursor ml-3"
         id="changeEmailOrPhone"
@@ -1230,8 +1244,10 @@ export function showPaymentSection() {
 
     <hr />
     <div class="d-flex">
+    <span>
       <span class="mr-5 text-muted">Ship to</span>
-      <span id="addressToShipTo"></span>
+      <span class="d-block d-md-inline-block mt-1" id="addressToShipTo"></span>
+    </span>      
       <span
         class="ml-auto custom-cursor ml-3"
         id="changeShippingAddress"
@@ -1242,8 +1258,11 @@ export function showPaymentSection() {
 
     <hr />
     <div class="d-flex">
+    <span>
       <span class="mr-5 text-muted">Method</span>
-      <span id="methodOfShipping"></span>
+      <span class="d-block d-md-inline-block mt-1" id="methodOfShipping"></span>
+    </span>
+      
       <span
         class="ml-auto custom-cursor ml-3"
         id="changeShippingMethod"
@@ -1353,8 +1372,8 @@ export function showPaymentSection() {
         >Enter card CVV</span>
       </div>
 
-      <div class="col-12">
-        <input class="mr-2" type="checkbox" name="" id="saveCard" />
+      <div class="col-12 d-flex">
+        <input class="mr-2 my-1" type="checkbox" name="" id="saveCard" />
         <label class="text-black-50 text-14"
         >Save Credit Card information for next time</label>
     </div>
@@ -1377,9 +1396,6 @@ export function showPaymentSection() {
 }
 
 export function autoFillPaymentInfosSection() {
-  document.querySelector('#returnBtn').innerHTML =
-    '&#60; Return to shipping method';
-
   // get where to ship from localStorage or sessionStorage
   if (localStorage.getItem('shipTo')) {
     let parsedAddress = JSON.parse(localStorage.getItem('shipTo'));
@@ -1425,5 +1441,68 @@ export function autofillCreditCardInfos() {
     document.querySelector('#creditCardExpDate').value = card.expMonth;
     document.querySelector('#creditCardCVV').value = card.cvv;
     document.querySelector('#saveCard').checked = card.saved;
+  }
+}
+
+export function changeBottomRowBtn() {
+  if (sessionStorage.getItem('currentPage') === 'checkoutPage/shippingMethod') {
+    //return btn
+    let returnBtn = document.querySelector('#returnBtnSection')
+      .firstElementChild;
+    returnBtn.innerHTML = '&#60; Return to information';
+    returnBtn.id = 'ReturnToInformationBtn';
+
+    //continue btn
+    let continueBtn = document.querySelector('#continueBtnSection')
+      .firstElementChild;
+    continueBtn.textContent = 'Continue to payment';
+    continueBtn.id = 'ContinueToPayment';
+
+    //TODO change bradCrumb
+    document
+      .querySelector('#placement')
+      .childNodes.forEach((elementNode, index) => {
+        // if (elementNode.classList.contains('active')) {
+        //   alert('im here');
+        // }
+        if (elementNode.nodeName !== '#text') {
+          if (elementNode.classList.contains('active')) {
+            elementNode.classList.remove('active');
+          } else if (index === 5) {
+            // 5 is the index of the element in the breadCrumb bar
+            elementNode.classList.add('active');
+          }
+        }
+      });
+  } else if (
+    sessionStorage.getItem('currentPage') === 'checkoutPage/paymentPage'
+  ) {
+    let returnBtn = document.querySelector('#returnBtnSection')
+      .firstElementChild;
+    returnBtn.innerHTML = '&#60; Return to shipping method';
+    returnBtn.id = 'ReturnToInShippingMethodBtn';
+
+    //continue btn
+    let continueBtn = document.querySelector('#continueBtnSection')
+      .firstElementChild;
+    continueBtn.textContent = 'Checkout';
+    continueBtn.id = 'checkout';
+
+    //TODO change bradCrumb
+    document
+      .querySelector('#placement')
+      .childNodes.forEach((elementNode, index) => {
+        // if (elementNode.classList.contains('active')) {
+        //   alert('im here');
+        // }
+        if (elementNode.nodeName !== '#text') {
+          if (elementNode.classList.contains('active')) {
+            elementNode.classList.remove('active');
+          } else if (index === 7) {
+            //7 is the index of the last item in the breadCrumb bar
+            elementNode.classList.add('active');
+          }
+        }
+      });
   }
 }

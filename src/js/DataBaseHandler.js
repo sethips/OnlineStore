@@ -80,3 +80,13 @@ export function getShippingMethodName(ShippingFee) {
   });
   return shippingName;
 }
+
+export function getShippingIndex(ShippingFee) {
+  let shippingIndex = 0;
+  jsonDataBase['shipping-Methods'].forEach((shippingMethod, index) => {
+    if (shippingMethod[1] === parseInt(ShippingFee)) {
+      shippingIndex = index;
+    }
+  });
+  return shippingIndex;
+}
