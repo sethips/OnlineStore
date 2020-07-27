@@ -52,7 +52,10 @@ document.addEventListener('DOMContentLoaded', () => {
     );
 
     visitedProduct = DataBaseHandler.getProductById(productParameter);
-    const productTemplate = Ui_Updater.CreatProductTemplate(visitedProduct);
+    const productTemplate = Ui_Updater.CreatProductTemplate(
+      visitedProduct,
+      true
+    );
     Ui_Updater.displayProduct(productTemplate);
 
     // get timer dom elements
@@ -188,6 +191,41 @@ document.addEventListener('DOMContentLoaded', () => {
 //
 //!  body all click events
 DomElements.body.addEventListener('click', (e) => {
+  //! index.html product cards Quick View icon click
+  if (e.target.id.includes('quickView')) {
+    //get product id from clicked icon
+    const productID = parseInt(
+      e.target.id.substring(e.target.id.indexOf('-') + 1)
+    );
+
+    //get product info using product id
+    const productToView = DataBaseHandler.getProductById(productID);
+    const productTemplate = Ui_Updater.CreatProductTemplate(
+      productToView,
+      false
+    );
+    document.querySelector('#mainModalBody').innerHTML = productTemplate;
+
+    // get timer dom elements
+    const daysDomEl = document.querySelector('.days');
+    const hoursDomEl = document.querySelector('.hours');
+    const minutesDomEl = document.querySelector('.minutes');
+    const secondsDomEl = document.querySelector('.seconds');
+    //get timer initial starting time from sessionStorage
+    const startingTime = sessionStorage.getItem('startTimer');
+    // timer set to 7 hours
+    const timeDiffInSec = Ui_Updater.getTimeDiff(startingTime, 7);
+    // start Timer and display It On dom
+    Ui_Updater.startTimer(
+      timeDiffInSec,
+      daysDomEl,
+      hoursDomEl,
+      minutesDomEl,
+      secondsDomEl
+    );
+    //
+  }
+
   //! product.html product image selection event
   if (e.target.className.includes('preview-img')) {
     if (e.target.src !== document.querySelector('.product-main-image').src) {
