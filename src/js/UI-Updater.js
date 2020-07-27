@@ -1,5 +1,6 @@
 import * as mainLogic from './mainLogic';
 import * as dataBaseHandler from './DataBaseHandler';
+import Payment from 'payment';
 
 // get images from json database
 function getImages(arr) {
@@ -1318,7 +1319,6 @@ export function showPaymentSection() {
             class="form-control"
             id="creditCardNumber"
             placeholder="Credit card number"
-            maxlength="19"
           />
         </div>
         <span class="d-none text-danger cardNumberWarningText"
@@ -1341,8 +1341,7 @@ export function showPaymentSection() {
             type="month"
             class="form-control"
             id="creditCardExpDate"
-            placeholder="MM"
-            maxlength="2"
+            placeholder="Exp date"
           />          
         </div>
         <span class="d-none text-danger cardDateWarningText"
@@ -1365,7 +1364,6 @@ export function showPaymentSection() {
             class="form-control"
             id="creditCardCVV"
             placeholder="CVV"
-            maxlength = "3"
           />
         </div>
         <span class="d-none text-danger cardCvvWarningText"
@@ -1387,10 +1385,9 @@ export function showPaymentSection() {
     .querySelector('#dynamicSection')
     .insertAdjacentHTML('afterbegin', htmlTemplate);
 
-  // add event listener to format the credit crd number
-  document.querySelector('#creditCardNumber').addEventListener('keyup', (e) => {
-    e.target.value = mainLogic.formatCardNumber(e.target.value);
-  });
+  // format the credit card using payment.js npm package
+  Payment.formatCardNumber(document.querySelector('#creditCardNumber'));
+  Payment.formatCardCVC(document.querySelector('#creditCardCVV'));
 
   autofillCreditCardInfos();
 }

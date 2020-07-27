@@ -3,7 +3,7 @@ import * as DataBaseHandler from './DataBaseHandler';
 import * as Ui_Updater from './UI-Updater';
 import * as DomModules from './DomModules';
 import * as mainLogic from './mainLogic';
-import sweetAlert from 'sweetalert';
+import Swal from 'sweetalert';
 
 // Local Variables
 const DomElements = DomModules.DOMElements;
@@ -332,10 +332,9 @@ DomElements.body.addEventListener('click', (e) => {
 
   //! cart.html clear cart button press
   if (e.target.id === 'clearCart') {
-    sweetAlert({
+    Swal({
       'background-color': '#f4f4f4',
-      title: 'Are you sure?',
-      text: 'You will clear your cart',
+      title: 'Clear the cart ?',
       icon: 'warning',
       buttons: {
         cancel: 'Cancel',
@@ -375,7 +374,7 @@ DomElements.body.addEventListener('click', (e) => {
       sessionStorage.setItem('currentPage', 'checkoutPage/ShippingAddress');
     } else {
       //  condition checkbox not checked
-      sweetAlert({
+      Swal({
         'background-color': '#f4f4f4',
         text:
           'YOU MUST AGREE WITH THE TERMS AND CONDITIONS OF SALES TO CHECK OUT.',
@@ -389,7 +388,6 @@ DomElements.body.addEventListener('click', (e) => {
   if (e.target.id === 'returnToCartBtn') {
     location.href = '/src/cart.html';
   }
-  //TODO checkout.html return to shipping method btn
 
   //! checkout.html continue to shipping button press
   if (e.target.id === 'continueToShipping') {
