@@ -5,11 +5,13 @@ module.exports = {
   output: {
     filename: 'bundle.js',
     path: path.resolve(__dirname, 'dist'),
+    publicPath: '/dist/',
   },
   mode: 'none',
   devServer: {
-    contentBase: path.join(__dirname, 'dist'),
+    contentBase: path.join(__dirname, 'src'),
     port: 9000,
+    open: true,
     hot: true,
     inline: true,
     watchContentBase: true,

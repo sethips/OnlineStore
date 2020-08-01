@@ -351,6 +351,16 @@
   transition: all 0.1s ease-in-out;
 }
 
+.modal-dialog {
+  min-width: 80vw;
+}
+.modalMaxHeight {
+  max-height: 75vh;
+}
+
+.descriptionOverflow {
+  overflow-y: scroll;
+}
 /*  Extra small devices (portrait phones, less than 576px)
  No media query for `xs` since this is the default in Bootstrap */
 
@@ -383,6 +393,14 @@
   .FontSize28 {
     font-size: 28px;
   }
+
+  .modal-dialog {
+    min-width: 90vw;
+  }
+
+  .modalMaxHeight {
+    max-height: none;
+  }
 }
 
 /* Medium devices (tablets, 768px and up) */
@@ -410,10 +428,17 @@
   .carousel-text-custom-2 {
     top: 70px;
   }
+
+  .modalMaxHeight {
+    max-height: none;
+  }
 }
 
 /* Large devices (desktops, 992px and up) */
 @media (max-width: 992px) {
+  .modal-dialog {
+    min-width: 95vw !important;
+  }
 }
 
 /* Extra large devices (large desktops, 1200px and up) */
