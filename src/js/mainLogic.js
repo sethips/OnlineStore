@@ -2,8 +2,8 @@ import * as databaseHandler from './DataBaseHandler';
 import countries from 'countries-list';
 import * as ui_updater from './UI-Updater';
 //--------
-export function addProductToCart() {
-  let productToAdd = getProductProperties();
+export function addProductToCart(productId = null) {
+  let productToAdd = getProductProperties(productId);
 
   let productInCartId = checkIfProductInCart(
     productToAdd.product_id,
@@ -69,17 +69,19 @@ export function deleteAllProductsInCart() {
 }
 
 // ------
-function getProductProperties() {
+function getProductProperties(productId) {
   let addedProduct = {};
 
   // get cart id from how many items in the local storage
   //addedProduct.cart_id = Object.entries(localStorage).length; OLD
   addedProduct.cart_id = getHowManyProductInCart();
 
-  // get product id
-  addedProduct.product_id = window.location.search.substring(
-    window.location.search.indexOf('=') + 1
-  );
+  // get product id if passed param is null get it from page link
+  productId
+    ? (addedProduct.product_id = productId)
+    : (addedProduct.product_id = window.location.search.substring(
+        window.location.search.indexOf('=') + 1
+      ));
 
   //get product name
   addedProduct.product_name = databaseHandler.getProductById(

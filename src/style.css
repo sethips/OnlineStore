@@ -332,6 +332,11 @@
   font-size: 14px;
 }
 
+.carouselHoverEffect:hover .carouselHoverEffectedElem {
+  transition: all 0.2s ease-in-out;
+  bottom: 0px !important;
+}
+
 /* animations */
 @keyframes flash {
   0%,

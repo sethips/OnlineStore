@@ -8,6 +8,7 @@ import Swal from 'sweetalert';
 // Local Variables
 const DomElements = DomModules.DOMElements;
 let visitedProduct = '';
+let modalProductId = null;
 const loadingSvg = `<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" style="margin: auto; background: none; display: block; shape-rendering: auto;" width="24px" height="24px" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid">
 <circle cx="50" cy="50" fill="none" stroke="#ffffff" stroke-width="5" r="46" stroke-dasharray="216.76989309769573 74.25663103256524" transform="rotate(353.677 50.0001 50.0001)">
   <animateTransform attributeName="transform" type="rotate" repeatCount="indefinite" dur="0.5s" values="0 50 50;360 50 50" keyTimes="0;1"></animateTransform>
@@ -45,7 +46,7 @@ document.addEventListener('DOMContentLoaded', () => {
     //save current location to sessionStorage
     sessionStorage.setItem('currentPage', 'ProductPage');
 
-    // get product id from URL
+    // get product id from URL if current page ins product.html
     let productParameterString = window.location.search;
     let productParameter = parseInt(
       productParameterString.substring(productParameterString.indexOf('=') + 1)
@@ -189,17 +190,22 @@ document.addEventListener('DOMContentLoaded', () => {
 
 //
 //
-//!  body all click events
+//!  all body click events
 DomElements.body.addEventListener('click', (e) => {
   //! index.html product cards Quick View icon click
   if (e.target.id.includes('quickView')) {
     //get product id from clicked icon
-    const productID = parseInt(
+    modalProductId = parseInt(
       e.target.id.substring(e.target.id.indexOf('-') + 1)
     );
 
+    // store pro
+
     //get product info using product id
-    const productToView = DataBaseHandler.getProductById(productID);
+    const productToView = DataBaseHandler.getProductById(modalProductId);
+    // store it globally in visitedProduct for the modal in index.html
+    visitedProduct = productToView;
+
     const productTemplate = Ui_Updater.CreatProductTemplate(
       productToView,
       false
@@ -224,6 +230,22 @@ DomElements.body.addEventListener('click', (e) => {
       secondsDomEl
     );
     //
+  }
+
+  // index.html modal view details button click
+  if (
+    e.target.id === 'modalViewDetailsBtn' ||
+    e.target.parentNode.id === 'modalViewDetailsBtn'
+  ) {
+    location.href = `products.html?product-id=${modalProductId}`;
+  }
+
+  //index.html close modal clear current visitor counter
+  if (
+    e.target.id === 'modalCloseBtn' ||
+    e.target.parentNode.id === 'modalCloseBtn'
+  ) {
+    clearInterval(Ui_Updater.visitorInterval);
   }
 
   //! product.html product image selection event
@@ -332,7 +354,8 @@ DomElements.body.addEventListener('click', (e) => {
       e.target.textContent = 'ADD TO CART';
     }, 500);
 
-    mainLogic.addProductToCart();
+    // id im currently viewing product.html the modalProductId will be null
+    mainLogic.addProductToCart(modalProductId);
   }
 
   //! cart.html delete product from cart

@@ -127,14 +127,17 @@ function getRandomNumber(min, max) {
 const fixedRandomNumber = getRandomNumber(1, 50);
 
 //get random online visitors
+export let visitorInterval; // make interval accessible to clear it from index.js
 function getVisitorsRightNow() {
   let count = getRandomNumber(20, 100);
-  setInterval(function () {
+  visitorInterval = setInterval(displayVisitors, 2000);
+  // the interval call back
+  function displayVisitors() {
     var variation = getRandomNumber(-5, 5);
-
     count += variation;
     document.querySelector('.visitorsCount').textContent = count;
-  }, 2000);
+  }
+  // temporarily return wait as a placeHolder
   return 'wait';
 }
 
@@ -362,7 +365,7 @@ export function CreatProductTemplate(product, includeDescription) {
             type="button"
             name=""
             id="cartButton"
-            class="btn black-bg text-white btn-block"
+            class="btn black-bg text-white btn-block rounded-0"
           >
             ADD TO CART
           </button>
@@ -370,7 +373,7 @@ export function CreatProductTemplate(product, includeDescription) {
             type="button"
             name=""
             id=""
-            class="btn bg-info text-white btn-block"
+            class="btn bg-info text-white btn-block rounded-0"
           >
             BUY IT NOW
           </button>
@@ -379,7 +382,7 @@ export function CreatProductTemplate(product, includeDescription) {
           <div class="mt-5 mb-4">
             <span class="font-weight-bold" style="font-size: 15px;"
               >Order in the next
-              <span class="bg-info px-2 py-1 text-white rounded shadow-sm mb-5"
+              <span class="bg-info px-2 py-1 text-white shadow-sm mb-5"
                 >${optimalOrderDate()}</span
               >
               to get it by <span class="time">${getDeliveryDate(15)}</span>
@@ -415,7 +418,7 @@ export function CreatProductTemplate(product, includeDescription) {
             </span>
             <span class="my-2">
               Real time
-              <span class="bg-info pl-2 pr-1 py-1 mr-1 rounded shadow-sm mb-5">
+              <span class="bg-info pl-2 pr-1 py-1 mr-1 shadow-sm mb-5">
                 <span class="text-white visitorsCount"
                   >${getVisitorsRightNow()}</span
                 >
@@ -639,7 +642,7 @@ export function CreatProductTemplate(product, includeDescription) {
     let modalSectionTemplate = `<div class="fluid-container">
     <div class="row modalMaxHeight">
       <div class="col-sm-12 col-md-6">
-      <div id="productPicturesCarousel" class="carousel slide" data-ride="carousel">
+      <div id="productPicturesCarousel" class="carousel slide  position-relative overflow-hidden carouselHoverEffect" data-ride="carousel">
       <div class="carousel-inner modalMaxHeight" >
        ${getImagesForCarousel(product.pictures)}
       </div>
@@ -651,7 +654,13 @@ export function CreatProductTemplate(product, includeDescription) {
         <span class="carousel-control-next-icon" aria-hidden="true"></span>
         <span class="sr-only">Next</span>
       </a>
+
+
+      <div class="position-absolute py-2  w-100 black-bg text-center custom-cursor carouselHoverEffectedElem" id="modalViewDetailsBtn" style="bottom:-50px; transition: all 0.2s ease-in-out;">
+    <span class="text-white">VIEW DETAILS</span>
     </div>
+
+    </div>    
       </div>
   
       <!-- title and description -->
@@ -762,7 +771,7 @@ export function CreatProductTemplate(product, includeDescription) {
           type="button"
           name=""
           id="cartButton"
-          class="btn black-bg text-white btn-block"
+          class="btn black-bg text-white btn-block rounded-0"
         >
           ADD TO CART
         </button>
@@ -770,7 +779,7 @@ export function CreatProductTemplate(product, includeDescription) {
           type="button"
           name=""
           id=""
-          class="btn bg-info text-white btn-block"
+          class="btn bg-info text-white btn-block rounded-0"
         >
           BUY IT NOW
         </button>
@@ -779,7 +788,7 @@ export function CreatProductTemplate(product, includeDescription) {
         <div class="mt-5 mb-4">
           <span class="font-weight-bold" style="font-size: 15px;"
             >Order in the next
-            <span class="bg-info px-2 py-1 text-white rounded shadow-sm mb-5"
+            <span class="bg-info px-2 py-1 text-white shadow-sm mb-5"
               >${optimalOrderDate()}</span
             >
             to get it by <span class="time">${getDeliveryDate(15)}</span>
@@ -815,7 +824,7 @@ export function CreatProductTemplate(product, includeDescription) {
           </span>
           <span class="my-2">
             Real time
-            <span class="bg-info pl-2 pr-1 py-1 mr-1 rounded shadow-sm mb-5">
+            <span class="bg-info pl-2 pr-1 py-1 mr-1 shadow-sm mb-5">
               <span class="text-white visitorsCount"
                 >${getVisitorsRightNow()}</span
               >
