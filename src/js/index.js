@@ -58,24 +58,6 @@ document.addEventListener('DOMContentLoaded', () => {
       true
     );
     Ui_Updater.displayProduct(productTemplate);
-
-    // get timer dom elements
-    const daysDomEl = document.querySelector('.days');
-    const hoursDomEl = document.querySelector('.hours');
-    const minutesDomEl = document.querySelector('.minutes');
-    const secondsDomEl = document.querySelector('.seconds');
-    //get timer initial starting time from sessionStorage
-    const startingTime = sessionStorage.getItem('startTimer');
-    // timer set to 7 hours
-    const timeDiffInSec = Ui_Updater.getTimeDiff(startingTime, 7);
-    // start Timer and display It On dom
-    Ui_Updater.startTimer(
-      timeDiffInSec,
-      daysDomEl,
-      hoursDomEl,
-      minutesDomEl,
-      secondsDomEl
-    );
   }
 
   //! cart.html populate on load
@@ -211,25 +193,6 @@ DomElements.body.addEventListener('click', (e) => {
       false
     );
     document.querySelector('#mainModalBody').innerHTML = productTemplate;
-
-    // get timer dom elements
-    const daysDomEl = document.querySelector('.days');
-    const hoursDomEl = document.querySelector('.hours');
-    const minutesDomEl = document.querySelector('.minutes');
-    const secondsDomEl = document.querySelector('.seconds');
-    //get timer initial starting time from sessionStorage
-    const startingTime = sessionStorage.getItem('startTimer');
-    // timer set to 7 hours
-    const timeDiffInSec = Ui_Updater.getTimeDiff(startingTime, 7);
-    // start Timer and display It On dom
-    Ui_Updater.startTimer(
-      timeDiffInSec,
-      daysDomEl,
-      hoursDomEl,
-      minutesDomEl,
-      secondsDomEl
-    );
-    //
   }
 
   // index.html modal view details button click

@@ -138,7 +138,7 @@ function getVisitorsRightNow() {
     document.querySelector('.visitorsCount').textContent = count;
   }
   // temporarily return wait as a placeHolder
-  return 'wait';
+  return 'Wait';
 }
 
 //get optimal order date
@@ -171,40 +171,55 @@ function getDeliveryDate(days) {
   return `${dayName} ${day}/${month}/${date.getFullYear()}`;
 }
 
-//start Countdown Timer and display Hours, display Minutes, display Secondes
-export function startTimer(
-  durationInSec,
-  daysDomEl,
-  hoursDomEl,
-  minutesDomEl,
-  secondsDomEl
-) {
-  let hours, minutes, seconds;
+//! testing new timer concept
+function startTimerTwo() {
+  let hours = 0,
+    minutes = 0,
+    seconds = 0;
+
+  //get timer initial starting time from sessionStorage
+  let startingTime = sessionStorage.getItem('startTimer');
+  // timer set to 7 hours
+  let durationInSec = getTimeDiff(startingTime, 7);
+
   setInterval(function () {
     hours = Math.floor(durationInSec / 3600);
     minutes = Math.floor((durationInSec % 3600) / 60);
     seconds = durationInSec % 60;
 
+    //to display 0 before single digit time
     hours = hours < 10 ? '0' + hours : hours;
     minutes = minutes < 10 ? '0' + minutes : minutes;
     seconds = seconds < 10 ? '0' + seconds : seconds;
 
-    //display the countDown To DomElements
-    hoursDomEl.textContent = hours;
-    minutesDomEl.textContent = minutes;
-    secondsDomEl.textContent = seconds;
+    // get timer dom elements
+    try {
+      document.querySelector('.hours').textContent = hours;
+      document.querySelector('.minutes').textContent = minutes;
+      document.querySelector('.seconds').textContent = seconds;
+    } catch {}
 
-    //show dom elements
-    daysDomEl.classList.remove('text-white');
-    hoursDomEl.classList.remove('text-white');
-    minutesDomEl.classList.remove('text-white');
-    secondsDomEl.classList.remove('text-white');
-
+    // restart counter from 7 hours if counters done
     if (--durationInSec < 0) {
-      durationInSec = duration;
+      durationInSec = getTimeDiff(new Date().getTime(), 7); // 7 hours
     }
   }, 1000);
+
+  //temporarily return time as object for the dom
+  return {
+    hours:
+      Math.floor(durationInSec / 3600) < 10
+        ? '0' + Math.floor(durationInSec / 3600)
+        : Math.floor(durationInSec / 3600),
+    minutes:
+      Math.floor((durationInSec % 3600) / 60) < 10
+        ? '0' + Math.floor((durationInSec % 3600) / 60)
+        : Math.floor((durationInSec % 3600) / 60),
+    seconds:
+      durationInSec % 60 < 10 ? '0' + (durationInSec % 60) : durationInSec % 60,
+  };
 }
+//!--------------------------
 
 //diff between two dates in seconds for timer
 export function getTimeDiff(startingTime, hours) {
@@ -300,23 +315,23 @@ export function CreatProductTemplate(product, includeDescription) {
           <!-- timer -->
           <div class="time d-none d-lg-flex justify-content-around w-100 my-3">
             <div class="d-flex flex-column align-items-center">
-              <span class="time-day days text-white" style="font-size: 40px;"
+              <span class="time-day days" style="font-size: 40px;"
                 >0</span
               ><span>DAYS</span>
             </div>
             <div class="d-flex flex-column align-items-center">
-              <span class="time-day hours text-white" style="font-size: 40px;"
-                >00</span
+              <span class="time-day hours" style="font-size: 40px;"
+                >${startTimerTwo().hours}</span
               ><span>HOURS</span>
             </div>
             <div class="d-flex flex-column align-items-center">
-              <span class="time-minutes minutes text-white" style="font-size: 40px;"
-                >00</span
+              <span class="time-minutes minutes" style="font-size: 40px;"
+                >${startTimerTwo().minutes}</span
               ><span>MINUTES</span>
             </div>
             <div class="d-flex flex-column align-items-center">
-              <span class="time-seconds seconds text-white" style="font-size: 40px;"
-                >00</span
+              <span class="time-seconds seconds" style="font-size: 40px;"
+                >${startTimerTwo().seconds}</span
               ><span>SECONDS</span>
             </div>
           </div>
@@ -706,23 +721,23 @@ export function CreatProductTemplate(product, includeDescription) {
         <!-- timer -->
         <div class="time d-none d-lg-flex justify-content-around w-100 my-3">
           <div class="d-flex flex-column align-items-center">
-            <span class="time-day days text-white" style="font-size: 40px;"
+            <span class="time-day days" style="font-size: 40px;"
               >0</span
             ><span>DAYS</span>
           </div>
           <div class="d-flex flex-column align-items-center">
-            <span class="time-day hours text-white" style="font-size: 40px;"
-              >00</span
+            <span class="time-day hours" style="font-size: 40px;"
+              >${startTimerTwo().hours}</span
             ><span>HOURS</span>
           </div>
           <div class="d-flex flex-column align-items-center">
-            <span class="time-minutes minutes text-white" style="font-size: 40px;"
-              >00</span
+            <span class="time-minutes minutes" style="font-size: 40px;"
+              >${startTimerTwo().minutes}</span
             ><span>MINUTES</span>
           </div>
           <div class="d-flex flex-column align-items-center">
-            <span class="time-seconds seconds text-white" style="font-size: 40px;"
-              >00</span
+            <span class="time-seconds seconds" style="font-size: 40px;"
+              >${startTimerTwo().seconds}</span
             ><span>SECONDS</span>
           </div>
         </div>
