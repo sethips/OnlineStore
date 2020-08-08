@@ -174,6 +174,14 @@ document.addEventListener('DOMContentLoaded', () => {
 //
 //!  all body click events
 DomElements.body.addEventListener('click', (e) => {
+  //! index.html product image click
+  if (e.target.classList.contains('card-img-top')) {
+    let clickedProduct = e.target.parentNode.id.substring(
+      e.target.parentNode.id.indexOf('-') + 1
+    );
+
+    location.href = `products.html?product-id=${clickedProduct}`;
+  }
   //! index.html product cards Quick View icon click
   if (e.target.id.includes('quickView')) {
     //get product id from clicked icon
