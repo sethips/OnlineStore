@@ -176,8 +176,8 @@ document.addEventListener('DOMContentLoaded', () => {
 DomElements.body.addEventListener('click', (e) => {
   //! index.html product image click
   if (e.target.classList.contains('card-img-top')) {
-    let clickedProduct = e.target.parentNode.id.substring(
-      e.target.parentNode.id.indexOf('-') + 1
+    let clickedProduct = e.target.parentNode.parentNode.id.substring(
+      e.target.parentNode.parentNode.id.indexOf('-') + 1
     );
 
     location.href = `products.html?product-id=${clickedProduct}`;
@@ -188,8 +188,6 @@ DomElements.body.addEventListener('click', (e) => {
     modalProductId = parseInt(
       e.target.id.substring(e.target.id.indexOf('-') + 1)
     );
-
-    // store pro
 
     //get product info using product id
     const productToView = DataBaseHandler.getProductById(modalProductId);
@@ -203,7 +201,7 @@ DomElements.body.addEventListener('click', (e) => {
     document.querySelector('#mainModalBody').innerHTML = productTemplate;
   }
 
-  // index.html modal view details button click
+  //! index.html modal view details button click
   if (
     e.target.id === 'modalViewDetailsBtn' ||
     e.target.parentNode.id === 'modalViewDetailsBtn'
@@ -217,6 +215,79 @@ DomElements.body.addEventListener('click', (e) => {
     e.target.parentNode.id === 'modalCloseBtn'
   ) {
     clearInterval(Ui_Updater.visitorInterval);
+
+    //clear modal content
+    setTimeout(() => {
+      document.querySelector('#mainModalBody').innerHTML = `<svg
+    xmlns="http://www.w3.org/2000/svg"
+    xmlns:xlink="http://www.w3.org/1999/xlink"
+    style="
+      margin: auto;
+      background: none;
+      display: block;
+      shape-rendering: auto;
+    "
+    width="24px"
+    height="24px"
+    viewBox="0 0 100 100"
+    preserveAspectRatio="xMidYMid"
+  >
+    <circle
+      cx="50"
+      cy="50"
+      fill="none"
+      stroke="#000000"
+      stroke-width="5"
+      r="46"
+      stroke-dasharray="216.76989309769573 74.25663103256524"
+      transform="rotate(353.677 50.0001 50.0001)"
+    >
+      <animateTransform
+        attributeName="transform"
+        type="rotate"
+        repeatCount="indefinite"
+        dur="0.5s"
+        values="0 50 50;360 50 50"
+        keyTimes="0;1"
+      ></animateTransform>
+    </circle>
+  </svg>`;
+    }, 500);
+  }
+
+  //! index.html featured product add to cart click event
+  if (
+    e.target.classList.contains('productAddToCartSection') |
+    e.target.parentNode.classList.contains('productAddToCartSection')
+  ) {
+    //TODO add selected to cart (all default options)
+
+    //TODO fill the modal with cart content and display it
+    document.querySelector(
+      '#mainModalBody'
+    ).innerHTML = Ui_Updater.displayCartContentInModal();
+    const cartTotal = mainLogic.calculateCartTotal();
+    Ui_Updater.displayCartTotal(cartTotal);
+  }
+
+  //! index.html cart modal proceed to checkout button click
+  if (e.target.id === 'proceedToCheckoutBtn') {
+    if (document.querySelector('#agreeWithCondition').checked) {
+      // go to checkout from
+      window.location.href = 'checkout.html';
+
+      //save current location to sessionStorage
+      sessionStorage.setItem('currentPage', 'checkoutPage/ShippingAddress');
+    } else {
+      //  condition checkbox not checked
+      Swal({
+        'background-color': '#f4f4f4',
+        text:
+          'YOU MUST AGREE WITH THE TERMS AND CONDITIONS OF SALES TO CHECK OUT.',
+        icon: 'warning',
+        buttons: false,
+      });
+    }
   }
 
   //! product.html product image selection event
@@ -306,7 +377,7 @@ DomElements.body.addEventListener('click', (e) => {
           parseInt(document.querySelector(`.order-quantity-${id}`).value) + 1;
       }
 
-      // decrease the total price on the cart.html page
+      // increase the total price on the cart.html page
       if (document.querySelector(`.totalPrice-${id}`)) {
         mainLogic.editProductCountInLocalStorage(e, id);
         const cartTotal = mainLogic.calculateCartTotal();
@@ -389,7 +460,6 @@ DomElements.body.addEventListener('click', (e) => {
 
   //! cart.html proceedTo Checkout and check if conditions are accepted
   const conditionCheckBox = document.querySelector('#agreeWithCondition');
-  const conditionText = document.querySelector('.conditionText');
   const messageToSeller = document.querySelector('#specialInstruction');
   if (e.target.id === 'proceedToCheckout') {
     if (conditionCheckBox.checked) {

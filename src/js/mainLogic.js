@@ -229,19 +229,28 @@ export function editProductCountInLocalStorage(e, id) {
 
     // edit the local storage entry using cart number
     Object.entries(localStorage).forEach((localStorageElement) => {
-      let parsedLocalStorageElement = JSON.parse(localStorageElement[1]);
+      // only apply modification to products
       if (
-        parsedLocalStorageElement.cart_id === parseInt(currentLocalStorageItem)
+        localStorageElement[0].substring(
+          0,
+          localStorageElement[0].indexOf('-')
+        ) === 'product'
       ) {
-        parsedLocalStorageElement.product_quantity = document.querySelector(
-          `.order-quantity-${id}`
-        ).value;
-        parsedLocalStorageElement.product_price = unit_price * quantity;
+        let parsedLocalStorageElement = JSON.parse(localStorageElement[1]);
+        if (
+          parsedLocalStorageElement.cart_id ===
+          parseInt(currentLocalStorageItem)
+        ) {
+          parsedLocalStorageElement.product_quantity = document.querySelector(
+            `.order-quantity-${id}`
+          ).value;
+          parsedLocalStorageElement.product_price = unit_price * quantity;
 
-        localStorage.setItem(
-          localStorageElement[0],
-          JSON.stringify(parsedLocalStorageElement)
-        );
+          localStorage.setItem(
+            localStorageElement[0],
+            JSON.stringify(parsedLocalStorageElement)
+          );
+        }
       }
     });
   }

@@ -257,10 +257,11 @@
 /* card img switching on hover */
 
 .custom-transparency {
+  transition: opacity 400ms ease-in-out;
   opacity: 0;
 }
 
-.card:hover .custom-transparency {
+.productImageContainer:hover .custom-transparency {
   transition: opacity 400ms ease-in-out;
   opacity: 1;
 }

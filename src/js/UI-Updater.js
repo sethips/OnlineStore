@@ -1021,27 +1021,131 @@ export function displayCart(templateString) {
   }
 }
 
+//display cart content in index.html modal
+export function displayCartContentInModal() {
+  let templateString = `
+  <div class="h4 w-100 text-center">Your order</div>
+<div class="table-responsive" style="max-height:50vh;">
+   <table class="table text-center  mb-0">
+      <thead>
+         <hr/ >
+      </thead>
+      <tbody id="CartPageInsertTemplateHere">
+         <!-- main section -->
+         ${creatCartPageTemplate()}
+      </tbody>
+   </table>
+</div>
+<div class="row">
+   <div class="col-6 text-right my-3">
+      <h5 class="mb-0">Subtotal:</h5>
+    </div>
+    <div class="col-6 my-3">
+      <h5 class="text-left mb-0" id="subtotal"></h5>
+    </div>
+</div>
+<div class="row py-0">
+<div class="col-12 ">
+   <div class="progress mb-3" style="height: 20px;">
+      <div
+         class="progress-bar progress-bar-striped progress-bar-animated bg-danger text-center"
+         role="progressbar"
+         style="width: 50%;"
+         >
+         50%
+      </div>
+   </div>
+   <p class="small">
+      <span
+         class="shipping_display h6 bg-danger text-left w-100 py-1 text-white pl-2 rounded free_shipping text-center"
+         style="display: none;"
+         >CONGRATULATIONS! YOU'VE GOT FREE SHIPPING!</span
+         >
+      <span class="remaining_free_shipping">
+      Spend
+      <span class="font-weight-bold amount_to_spend"></span>
+      more to reach
+      <span class="font-weight-bold">FREE SHIPPING!</span> Continue
+      shopping to add more products to your cart and receive free
+      shipping for orders over <u>1000$</u>
+      </span>
+   </p>
+</div>
+</div>
+<div class="row">
+<div class="col">
+<div class="d-flex align-items-center pl-2 mb-2">
+                <input
+                  type="checkbox"
+                  name=""
+                  id="agreeWithCondition"
+                  class="mr-2 custom-cursor"
+                />
+                <label for="agreeWithCondition" class="small conditionText m-0 custom-cursor"
+                  ><span class="text-danger font-weight-bold">*</span> I agree with the terms and conditions.</label
+                >
+              </div>
+</div>
+</div>
+
+<div class="row">
+  <div class="col-6">
+      <button class="btn btn-dark rounded-0 px-4" 
+      data-dismiss="modal"
+      id="returnToShop">
+      Return to shop
+    </button>
+  </div>
+  <div class="col-6 d-flex justify-content-end">
+     <button class="btn btn-dark rounded-0 px-4" id="proceedToCheckoutBtn">
+     Proceed to Checkout
+      </button>
+  </div>
+  <div class="col-6"></div>
+</div>
+  `;
+
+  return templateString;
+}
+
 //display cart total in the cart.html
 export function displayCartTotal(totalAmount) {
-  document.querySelector('#subtotal').textContent =
-    totalAmount.toFixed(2) + '$';
-  document.querySelector('#total').textContent = totalAmount.toFixed(2) + '$';
-  mainLogic.saveCartTotalToSessionStorage(totalAmount, totalAmount);
+  // check if current location is cart.html or index.html
+  if (
+    window.location.href
+      .toString()
+      .split(window.location.host)[1]
+      .includes('cart.html')
+  ) {
+    document.querySelector('#subtotal').textContent =
+      totalAmount.toFixed(2) + '$';
+    document.querySelector('#total').textContent = totalAmount.toFixed(2) + '$';
+    mainLogic.saveCartTotalToSessionStorage(totalAmount, totalAmount);
 
-  // check if discount is available and apply it
-  if (sessionStorage.getItem('discount')) {
-    let discountAmount = mainLogic.calculateDiscountTotal(
-      sessionStorage.getItem('discount')
-    );
-    let total = totalAmount - discountAmount;
-    sessionStorage.setItem('discountAmount', discountAmount);
-    // sessionStorage.setItem('total', total);
-    mainLogic.saveCartTotalToSessionStorage(null, total);
-    // mainLogic.calculateDiscount(sessionStorage.getItem('discount'));
+    // check if discount is available and apply it
+    if (sessionStorage.getItem('discount')) {
+      let discountAmount = mainLogic.calculateDiscountTotal(
+        sessionStorage.getItem('discount')
+      );
+      let total = totalAmount - discountAmount;
+      sessionStorage.setItem('discountAmount', discountAmount);
+      // sessionStorage.setItem('total', total);
+      mainLogic.saveCartTotalToSessionStorage(null, total);
+      // mainLogic.calculateDiscount(sessionStorage.getItem('discount'));
 
-    displayDiscount(discountAmount);
+      displayDiscount(discountAmount);
 
-    document.querySelector('#total').textContent = total.toFixed(2) + '$';
+      document.querySelector('#total').textContent = total.toFixed(2) + '$';
+    }
+  } else if (
+    //display cart total in the index.html modal
+    window.location.href
+      .toString()
+      .split(window.location.host)[1]
+      .includes('index.html')
+  ) {
+    document.querySelector('#subtotal').textContent =
+      totalAmount.toFixed(2) + '$';
   }
 
   // cart bottom section calculate the free shipping option
