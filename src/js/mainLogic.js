@@ -68,6 +68,8 @@ export function deleteAllProductsInCart() {
   });
 }
 
+//TODO make this function work for product.html and index.html
+
 // ------
 function getProductProperties(productId) {
   let addedProduct = {};
@@ -88,21 +90,45 @@ function getProductProperties(productId) {
     addedProduct.product_id
   ).name;
 
-  //get the color
-  let product_color_collection = document.querySelectorAll('.Color-Picker');
-  product_color_collection.forEach((element) => {
-    if (element.className.includes('Selected-color')) {
-      addedProduct.product_color = element.style.backgroundColor;
-    }
-  });
+  //get the color form products.html page color selector or directly from database
 
-  // get the size
-  let product_size_collection = document.querySelectorAll('.Size-Selector');
-  product_size_collection.forEach((element) => {
-    if (element.className.includes('selectedSize')) {
-      addedProduct.product_size = element.textContent.trim();
-    }
-  });
+  if (
+    window.location.href
+      .toString()
+      .split(window.location.host)[1]
+      .includes('products.html')
+  ) {
+    let product_color_collection = document.querySelectorAll('.Color-Picker');
+    product_color_collection.forEach((element) => {
+      if (element.className.includes('Selected-color')) {
+        addedProduct.product_color = element.style.backgroundColor;
+      }
+    });
+  } else {
+    addedProduct.product_color = databaseHandler.getProductById(
+      addedProduct.product_id
+    ).color[0];
+  }
+
+  // get the size form products.html page size selector or directly from database if product has sizes
+
+  if (
+    window.location.href
+      .toString()
+      .split(window.location.host)[1]
+      .includes('products.html')
+  ) {
+    let product_size_collection = document.querySelectorAll('.Size-Selector');
+    product_size_collection.forEach((element) => {
+      if (element.className.includes('selectedSize')) {
+        addedProduct.product_size = element.textContent.trim();
+      }
+    });
+  } else {
+    addedProduct.product_size = databaseHandler.getProductById(
+      addedProduct.product_id
+    ).size[0];
+  }
 
   //get product unit price
   addedProduct.unit_price = databaseHandler.getPriceByProductIdAndColor(
@@ -112,10 +138,20 @@ function getProductProperties(productId) {
   // add two decimal point
   addedProduct.unit_price = addedProduct.unit_price;
 
-  //get quantity
-  addedProduct.product_quantity = document.querySelector(
-    '.order-quantity-1'
-  ).value;
+  //get quantity form products.html page quantity selector or directly from database
+  if (
+    window.location.href
+      .toString()
+      .split(window.location.host)[1]
+      .includes('products.html')
+  ) {
+    addedProduct.product_quantity = document.querySelector(
+      '.order-quantity-1'
+    ).value;
+  } else {
+    addedProduct.product_quantity = 1;
+  }
+
   let quantity = parseInt(addedProduct.product_quantity);
 
   // get product price

@@ -38,6 +38,25 @@ if (!sessionStorage.getItem('startTimer')) {
 //! dom element load event
 //! insert code on any page Load respectively
 document.addEventListener('DOMContentLoaded', () => {
+  // auto Load index.html featured Product from database based on exact product ids
+  if (document.querySelector('#indexCardSection')) {
+    document
+      .querySelector('#indexCardSection')
+      .insertAdjacentHTML(
+        'afterbegin',
+        Ui_Updater.creatFeaturedProducts(
+          1000,
+          1001,
+          1002,
+          1003,
+          1004,
+          1005,
+          1006,
+          1007
+        )
+      );
+  }
+
   // check cart number of items
   mainLogic.incrementOrDecrementCartBadge();
 
@@ -261,8 +280,20 @@ DomElements.body.addEventListener('click', (e) => {
     e.target.parentNode.classList.contains('productAddToCartSection')
   ) {
     //TODO add selected to cart (all default options)
+    let cardToGetIdFrom = e.target.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.id.includes(
+      'product-'
+    )
+      ? e.target.parentNode.parentNode.parentNode.parentNode.parentNode
+          .parentNode
+      : e.target.parentNode.parentNode.parentNode.parentNode.parentNode;
 
-    //TODO fill the modal with cart content and display it
+    if (cardToGetIdFrom.id.includes('product-')) {
+      mainLogic.addProductToCart(
+        cardToGetIdFrom.id.substring(cardToGetIdFrom.id.indexOf('-') + 1)
+      );
+    }
+
+    // fill the modal with cart content and display it
     document.querySelector(
       '#mainModalBody'
     ).innerHTML = Ui_Updater.displayCartContentInModal();

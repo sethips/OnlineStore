@@ -2,6 +2,129 @@ import * as mainLogic from './mainLogic';
 import * as dataBaseHandler from './DataBaseHandler';
 import Payment from 'payment';
 
+function getPicturesForIndexCards(PicArr) {
+  let productPictures =
+    PicArr.length > 1
+      ? `<img
+          class="card-img-top position-absolute custom-transparency custom-cursor"
+          src="${PicArr[0]}"
+          alt=""
+          style="z-index: 1;"
+          />
+          <img
+          class="card-img-top custom-cursor"
+          src="${PicArr[1]}"
+          alt=""
+          style="z-index: 1;"
+          class="custom-cursor"
+        />`
+      : ` <img
+          class="card-img-top custom-cursor"
+          src="${PicArr[0]}"
+          alt=""
+          style="z-index: 1;"
+          class="custom-cursor"
+        />`;
+
+  return productPictures;
+}
+
+function getPriceForIndexCards(priceArr) {
+  let productPrice =
+    priceArr.length > 1
+      ? priceArr[0].toFixed(2) +
+        '$ - ' +
+        priceArr[priceArr.length - 1].toFixed(2) +
+        '$'
+      : priceArr[0].toFixed(2) + '$';
+
+  return productPrice;
+}
+
+// creat index.hmtl featured products section
+export function creatFeaturedProducts(...args) {
+  let indexTemplate = args.map((element) => {
+    let currentProduct = dataBaseHandler.getProductById(element);
+    if (currentProduct) {
+      return `
+      <div class="col-6 col-md-4 col-lg-3 mb-4 px-1">
+        <div
+          class="card border-0"
+          id="product-${currentProduct.id}"
+        >
+          <div class="overlay align-self-end">
+            <div class="d-flex flex-column p-2">
+              <img
+                width="25"
+                height="25"
+                src="https://image.flaticon.com/icons/svg/1077/1077035.svg"
+                class="mb-2 custom-cursor"
+                data-toggle="tooltip"
+                data-placement="left"
+                title="Add To Wishlist"
+              />
+              <a data-toggle="modal" data-target="#mainModal">
+                <img
+                  width="25"
+                  height="25"
+                  src="https://image.flaticon.com/icons/svg/3063/3063986.svg"
+                  id="quickView-${currentProduct.id}"
+                  data-toggle="tooltip"
+                  data-placement="left"
+                  title="Quick View"
+                  class="custom-cursor"
+                />
+              </a>
+            </div>
+          </div>
+          <div class="position-relative productImageContainer">
+          ${getPicturesForIndexCards(currentProduct.pictures)}
+          </div>
+
+          <div
+            class="card-body px-0 position-relative"
+            style="z-index: 1;"
+          >
+            <a
+              class="text-dark product-name"
+              href="products.html?product-id=${currentProduct.id}"
+              >${currentProduct.name}</a
+            >
+            <div class="priceColorsDiv d-flex">
+              <div
+                class="left-section w-75 py-2 text-muted position-relative"
+              >
+                <div class="price-hover-effect">
+                  <div
+                    class="cart-section custom-cursor w-auto productAddToCartSection"
+                    data-toggle="modal"
+                    data-target="#mainModal"
+                  >
+                    <img
+                      width="20"
+                      height="20"
+                      src="https://image.flaticon.com/icons/svg/833/833314.svg"
+                    />
+                    <span>Add to cart</span>
+                  </div>
+                  <div class="price-section"><span class="text-14" style="">${getPriceForIndexCards(
+                    currentProduct.price
+                  )}</span></div>
+                </div>
+              </div>
+              <div
+                class="left-section w-25 py-2 text-muted text-right"
+              ></div>
+            </div>
+          </div>
+        </div>
+      </div>`;
+    }
+  });
+
+  return indexTemplate.join('');
+}
+
 // get images from json database
 function getImages(arr) {
   let imagesHtmlTemplate = '';
@@ -911,9 +1034,11 @@ export function creatCartPageTemplate() {
                               <span class="d-block text-muted text-right text-lg-left small">Color: ${
                                 product.product_color
                               }</span>
-                              <span class="d-block text-muted text-right text-lg-left small">Size: ${
-                                product.product_size
-                              }</span>
+                              <span class="${
+                                product.product_size ? 'd-block' : 'd-none'
+                              } text-muted text-right text-lg-left small">Size: ${
+      product.product_size
+    }</span>
                             </td>
                             <td class="align-middle">
                               <div class="d-flex d-lg-none">
@@ -1089,19 +1214,18 @@ export function displayCartContentInModal() {
 </div>
 
 <div class="row">
-  <div class="col-6">
+  <div class="col-12 col-md-6 d-flex justify-content-center justify-content-md-start order-2 order-md-0">
       <button class="btn btn-dark rounded-0 px-4" 
       data-dismiss="modal"
       id="returnToShop">
       Return to shop
     </button>
   </div>
-  <div class="col-6 d-flex justify-content-end">
+  <div class="col-12 col-md-6 d-flex justify-content-center justify-content-md-end mb-2 mb-md-0">
      <button class="btn btn-dark rounded-0 px-4" id="proceedToCheckoutBtn">
      Proceed to Checkout
       </button>
   </div>
-  <div class="col-6"></div>
 </div>
   `;
 
