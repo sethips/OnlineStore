@@ -40,20 +40,23 @@ if (!sessionStorage.getItem('startTimer')) {
 document.addEventListener('DOMContentLoaded', () => {
   // auto Load index.html featured Product from database based on exact product ids
   if (document.querySelector('#indexCardSection')) {
+    let productsArray = mainLogic.getProductsIdBasedOnCategory('all');
     document
       .querySelector('#indexCardSection')
       .insertAdjacentHTML(
         'afterbegin',
-        Ui_Updater.creatFeaturedProducts(
-          1000,
-          1001,
-          1002,
-          1003,
-          1004,
-          1005,
-          1006,
-          1007
-        )
+        Ui_Updater.creatFeaturedProducts(...productsArray)
+      );
+  }
+
+  // auto Load collection.html Product catalog from database based on exact product ids
+  if (document.querySelector('#collectionProductSection')) {
+    let productsArray = mainLogic.getProductsIdBasedOnCategory('all');
+    document
+      .querySelector('#collectionProductSection')
+      .insertAdjacentHTML(
+        'afterbegin',
+        Ui_Updater.creatProductsCatalog(...productsArray)
       );
   }
 
@@ -280,12 +283,20 @@ DomElements.body.addEventListener('click', (e) => {
     e.target.parentNode.classList.contains('productAddToCartSection')
   ) {
     //TODO add selected to cart (all default options)
-    let cardToGetIdFrom = e.target.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.id.includes(
-      'product-'
-    )
-      ? e.target.parentNode.parentNode.parentNode.parentNode.parentNode
-          .parentNode
-      : e.target.parentNode.parentNode.parentNode.parentNode.parentNode;
+    let cardToGetIdFrom = null;
+    let _target = e.target.parentNode;
+
+    // safety switch for while loop
+    let safety = 50;
+    //travel up the dom tree to get the product id
+    while (safety > 0 && cardToGetIdFrom === null) {
+      if (_target.id && _target.id.includes('product-')) {
+        cardToGetIdFrom = _target;
+      }
+
+      _target = _target.parentNode;
+      safety--;
+    }
 
     if (cardToGetIdFrom.id.includes('product-')) {
       mainLogic.addProductToCart(

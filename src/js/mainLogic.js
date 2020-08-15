@@ -425,3 +425,13 @@ export function removeMultipleItemsFromSessionStorage(...args) {
     sessionStorage.removeItem(key);
   });
 }
+
+//-----
+export function getProductsIdBasedOnCategory(category) {
+  let allProducts = databaseHandler.getAllProducts();
+  let productsIds;
+  if (category === 'all') {
+    productsIds = allProducts.map((element) => element.id);
+  }
+  return productsIds;
+}

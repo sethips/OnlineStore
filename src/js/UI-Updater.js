@@ -41,6 +41,76 @@ function getPriceForIndexCards(priceArr) {
   return productPrice;
 }
 
+// creat collection.html product catalog
+export function creatProductsCatalog(...args) {
+  let indexTemplate = args.map((element) => {
+    let currentProduct = dataBaseHandler.getProductById(element);
+    if (currentProduct) {
+      return `
+          <div class="col-6 col-md-4 col-lg-3 mb-4 px-1">
+        <div class="card border-0" id="product-${currentProduct.id}">
+          <div class="overlay d-flex align-self-end">
+            <div class="d-flex flex-column p-2">
+              <img
+                width="25"
+                height="25"
+                src="https://image.flaticon.com/icons/svg/1077/1077035.svg"
+                class="mb-2 custom-cursor"
+                data-toggle="tooltip"
+                data-placement="left"
+                title="Add To Wishlist"
+              />
+              <a data-toggle="modal" data-target="#mainModal">
+              <img
+                width="25"
+                height="25"
+                src="https://image.flaticon.com/icons/svg/3063/3063986.svg"
+                id="quickView-${currentProduct.id}"
+                data-toggle="tooltip"
+                data-placement="left"
+                title="Quick View"
+                class="custom-cursor"
+              />
+            </a>
+            </div>
+          </div>
+          <div class="position-relative overflow-hidden productImageContainer">
+          <div
+          class="custom-add-to-cart overlay w-100 text-white py-2 rounded-0 productAddToCartSection"
+          data-toggle="modal"
+          data-target="#mainModal"
+        >
+          <img
+            width="20"
+            height="20"
+            src="https://image.flaticon.com/icons/svg/833/833314.svg"
+            class="custom-cursor"
+          />
+          <span class="pl-2 custom-cursor">Add to cart</span>
+        </div>
+            ${getPicturesForIndexCards(currentProduct.pictures)}
+          </div>
+
+          <div class="card-body px-0">
+            <a class="text-dark product-name" href="products.html?product-id=${
+              currentProduct.id
+            }">${currentProduct.name}</a>
+            <div class="priceColorsDiv d-flex">
+              <div class="left-section w-75 py-2 text-muted">
+                ${getPriceForIndexCards(currentProduct.price)}
+              </div>
+              <div class="left-section w-25 pl-4 py-2 text-muted ml-auto">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>`;
+    }
+  });
+
+  return indexTemplate.join('');
+}
+
 // creat index.hmtl featured products section
 export function creatFeaturedProducts(...args) {
   let indexTemplate = args.map((element) => {
@@ -1266,7 +1336,11 @@ export function displayCartTotal(totalAmount) {
     window.location.href
       .toString()
       .split(window.location.host)[1]
-      .includes('index.html')
+      .includes('index.html') ||
+    window.location.href
+      .toString()
+      .split(window.location.host)[1]
+      .includes('collections.html')
   ) {
     document.querySelector('#subtotal').textContent =
       totalAmount.toFixed(2) + '$';

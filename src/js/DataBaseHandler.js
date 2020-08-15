@@ -14,7 +14,14 @@ const jsonDataBase = require('./Data.json');
 // const app = firebase.initializeApp(firebaseConfig);
 // const database = firebase.database()
 // //initialize fireBase database End
+export function getAllProducts() {
+  let products = [];
+  for (const product of jsonDataBase.productsDataBase) {
+    products.push(product);
+  }
 
+  return products;
+}
 export function getProductByName(productName) {
   for (const product of jsonDataBase.productsDataBase) {
     if (product.name === productName) {
