@@ -321,6 +321,52 @@ DomElements.body.addEventListener('click', (e) => {
     }
   }
 
+  //index.html sign up button clicked
+  if (e.target.id === 'signUpBtn') {
+    let email = document.querySelector('#email');
+    const emailRegExp = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+    let LocalStorageEmails = JSON.parse(
+      localStorage.getItem('subscribedEmails')
+    );
+
+    if (emailRegExp.test(email.value)) {
+      if (LocalStorageEmails && LocalStorageEmails.includes(email.value)) {
+        Swal({
+          'background-color': '#f4f4f4',
+          text: 'Email already subscribed',
+          icon: 'warning',
+          buttons: false,
+        });
+      } else {
+        if (LocalStorageEmails) {
+          LocalStorageEmails.push(email.value);
+          localStorage.setItem(
+            'subscribedEmails',
+            JSON.stringify(LocalStorageEmails)
+          );
+        } else {
+          localStorage.setItem(
+            'subscribedEmails',
+            JSON.stringify([email.value])
+          );
+        }
+        Swal({
+          icon: 'success',
+          'background-color': '#f4f4f4',
+          text: `Thanks for contacting us. We'll get back to you as soon as possible.`,
+          buttons: false,
+        });
+      }
+    } else {
+      Swal({
+        'background-color': '#f4f4f4',
+        text: 'YOU MUST ENTER A VALID EMAIL ADDRESS',
+        icon: 'warning',
+        buttons: false,
+      });
+    }
+  }
+
   //! product.html product image selection event
   if (e.target.className.includes('preview-img')) {
     if (e.target.src !== document.querySelector('.product-main-image').src) {
