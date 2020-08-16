@@ -429,9 +429,25 @@ export function removeMultipleItemsFromSessionStorage(...args) {
 //-----
 export function getProductsIdBasedOnCategory(category) {
   let allProducts = databaseHandler.getAllProducts();
-  let productsIds;
-  if (category === 'all') {
-    productsIds = allProducts.map((element) => element.id);
+  let productsIds = [];
+  if (category.toLowerCase() === 'all') {
+    allProducts.forEach((element) => {
+      productsIds.push(element.id);
+    });
+    productsIds.sort(() => 0.5 - Math.random());
+  } else {
+    category === 'menClothing'
+      ? (category = `men's Clothing`)
+      : category === `WomenClothing`
+      ? (category = `Women's Clothing`)
+      : (category = category);
+
+    allProducts.forEach((element) => {
+      if (element.Category.toLowerCase() === category.toLowerCase()) {
+        productsIds.push(element.id);
+      }
+    });
   }
+  console.log(productsIds);
   return productsIds;
 }

@@ -364,7 +364,7 @@ DomElements.body.addEventListener('click', (e) => {
         Swal({
           icon: 'success',
           'background-color': '#f4f4f4',
-          text: `Thanks for contacting us. We'll get back to you as soon as possible.`,
+          text: `Thanks for subscribing. We'll make sure to keep you updated.`,
           buttons: false,
         });
       }
@@ -376,6 +376,19 @@ DomElements.body.addEventListener('click', (e) => {
         buttons: false,
       });
     }
+  }
+
+  //!product.html category selection
+  if (e.target.classList.contains('categorySelector')) {
+    console.log(e.target.id);
+    let productsArray = mainLogic.getProductsIdBasedOnCategory(e.target.id);
+    document.querySelector('#collectionProductSection').innerHTML = '';
+    document
+      .querySelector('#collectionProductSection')
+      .insertAdjacentHTML(
+        'afterbegin',
+        Ui_Updater.creatFeaturedProducts(...productsArray)
+      );
   }
 
   //! product.html product image selection event
@@ -841,6 +854,16 @@ DomElements.body.addEventListener('click', (e) => {
   // orderStatus.html button click
   if (e.target.id === 'goBackToHome') {
     location.href = 'index.html';
+  }
+
+  //!  contact-us.html send a message button click
+  if (e.target.id === 'sendAMessage') {
+    Swal({
+      icon: 'success',
+      'background-color': '#f4f4f4',
+      text: `Thanks for contacting us. We'll get back to you as soon as possible.`,
+      buttons: false,
+    });
   }
 });
 

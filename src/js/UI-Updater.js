@@ -2,7 +2,7 @@ import * as mainLogic from './mainLogic';
 import * as dataBaseHandler from './DataBaseHandler';
 import Payment from 'payment';
 
-function getPicturesForIndexCards(PicArr) {
+function getPicturesForCards(PicArr) {
   let productPictures =
     PicArr.length > 1
       ? `<img
@@ -88,7 +88,7 @@ export function creatProductsCatalog(...args) {
           />
           <span class="pl-2 custom-cursor">Add to cart</span>
         </div>
-            ${getPicturesForIndexCards(currentProduct.pictures)}
+            ${getPicturesForCards(currentProduct.pictures)}
           </div>
 
           <div class="card-body px-0">
@@ -148,7 +148,7 @@ export function creatFeaturedProducts(...args) {
             </div>
           </div>
           <div class="position-relative productImageContainer">
-          ${getPicturesForIndexCards(currentProduct.pictures)}
+          ${getPicturesForCards(currentProduct.pictures)}
           </div>
 
           <div
