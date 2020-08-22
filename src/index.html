@@ -26,10 +26,52 @@
   </head>
 
   <body>
+    <div
+      class="d-flex flex-column position-fixed bg-dark burgerMenuStyle"
+      id="hiddenBurgerMenu"
+    >
+      <img
+        width="30"
+        height="30"
+        src="https://image.flaticon.com/icons/svg/748/748122.svg"
+        class="img-fluid m-3 ml-auto custom-cursor invert-color-toWhite"
+        id="hiddenBurgerMenuCloseBtn"
+      />
+      <div class="d-flex align-items-center justify-content-center h-100 w-100">
+        <ul class="navbar-nav text-center">
+          <li class="nav-item active">
+            <a class="nav-link h3 text-white" href="index.html">HOME </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link h3 text-white" href="collections.html">
+              SHOPE
+            </a>
+          </li>
+          <li class="nav-item">
+            <a
+              class="nav-link position-relative h3 text-white"
+              href="cart.html"
+              aria-disabled="true"
+              >CART<span class="cart-badge-navbar">0</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link h3 text-white" href="#" aria-disabled="true"
+              >ABOUT US</a
+            >
+          </li>
+          <li class="nav-item">
+            <a class="nav-link h3 text-white" href="#" aria-disabled="true"
+              >HELP</a
+            >
+          </li>
+        </ul>
+      </div>
+    </div>
     <div class="">
       <!-- top bar -->
       <div
-        class="fluid-container custom-background py-2 px-5 d-flex font-size-13"
+        class="fluid-container custom-background py-2 px-2 px-md-5 d-flex font-size-13"
       >
         <!-- Top Bar -->
         <div class="d-flex py-1 align-items-center m-auto ml-lg-0">
@@ -63,7 +105,7 @@
       <!-- Main nav -->
       <div class="fluid-container px-0 px-lg-5">
         <div class="fluid-container p-0">
-          <nav class="navbar navbar-expand-md navbar-light">
+          <nav class="d-none d-md-flex navbar navbar-expand navbar-light">
             <div class="navbar-brand">
               <a href="index.html">
                 <img
@@ -88,37 +130,18 @@
                 <li class="nav-item active">
                   <a class="nav-link" href="index.html">HOME </a>
                 </li>
-                <li class="nav-item dropdown">
-                  <a
-                    class="nav-link dropdown-toggle"
-                    href="collections.html"
-                    id="navbarDropdown"
-                    role="button"
-                    data-toggle="dropdown"
-                    aria-haspopup="true"
-                    aria-expanded="false"
-                  >
+                <li class="nav-item">
+                  <a class="nav-link" href="collections.html">
                     SHOPE
                   </a>
-                  <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="#">Laptops</a>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="#">Phones</a>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="#">Computers</a>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="#">Hardware</a>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="#">ETC</a>
-                  </div>
                 </li>
                 <li class="nav-item">
                   <a
                     class="nav-link position-relative"
                     href="cart.html"
                     aria-disabled="true"
-                    >CART<span class="cart-badge-navbar">0</span></a
-                  >
+                    >CART<span class="cart-badge-navbar">0</span>
+                  </a>
                 </li>
                 <li class="nav-item">
                   <a class="nav-link" href="#" aria-disabled="true">ABOUT US</a>
@@ -129,6 +152,33 @@
               </ul>
             </div>
           </nav>
+
+          <!-- menu for mobiles -->
+          <div class="d-flex d-md-none py-2 px-2">
+            <a href="index.html">
+              <img
+                class="img-fluid"
+                src="/img/logo.png"
+                style="width: 196px;"
+              />
+            </a>
+            <span
+              class="ml-auto align-self-center custom-cursor"
+              id="mainBurgerMenuToggle"
+            >
+              <svg
+                fill="#000000"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 30 30"
+                width="50px"
+                height="50px"
+              >
+                <path
+                  d="M 3 7 A 1.0001 1.0001 0 1 0 3 9 L 27 9 A 1.0001 1.0001 0 1 0 27 7 L 3 7 z M 3 14 A 1.0001 1.0001 0 1 0 3 16 L 27 16 A 1.0001 1.0001 0 1 0 27 14 L 3 14 z M 3 21 A 1.0001 1.0001 0 1 0 3 23 L 27 23 A 1.0001 1.0001 0 1 0 27 21 L 3 21 z"
+                />
+              </svg>
+            </span>
+          </div>
 
           <!-- hidden search bar -->
           <div class="search-container d-none justify-content-center">
@@ -186,7 +236,7 @@
                 <h6
                   class="display-4 carousel-custom-font smaller-carousel-title"
                 >
-                  Boot's Collection For Men
+                  New Boot's Collection
                 </h6>
                 <a
                   href="collections.html"
@@ -234,13 +284,15 @@
         </div>
 
         <!-- categories Cards -->
-        <div class="fluid-container p-2 px-lg-5">
-          <div class="row w-100 mx-0">
-            <div class="col-6 col-md-4 col-lg-6 order-3 order-md-1 h-100">
+        <div class="fluid-container p-md-2 px-lg-5">
+          <div class="row w-100 mx-0 p-0">
+            <div
+              class="col-6 col-md-4 col-lg-6 px-2 px-md-3 px-lg-auto mx-0 order-3 order-md-1 h-100"
+            >
               <div
                 class="position-relative custom-cursor zoom-effect-container"
               >
-                <a href="collections.html"
+                <a href="collections.html?category=bags"
                   ><img
                     class="img-fluid w-100 h-100"
                     src="https://cdn.shopify.com/s/files/1/0102/4383/3952/files/cat-bag-5_1080x.jpg"
@@ -248,18 +300,20 @@
                 /></a>
                 <a
                   class="custom-btn-pos shadow-sm py-2 px-4 bg-white"
-                  href="collections.html"
+                  href="collections.html?category=bags"
                   style="font-size: 14px;"
                 >
                   Bag
                 </a>
               </div>
             </div>
-            <div class="col-6 col-md-4 col-lg-3 order-1 order-md-2 mb-4 h-100">
+            <div
+              class="col-6 col-md-4 col-lg-3 px-2 px-md-3 px-lg-auto order-1 order-md-2 mb-3 mb-lg-4 h-100"
+            >
               <div
-                class="position-relative custom-cursor mb-4 zoom-effect-container"
+                class="position-relative custom-cursor mb-3 mb-lg-4 zoom-effect-container"
               >
-                <a href="collections.html"
+                <a href="collections.html?category=footwear"
                   ><img
                     class="img-fluid"
                     src="https://cdn.shopify.com/s/files/1/0102/4383/3952/files/boot-category-1-3-min_1728x.jpg"
@@ -268,7 +322,7 @@
 
                 <a
                   class="custom-btn-pos shadow-sm py-2 px-4 bg-white"
-                  href="collections.html"
+                  href="collections.html?category=footwear"
                   style="font-size: 14px;"
                 >
                   Footwear
@@ -278,7 +332,7 @@
               <div
                 class="position-relative custom-cursor zoom-effect-container"
               >
-                <a href="collections.html"
+                <a href="collections.html?category=womenClothing"
                   ><img
                     class="img-fluid"
                     src="https://cdn.shopify.com/s/files/1/0102/4383/3952/files/wooman-cat_2048x.jpg"
@@ -287,18 +341,20 @@
 
                 <a
                   class="custom-btn-pos shadow-sm py-2 px-4 bg-white"
-                  href="collections.html"
+                  href="collections.html?category=womenClothing"
                   style="font-size: 14px;"
                 >
                   Woman
                 </a>
               </div>
             </div>
-            <div class="col-6 col-md-4 col-lg-3 order-2 order-md-3 h-100">
+            <div
+              class="col-6 col-md-4 col-lg-3 px-2 px-md-3 px-lg-auto order-2 order-md-3 h-100"
+            >
               <div
                 class="position-relative custom-cursor text-center h-100 zoom-effect-container"
               >
-                <a href="collections.html">
+                <a href="collections.html?category=watches">
                   <img
                     class="img-fluid"
                     src="https://cdn.shopify.com/s/files/1/0102/4383/3952/files/cat-watch-2_2048x.jpg"
@@ -307,7 +363,7 @@
 
                 <a
                   class="custom-btn-pos shadow-sm py-2 px-4 bg-white"
-                  href="collections.html"
+                  href="collections.html?category=watches"
                   style="font-size: 14px;"
                 >
                   Watches
@@ -980,10 +1036,11 @@
       <div
         class="fluid-container d-flex flex-column align-items-center justify-content-center custom-img-bg mb-5"
       >
-        <span class="h2 customStyle text-white mb-3" style="font-size: 26px;"
+        <span class="h2 customStyle text-white mb-3 subscriptionTextSize-2"
           >Connect to zShop.</span
         >
-        <span class="display-4 customStyle text-white text-center"
+        <span
+          class="display-2 customStyle text-white text-center subscriptionTextSize"
           >Join Our Newsletter</span
         >
         <div class="w-100 d-flex my-3">
@@ -1047,7 +1104,7 @@
                     src="//cdn.shopify.com/s/files/1/0102/4383/3952/files/testimonial2-1-100x100_100x100.progressive.jpg"
                   />
                   <div class="text-dark d-flex flex-column align-items-center">
-                    <p class="mb-0 mt-4 w-75">
+                    <p class="mb-0 mt-4 col-12 col-md-8 px-0">
                       Lorem ipsum dolor sit amet consectetur adipisicing elit.
                       Amet tempore labore rerum praesentium, in quasi cum nam
                       quod suscipit ut accusamus obcaecati unde, facere ea.
@@ -1061,7 +1118,7 @@
                     src="//cdn.shopify.com/s/files/1/0102/4383/3952/files/testimonial1-100x100_100x100.progressive.jpg"
                   />
                   <div class="text-dark d-flex flex-column align-items-center">
-                    <p class="mb-0 mt-4 w-75">
+                    <p class="mb-0 mt-4 col-12 col-md-8 px-0">
                       Lorem ipsum dolor sit, amet consectetur adipisicing elit.
                       Eveniet similique fugiat ad consequatur ipsa? Quisquam
                       temporibus recusandae necessitatibus fugiat?
@@ -1072,101 +1129,111 @@
               </div>
             </div>
           </div>
-          <div class="col-12 col-lg-6">
+          <div class="d-none d-lg-block col-lg-6">
             <div class="row">
               <div class="col-4 p-1">
-                <div class="card custom-cursor">
-                  <div class="overlay-2 w-100 h-100">
+                <a href="collections.html">
+                  <div class="card custom-cursor">
+                    <div class="overlay-2 w-100 h-100">
+                      <img
+                        width="32"
+                        height="32"
+                        src="https://image.flaticon.com/icons/svg/566/566012.svg"
+                        class="invert"
+                      />
+                    </div>
                     <img
-                      width="32"
-                      height="32"
-                      src="https://image.flaticon.com/icons/svg/566/566012.svg"
-                      class="invert"
-                    />
-                  </div>
-                  <img
-                    src="/img/1.jpg"
-                    class="card-img-top img-fluid"
-                    alt="..."
-                  />
-                </div>
+                      src="/img/1.jpg"
+                      class="card-img-top img-fluid"
+                      alt="..."
+                    /></div
+                ></a>
               </div>
               <div class="col-4 p-1">
-                <div class="card custom-cursor">
-                  <div class="overlay-2 w-100 h-100">
+                <a href="collections.html">
+                  <div class="card custom-cursor">
+                    <div class="overlay-2 w-100 h-100">
+                      <img
+                        width="32"
+                        height="32"
+                        src="https://image.flaticon.com/icons/svg/566/566012.svg"
+                        class="invert"
+                      />
+                    </div>
                     <img
-                      width="32"
-                      height="32"
-                      src="https://image.flaticon.com/icons/svg/566/566012.svg"
-                      class="invert"
-                    />
-                  </div>
-                  <img
-                    src="/img/2.jpg"
-                    class="card-img-top img-fluid"
-                    alt="..."
-                  />
-                </div>
+                      src="/img/2.jpg"
+                      class="card-img-top img-fluid"
+                      alt="..."
+                    /></div
+                ></a>
               </div>
               <div class="col-4 p-1">
-                <div class="card custom-cursor">
-                  <div class="overlay-2 w-100 h-100">
+                <a href="collections.html">
+                  <div class="card custom-cursor">
+                    <div class="overlay-2 w-100 h-100">
+                      <img
+                        width="32"
+                        height="32"
+                        src="https://image.flaticon.com/icons/svg/566/566012.svg"
+                        class="invert"
+                      />
+                    </div>
                     <img
-                      width="32"
-                      height="32"
-                      src="https://image.flaticon.com/icons/svg/566/566012.svg"
-                      class="invert"
-                    />
-                  </div>
-                  <img
-                    src="/img/3.jpg"
-                    class="card-img-top img-fluid"
-                    alt="..."
-                  />
-                </div>
+                      src="/img/3.jpg"
+                      class="card-img-top img-fluid"
+                      alt="..."
+                    /></div
+                ></a>
               </div>
               <div class="col-4 p-1">
-                <div class="card custom-cursor">
-                  <div class="overlay-2 w-100 h-100">
+                <a href="collections.html">
+                  <div class="card custom-cursor">
+                    <div class="overlay-2 w-100 h-100">
+                      <img
+                        width="32"
+                        height="32"
+                        src="https://image.flaticon.com/icons/svg/566/566012.svg"
+                        class="invert"
+                      />
+                    </div>
                     <img
-                      width="32"
-                      height="32"
-                      src="https://image.flaticon.com/icons/svg/566/566012.svg"
-                      class="invert"
-                    />
-                  </div>
-                  <img
-                    src="/img/4.jpg"
-                    class="card-img-top img-fluid"
-                    alt="..."
-                  />
-                </div>
+                      src="/img/4.jpg"
+                      class="card-img-top img-fluid"
+                      alt="..."
+                    /></div
+                ></a>
               </div>
               <div class="col-4 p-1">
-                <div class="card custom-cursor">
-                  <div class="overlay-2 w-100 h-100">
+                <a href="collections.html">
+                  <div class="card custom-cursor">
+                    <div class="overlay-2 w-100 h-100">
+                      <img
+                        width="32"
+                        height="32"
+                        src="https://image.flaticon.com/icons/svg/566/566012.svg"
+                        class="invert"
+                      />
+                    </div>
                     <img
-                      width="32"
-                      height="32"
-                      src="https://image.flaticon.com/icons/svg/566/566012.svg"
-                      class="invert"
-                    />
-                  </div>
-                  <img src="/img/5.jpg" class="card-img-top img-fluid" alt="" />
-                </div>
+                      src="/img/5.jpg"
+                      class="card-img-top img-fluid"
+                      alt=""
+                    /></div
+                ></a>
               </div>
               <div class="col-4 p-1">
-                <div class="card custom-cursor">
-                  <div class="overlay-2 w-100 h-100">
-                    <img
-                      width="32"
-                      height="32"
-                      src="https://image.flaticon.com/icons/svg/566/566012.svg"
-                      class="invert"
-                    />
-                  </div>
-                  <img src="/img/6.jpg" class="card-img-top img-fluid" />
-                </div>
+                <a href="collections.html">
+                  <div class="card custom-cursor">
+                    <div class="overlay-2 w-100 h-100">
+                      <img
+                        width="32"
+                        height="32"
+                        src="https://image.flaticon.com/icons/svg/566/566012.svg"
+                        class="invert"
+                      />
+                    </div>
+                    <img src="/img/6.jpg" class="card-img-top img-fluid" /></div
+                ></a>
               </div>
             </div>
           </div>
@@ -1177,10 +1244,10 @@
       <div class="fluid-container brand-bg-img mt-5">
         <div class="row h-100 w-100 mx-0">
           <div
-            class="col-sm-12 col-md-6 d-flex align-items-center justify-content-center justify-content-md-end pr-0"
+            class="col-sm-12 col-md-6 d-flex align-items-center justify-content-center justify-content-md-end pr-auto pr-md-0"
           >
             <div
-              class="d-flex flex-column align-items-center justify-content-center bg-white custom-border border-right px-3 px-lg-5 brand-custom-width"
+              class="d-flex flex-column align-items-center justify-content-center bg-white custom-border border-right px-1 px-lg-5 brand-custom-width"
               style="height: 80%;"
             >
               <img class="img-fluid" src="/img/logo.png" alt="" width="200" />

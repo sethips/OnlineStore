@@ -438,8 +438,8 @@ export function getProductsIdBasedOnCategory(category) {
   } else {
     category === 'menClothing'
       ? (category = `men's Clothing`)
-      : category === `WomenClothing`
-      ? (category = `Women's Clothing`)
+      : category === `womenClothing`
+      ? (category = `women's Clothing`)
       : (category = category);
 
     allProducts.forEach((element) => {
@@ -448,6 +448,18 @@ export function getProductsIdBasedOnCategory(category) {
       }
     });
   }
-  console.log(productsIds);
   return productsIds;
+}
+
+//------- element  only clicked element on the categories menu
+export function switchSelectedItem(clickedEl) {
+  document.querySelectorAll('.categoriesList').forEach((element) => {
+    for (let item of element.children) {
+      if (item.id === clickedEl.id) {
+        item.classList.add('categoriesSelectedItem');
+      } else {
+        item.classList.remove('categoriesSelectedItem');
+      }
+    }
+  });
 }

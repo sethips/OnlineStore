@@ -41,6 +41,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // auto Load index.html featured Product from database based on exact product ids
   if (document.querySelector('#indexCardSection')) {
     let productsArray = mainLogic.getProductsIdBasedOnCategory('all');
+    productsArray.length = 8;
     document
       .querySelector('#indexCardSection')
       .insertAdjacentHTML(
@@ -51,13 +52,22 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // auto Load collection.html Product catalog from database based on exact product ids
   if (document.querySelector('#collectionProductSection')) {
-    let productsArray = mainLogic.getProductsIdBasedOnCategory('all');
+    let locationParam = window.location.search;
+    let category = locationParam.includes('category')
+      ? locationParam.substring(locationParam.indexOf('=') + 1)
+      : 'all';
+    let productsArray = mainLogic.getProductsIdBasedOnCategory(category);
     document
       .querySelector('#collectionProductSection')
       .insertAdjacentHTML(
         'afterbegin',
         Ui_Updater.creatProductsCatalog(...productsArray)
       );
+
+    // auto heightLight the clicked category from the categories list
+    document.querySelectorAll(`#${category}`).forEach((element) => {
+      mainLogic.switchSelectedItem(element);
+    });
   }
 
   // check cart number of items
@@ -196,6 +206,22 @@ document.addEventListener('DOMContentLoaded', () => {
 //
 //!  all body click events
 DomElements.body.addEventListener('click', (e) => {
+  //! burger menu click for mobiles
+  if (
+    e.target.id === 'mainBurgerMenuToggle' ||
+    e.target.parentNode.id === 'mainBurgerMenuToggle' ||
+    e.target.parentNode.parentNode.id === 'mainBurgerMenuToggle'
+  ) {
+    document.querySelector('#hiddenBurgerMenu').classList.add('burgerReveal');
+  }
+
+  //TODO close menu
+  if (e.target.id === 'hiddenBurgerMenuCloseBtn') {
+    document
+      .querySelector('#hiddenBurgerMenu')
+      .classList.remove('burgerReveal');
+  }
+
   //! index.html product image click
   if (e.target.classList.contains('card-img-top')) {
     let clickedProduct = e.target.parentNode.parentNode.id.substring(
@@ -378,11 +404,18 @@ DomElements.body.addEventListener('click', (e) => {
     }
   }
 
-  //!product.html category selection
+  //! collection.html category selection
   if (e.target.classList.contains('categorySelector')) {
-    console.log(e.target.id);
     let productsArray = mainLogic.getProductsIdBasedOnCategory(e.target.id);
     document.querySelector('#collectionProductSection').innerHTML = '';
+    // clear the address var param portion
+    window.history.pushState({}, document.title, '/' + 'collections.html');
+
+    //TODO hightLight clicked buttons after psudoElement selection on click
+    document.querySelectorAll(`#${e.target.id}`).forEach((element) => {
+      mainLogic.switchSelectedItem(element);
+    });
+    //TODO ---------------------------------------------------------------
     document
       .querySelector('#collectionProductSection')
       .insertAdjacentHTML(
@@ -490,15 +523,31 @@ DomElements.body.addEventListener('click', (e) => {
   //----
   //! product.html add to cart button click event
   if (e.target.id === 'cartButton') {
+    e.target.disabled = true;
     e.target.innerHTML = loadingSvg;
 
     setTimeout(() => {
       e.target.innerHTML = '';
       e.target.textContent = 'ADD TO CART';
+      e.target.disabled = false;
     }, 500);
 
     // id im currently viewing product.html the modalProductId will be null
     mainLogic.addProductToCart(modalProductId);
+  }
+
+  //! product.html buy now button
+  if (e.target.id === 'buyNowButton') {
+    if (location.href.includes('products.html')) {
+      const productId = location.search.substring(
+        location.search.indexOf('=') + 1
+      );
+      mainLogic.addProductToCart(productId);
+      window.location.href = 'checkout.html';
+    } else {
+      mainLogic.addProductToCart(modalProductId);
+      window.location.href = 'checkout.html';
+    }
   }
 
   //! cart.html delete product from cart

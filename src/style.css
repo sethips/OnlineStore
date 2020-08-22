@@ -133,7 +133,7 @@
   font-size: 22px;
 }
 .brand-custom-width {
-  max-width: 80%;
+  max-width: 100%;
 }
 
 .custom-cursor {
@@ -338,6 +338,24 @@
   bottom: 0px !important;
 }
 
+.categoriesSelectedItem {
+  color: #1aada3 !important;
+}
+
+.burgerMenuStyle {
+  height: 100vh;
+  width: 100vw;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  transform: translateX(100%);
+  transition: 0.3s;
+}
+
+.burgerReveal {
+  transform: translateX(25%);
+}
+
 /* animations */
 @keyframes flash {
   0%,
@@ -407,6 +425,29 @@
   .modalMaxHeight {
     max-height: none;
   }
+
+  .subscriptionTextSize-2 {
+    font-size: 26px !important;
+  }
+
+  .subscriptionTextSize {
+    font-size: 32px !important;
+  }
+
+  .custom-input {
+    outline: none;
+    background-color: transparent;
+    color: white;
+    border: none;
+    border-bottom: solid 1px white;
+    width: 60%;
+    padding: 5px 10px;
+    margin-right: 2px;
+  }
+
+  .custom-border {
+    border: none;
+  }
 }
 
 /* Medium devices (tablets, 768px and up) */
@@ -447,6 +488,56 @@
   }
 }
 
+/* hover effect for the after subElement on large devices */
+@media (min-width: 992px) {
+  /* hover effect for the after subElement of nav bar and categories bar */
+  li.custom-cursor::after {
+    content: '';
+    display: block;
+    width: 0;
+    height: 1px;
+    background: #fff;
+    transition: width 0.3s;
+  }
+
+  li.custom-cursor:hover::after {
+    width: 100%;
+  }
+  /*  */
+  /*  */
+  /*  */
+  /*  */
+
+  /* main navBar after underlining effect  */
+  a.nav-link::after {
+    content: '';
+    display: block;
+    width: 0;
+    height: 1px;
+    background: #000;
+    transition: width 0.3s;
+  }
+
+  a.nav-link:hover::after {
+    width: 100%;
+  }
+
+  /* top navBar after underlining effect  */
+  ul a.text-white::after {
+    content: '';
+    display: block;
+    width: 0;
+    height: 1px;
+    background: #fff;
+    transition: width 0.3s;
+  }
+
+  ul a.text-white:hover::after {
+    width: 100%;
+  }
+}
+
 /* Extra large devices (large desktops, 1200px and up) */
 @media (max-width: 1200px) {
+  /* categories list in the collection page  */
 }

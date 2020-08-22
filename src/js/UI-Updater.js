@@ -117,7 +117,7 @@ export function creatFeaturedProducts(...args) {
     let currentProduct = dataBaseHandler.getProductById(element);
     if (currentProduct) {
       return `
-      <div class="col-6 col-md-4 col-lg-3 mb-4 px-1">
+      <div class="col-12 col-md-4 col-lg-3 mb-4 px-1">
         <div
           class="card border-0"
           id="product-${currentProduct.id}"
@@ -580,7 +580,7 @@ export function CreatProductTemplate(product, includeDescription) {
           <button
             type="button"
             name=""
-            id=""
+            id="buyNowButton"
             class="btn bg-info text-white btn-block rounded-0"
           >
             BUY IT NOW
@@ -986,7 +986,7 @@ export function CreatProductTemplate(product, includeDescription) {
         <button
           type="button"
           name=""
-          id=""
+          id="buyNowButton"
           class="btn bg-info text-white btn-block rounded-0"
         >
           BUY IT NOW

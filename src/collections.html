@@ -84,32 +84,13 @@
             </button>
             <div class="collapse navbar-collapse" id="MainNavbar">
               <ul class="navbar-nav ml-auto">
-                <li class="nav-item active">
+                <li class="nav-item">
                   <a class="nav-link" href="index.html">HOME </a>
                 </li>
-                <li class="nav-item dropdown">
-                  <a
-                    class="nav-link dropdown-toggle"
-                    href="collections.html"
-                    id="navbarDropdown"
-                    role="button"
-                    data-toggle="dropdown"
-                    aria-haspopup="true"
-                    aria-expanded="false"
-                  >
+                <li class="nav-item active">
+                  <a class="nav-link" href="collections.html">
                     SHOPE
                   </a>
-                  <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="#">Laptops</a>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="#">Phones</a>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="#">Computers</a>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="#">Hardware</a>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="#">ETC</a>
-                  </div>
                 </li>
                 <li class="nav-item">
                   <a
@@ -154,75 +135,85 @@
           <a
             class="font-weight-bold py-2"
             data-toggle="collapse"
-            href="#collapseExample"
+            href="#collapseCategories"
             role="button"
             aria-expanded="false"
-            aria-controls="collapseExample"
+            aria-controls="collapseCategories"
             style="color: white; text-decoration: none;"
           >
-            CATEGORIES <i class="fa fa-chevron-down text-white ml-3"></i>
+            CATEGORIES
+            <i class="fa fa-chevron-down text-white ml-3"></i>
           </a>
 
-          <div class="collapse" id="collapseExample" style="width: 85%;">
-            <div class="card card-body bg-dark pt-0 text-center">
+          <div
+            class="collapse bg-dark"
+            id="collapseCategories"
+            style="min-width: 85%;"
+          >
+            <div
+              class="card card-body pt-0 bg-dark text-center border-0 m-auto categoriesList"
+              style="width: fit-content;"
+            >
               <li
-                class="list-inline-item py-2 custom-cursor categorySelector"
-                id="All"
+                class="list-inline-item py-2 custom-cursor text-uppercase categorySelector"
+                id="all"
               >
-                All
+                all
               </li>
               <li
-                class="list-inline-item py-2 custom-cursor categorySelector"
-                id="shoes"
+                class="list-inline-item py-2 custom-cursor text-uppercase categorySelector"
+                id="footwear"
               >
-                shoes
+                footwear
               </li>
               <li
-                class="list-inline-item py-2 custom-cursor categorySelector"
+                class="list-inline-item py-2 custom-cursor text-uppercase categorySelector"
                 id="menClothing"
               >
                 men's Clothing
               </li>
               <li
-                class="list-inline-item py-2 custom-cursor categorySelector"
-                id="WomenClothing"
+                class="list-inline-item py-2 custom-cursor text-uppercase categorySelector"
+                id="womenClothing"
               >
                 Women's Clothing
               </li>
               <li
-                class="list-inline-item py-2 custom-cursor categorySelector"
+                class="list-inline-item py-2 custom-cursor text-uppercase categorySelector"
                 id="watches"
               >
                 watches
               </li>
               <li
-                class="list-inline-item py-2 custom-cursor categorySelector"
+                class="list-inline-item py-2 custom-cursor text-uppercase categorySelector"
                 id="bags"
               >
                 bags
               </li>
               <li
-                class="list-inline-item py-2 custom-cursor categorySelector"
-                id="Accessories"
+                class="list-inline-item py-2 custom-cursor text-uppercase categorySelector"
+                id="accessories"
               >
-                Accessories
+                accessories
               </li>
             </div>
           </div>
         </div>
 
-        <ul class="list-unstyled list-inline mb-0 p-4 d-none d-lg-block">
+        <ul
+          class="list-unstyled list-inline mb-0 p-4 d-none d-lg-block categoriesList"
+        >
           <li
             class="list-inline-item px-2 custom-cursor text-uppercase categorySelector"
-            id="All"
+            id="all"
           >
             All
           </li>
           <li
             class="list-inline-item px-2 custom-cursor text-uppercase categorySelector"
-            id="shoes"
+            id="footwear"
           >
-            shoes
+            Footwear
           </li>
           <li
             class="list-inline-item px-2 custom-cursor text-uppercase categorySelector"
@@ -232,7 +223,7 @@
           </li>
           <li
             class="list-inline-item px-2 custom-cursor text-uppercase categorySelector"
-            id="WomenClothing"
+            id="womenClothing"
           >
             Women's Clothing
           </li>
@@ -250,7 +241,7 @@
           </li>
           <li
             class="list-inline-item px-2 custom-cursor text-uppercase categorySelector"
-            id="Accessories"
+            id="accessories"
           >
             Accessories
           </li>
