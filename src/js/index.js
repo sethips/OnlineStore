@@ -212,14 +212,20 @@ DomElements.body.addEventListener('click', (e) => {
     e.target.parentNode.id === 'mainBurgerMenuToggle' ||
     e.target.parentNode.parentNode.id === 'mainBurgerMenuToggle'
   ) {
-    document.querySelector('#hiddenBurgerMenu').classList.add('burgerReveal');
+    document.querySelector('#hiddenBurgerMenuBackgroundFilter').style.display =
+      'block';
+    document
+      .querySelector('#hiddenBurgerMenu')
+      .classList.add('burgerMenuReveal');
   }
 
   //TODO close menu
   if (e.target.id === 'hiddenBurgerMenuCloseBtn') {
     document
       .querySelector('#hiddenBurgerMenu')
-      .classList.remove('burgerReveal');
+      .classList.remove('burgerMenuReveal');
+    document.querySelector('#hiddenBurgerMenuBackgroundFilter').style.display =
+      'none';
   }
 
   //! index.html product image click

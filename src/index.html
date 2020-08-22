@@ -27,48 +27,82 @@
 
   <body>
     <div
-      class="d-flex flex-column position-fixed bg-dark burgerMenuStyle"
+      class="position-fixed hiddenBurgerMenuBackgroundFilterStyle"
+      id="hiddenBurgerMenuBackgroundFilter"
+    ></div>
+
+    <div
+      class="d-flex flex-column position-fixed burgerMenuStyle"
       id="hiddenBurgerMenu"
+      style="background-color: #00140a;"
     >
       <img
-        width="30"
-        height="30"
+        width="20"
+        height="20"
         src="https://image.flaticon.com/icons/svg/748/748122.svg"
-        class="img-fluid m-3 ml-auto custom-cursor invert-color-toWhite"
+        class="img-fluid m-4 ml-auto custom-cursor invert-color-toWhite position-absolute"
+        style="top: 0; right: 0;"
         id="hiddenBurgerMenuCloseBtn"
       />
       <div class="d-flex align-items-center justify-content-center h-100 w-100">
-        <ul class="navbar-nav text-center">
-          <li class="nav-item active">
-            <a class="nav-link h3 text-white" href="index.html">HOME </a>
+        <ul class="navbar-nav text-center overflow-hidden">
+          <li class="nav-item burgerMenuListItemStyle">
+            <a
+              class="nav-link categoriesSelectedItem"
+              href="index.html"
+              style="font-size: 1.8rem;"
+              >HOME
+            </a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link h3 text-white" href="collections.html">
+          <li class="nav-item burgerMenuListItemStyle">
+            <a
+              class="nav-link text-white"
+              href="collections.html"
+              style="font-size: 1.8rem;"
+            >
               SHOPE
             </a>
           </li>
-          <li class="nav-item">
+          <li class="nav-item burgerMenuListItemStyle">
             <a
-              class="nav-link position-relative h3 text-white"
+              class="nav-link position-relative text-white"
               href="cart.html"
               aria-disabled="true"
+              style="font-size: 1.8rem;"
               >CART<span class="cart-badge-navbar">0</span>
             </a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link h3 text-white" href="#" aria-disabled="true"
+          <li class="nav-item burgerMenuListItemStyle">
+            <a
+              class="nav-link text-white"
+              href="#"
+              aria-disabled="true"
+              style="font-size: 1.8rem;"
               >ABOUT US</a
             >
           </li>
-          <li class="nav-item">
-            <a class="nav-link h3 text-white" href="#" aria-disabled="true"
+          <li class="nav-item text-white">
+            <a
+              href="Contact-us.html"
+              class="nav-link text-white"
+              style="font-size: 1.8rem;"
+              >CONTACT US</a
+            >
+          </li>
+          <li class="nav-item burgerMenuListItemStyle">
+            <a
+              class="nav-link text-white"
+              href="#"
+              aria-disabled="true"
+              style="font-size: 1.8rem;"
               >HELP</a
             >
           </li>
         </ul>
       </div>
     </div>
-    <div class="">
+
+    <div>
       <!-- top bar -->
       <div
         class="fluid-container custom-background py-2 px-2 px-md-5 d-flex font-size-13"
