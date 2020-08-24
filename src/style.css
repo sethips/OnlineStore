@@ -42,10 +42,23 @@
   color: white;
 }
 
-.carousel-item {
+.cart-badge-navbar-For-Mobile {
+  display: none;
+  font-weight: bold;
+  padding: 0 5px;
+  font-size: 10px;
+  position: absolute;
+  top: 8px;
+  right: -17px;
+  border-radius: 50%;
+  background: #1aada3;
+  color: white;
+}
+
+.carousel-item-custom-height {
   height: 580px;
 }
-.carousel-item img {
+.carousel-item-custom-height img {
   height: 580px;
   object-fit: cover;
 }
@@ -403,10 +416,10 @@
 
 /* Small devices (landscape phones, 576px and up) */
 @media (max-width: 576px) {
-  .carousel-item {
+  .carousel-item-custom-height {
     height: 380px;
   }
-  .carousel-item img {
+  .carousel-item-custom-height img {
     height: 380px;
     object-fit: cover;
   }
@@ -465,10 +478,10 @@
 
 /* Medium devices (tablets, 768px and up) */
 @media (max-width: 768px) {
-  .carousel-item {
+  .carousel-item-custom-height {
     height: 380px;
   }
-  .carousel-item img {
+  .carousel-item-custom-height img {
     height: 380px;
     object-fit: cover;
   }

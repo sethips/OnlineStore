@@ -45,7 +45,7 @@
         id="hiddenBurgerMenuCloseBtn"
       />
       <div class="d-flex align-items-center justify-content-center h-100 w-100">
-        <ul class="navbar-nav text-center overflow-hidden">
+        <ul class="navbar-nav text-center overflow-hidden w-100">
           <li class="nav-item burgerMenuListItemStyle">
             <a
               class="nav-link categoriesSelectedItem"
@@ -63,13 +63,17 @@
               SHOPE
             </a>
           </li>
-          <li class="nav-item burgerMenuListItemStyle">
+          <li
+            class="nav-item burgerMenuListItemStyle d-flex justify-content-center"
+          >
             <a
               class="nav-link position-relative text-white"
               href="cart.html"
               aria-disabled="true"
-              style="font-size: 1.8rem;"
-              >CART<span class="cart-badge-navbar">0</span>
+              style="font-size: 1.8rem; width: fit-content;"
+              >CART<span class="cart-badge-navbar cart-badge-navbar-For-Mobile"
+                >0</span
+              >
             </a>
           </li>
           <li class="nav-item burgerMenuListItemStyle">
@@ -235,7 +239,7 @@
       <div class="fluid-container">
         <div id="mainCarousel" class="carousel slide" data-ride="carousel">
           <div class="carousel-inner">
-            <div class="carousel-item active">
+            <div class="carousel-item active carousel-item-custom-height">
               <img
                 src="https://cdn.shopify.com/s/files/1/0102/4383/3952/files/highcompress-slider_1_1728x.jpg"
                 class="img-fluid carousel-img"
@@ -257,7 +261,7 @@
                 >
               </div>
             </div>
-            <div class="carousel-item">
+            <div class="carousel-item carousel-item-custom-height">
               <img
                 src="https://cdn.shopify.com/s/files/1/0102/4383/3952/files/highcompress-slider_2_1728x.jpg"
                 class="img-fluid w-100 carousel-img"

@@ -111,13 +111,46 @@ export function creatProductsCatalog(...args) {
   return indexTemplate.join('');
 }
 
+// creat product.html product carousel bottom of the page
+function creatProductsCarousel(...args) {
+  let indexTemplate = args.map((element, index) => {
+    let currentProduct = dataBaseHandler.getProductById(element);
+    let visibility = index % 2 == 0 ? 'd-none d-md-block' : '';
+    if (currentProduct) {
+      return `
+      <div class="${visibility} col-6 col-md-3 px-1">
+        <div class="card border-0 px-0" id="product-${currentProduct.id}">
+          <div class="productImageContainer">
+            ${getPicturesForCards(currentProduct.pictures)}
+          </div>
+
+          <div class="card-body px-0 text-truncate">
+            <a class="text-dark product-name" href="products.html?product-id=${
+              currentProduct.id
+            }">${currentProduct.name}</a>
+            <div class="priceColorsDiv d-flex">
+              <div class="left-section w-75 py-2 text-muted">
+                ${getPriceForIndexCards(currentProduct.price)}
+              </div>
+              <div class="left-section w-25 pl-4 py-2 text-muted ml-auto">
+              </div>
+            </div>
+          </div>
+      </div>
+    </div>`;
+    }
+  });
+
+  return indexTemplate;
+}
+
 // creat index.hmtl featured products section
 export function creatFeaturedProducts(...args) {
   let indexTemplate = args.map((element) => {
     let currentProduct = dataBaseHandler.getProductById(element);
     if (currentProduct) {
       return `
-      <div class="col-12 col-md-4 col-lg-3 mb-4 px-1">
+      <div class="col-6 col-md-4 col-lg-3 mb-4 px-1">
         <div
           class="card border-0"
           id="product-${currentProduct.id}"
@@ -1047,6 +1080,66 @@ export function CreatProductTemplate(product, includeDescription) {
 
     return modalSectionTemplate;
   }
+}
+
+// fill product.html RELATED PRODUCT bottom carousel
+export function fillRelatedProductCarousel(category) {
+  let productsIdsArray = mainLogic.getProductsIdBasedOnCategory(category);
+  let carouselItems = creatProductsCarousel(...productsIdsArray);
+  let carouselTemplate = `
+            <div
+              id="myCarousel-2"
+              class="carousel slide"
+              data-ride="carousel"
+              data-interval="0"
+            >
+              <!-- Carousel indicators -->
+              <ol class="carousel-indicators">
+                <li
+                  data-target="#myCarousel-2"
+                  data-slide-to="0"
+                  class="active"
+                ></li>
+                <li data-target="#myCarousel-2" data-slide-to="1"></li>
+              </ol>
+              <!-- Wrapper for carousel items -->
+              <div class="carousel-inner">
+                <div class="item carousel-item active pt-3 pb-5 h-auto">
+                  <div class="row mx-1">
+                    ${carouselItems[0]}
+                    ${carouselItems[1]}
+                    ${carouselItems[2]}
+                    ${carouselItems[3]}
+                  </div>
+                </div>
+                <div class="item carousel-item pt-3 pb-5 h-auto">
+                  <div class="row mx-1">
+                  ${carouselItems[4]}
+                  ${carouselItems[5]}
+                  ${carouselItems[6]}
+                  ${carouselItems[7]}
+                  </div>
+                </div>
+              </div>
+              <!-- Carousel controls -->
+              <!-- <a
+                class="carousel-control left carousel-control-prev"
+                href="#myCarousel-2"
+                data-slide="prev"
+              >
+                <i class="fa fa-angle-left"></i>
+              </a>
+              <a
+                class="carousel-control right carousel-control-next"
+                href="#myCarousel-2"
+                data-slide="next"
+              >
+                <i class="fa fa-angle-right"></i>
+              </a> -->
+            </div>
+  `;
+
+  return carouselTemplate;
 }
 
 //--------

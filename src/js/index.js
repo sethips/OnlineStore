@@ -90,6 +90,14 @@ document.addEventListener('DOMContentLoaded', () => {
       true
     );
     Ui_Updater.displayProduct(productTemplate);
+
+    //display carousel at the bottom of the page
+    document
+      .querySelector('#carouselGoesHere')
+      .insertAdjacentHTML(
+        'afterbegin',
+        Ui_Updater.fillRelatedProductCarousel('all')
+      );
   }
 
   //! cart.html populate on load

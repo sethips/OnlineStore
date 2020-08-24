@@ -45,7 +45,7 @@
         id="hiddenBurgerMenuCloseBtn"
       />
       <div class="d-flex align-items-center justify-content-center h-100 w-100">
-        <ul class="navbar-nav text-center overflow-hidden">
+        <ul class="navbar-nav text-center overflow-hidden w-100">
           <li class="nav-item burgerMenuListItemStyle">
             <a
               class="nav-link text-white"
@@ -63,13 +63,17 @@
               SHOPE
             </a>
           </li>
-          <li class="nav-item burgerMenuListItemStyle">
+          <li
+            class="nav-item burgerMenuListItemStyle d-flex justify-content-center"
+          >
             <a
               class="nav-link position-relative text-white"
               href="cart.html"
               aria-disabled="true"
-              style="font-size: 1.8rem;"
-              >CART<span class="cart-badge-navbar">0</span>
+              style="font-size: 1.8rem; width: fit-content;"
+              >CART<span class="cart-badge-navbar cart-badge-navbar-For-Mobile"
+                >0</span
+              >
             </a>
           </li>
           <li class="nav-item burgerMenuListItemStyle">
@@ -256,121 +260,8 @@
         <h3 class="text-center">RELATED PRODUCT</h3>
         <!-- product carousel -->
         <div class="row mx-2">
-          <div class="col-sm-12 px-2 px-md-5">
-            <div
-              id="myCarousel-2"
-              class="carousel slide"
-              data-ride="carousel"
-              data-interval="0"
-            >
-              <!-- Carousel indicators -->
-              <ol class="carousel-indicators">
-                <li
-                  data-target="#myCarousel-2"
-                  data-slide-to="0"
-                  class="active"
-                ></li>
-                <li data-target="#myCarousel-2" data-slide-to="1"></li>
-              </ol>
-              <!-- Wrapper for carousel items -->
-              <div class="carousel-inner">
-                <div class="item carousel-item active pt-3 pb-5 h-auto">
-                  <div class="row">
-                    <div class="col-4 col-md-3 px-1">
-                      <div class="img-box my-3">
-                        <img
-                          src="https://cdn.shopify.com/s/files/1/0102/4383/3952/products/accessories-21_1_1a51cd0d-6911-4536-af1c-1a475b3792a6_1512x.jpg"
-                          class="img-fluid h-auto"
-                          alt=""
-                        />
-                      </div>
-                    </div>
-                    <div class="col-4 col-md-3 px-1">
-                      <div class="img-box my-3">
-                        <img
-                          src="https://cdn.shopify.com/s/files/1/0102/4383/3952/products/accessories-14_9e7e1119-5ef5-437f-b1c9-959d06f85d3c_1728x.jpg"
-                          class="img-fluid h-auto"
-                          alt=""
-                        />
-                      </div>
-                    </div>
-                    <div class="col-4 col-md-3 px-1">
-                      <div class="img-box my-3">
-                        <img
-                          src="https://cdn.shopify.com/s/files/1/0102/4383/3952/products/accessories-14_9e7e1119-5ef5-437f-b1c9-959d06f85d3c_1728x.jpg"
-                          class="img-fluid h-auto"
-                          alt=""
-                        />
-                      </div>
-                    </div>
-                    <div class="d-none d-md-block col-4 col-md-3 px-1">
-                      <div class="img-box my-3">
-                        <img
-                          src="https://cdn.shopify.com/s/files/1/0102/4383/3952/products/accessories-14_9e7e1119-5ef5-437f-b1c9-959d06f85d3c_1728x.jpg"
-                          class="img-fluid h-auto"
-                          alt=""
-                        />
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="item carousel-item pt-3 pb-5 h-auto">
-                  <div class="row">
-                    <div class="col-4 col-md-3 px-1">
-                      <div class="img-box my-3">
-                        <img
-                          src="https://cdn.shopify.com/s/files/1/0102/4383/3952/products/accessories-23_421d7906-0b30-4ab1-8f01-392a1419ad6f_1728x.jpg"
-                          class="img-fluid h-auto"
-                          alt=""
-                        />
-                      </div>
-                    </div>
-                    <div class="col-4 col-md-3 px-1">
-                      <div class="img-box my-3">
-                        <img
-                          src="https://cdn.shopify.com/s/files/1/0102/4383/3952/products/accessories-16_64fd0422-07ec-4407-b434-a573bbdf3300_1728x.jpg"
-                          class="img-fluid h-auto"
-                          alt=""
-                        />
-                      </div>
-                    </div>
-                    <div class="col-4 col-md-3 px-1">
-                      <div class="img-box my-3">
-                        <img
-                          src="https://cdn.shopify.com/s/files/1/0102/4383/3952/products/accessories-14_9e7e1119-5ef5-437f-b1c9-959d06f85d3c_1728x.jpg"
-                          class="img-fluid h-auto"
-                          alt=""
-                        />
-                      </div>
-                    </div>
-                    <div class="d-none d-md-block col-4 col-md-3 px-1">
-                      <div class="img-box my-3">
-                        <img
-                          src="https://cdn.shopify.com/s/files/1/0102/4383/3952/products/accessories-14_9e7e1119-5ef5-437f-b1c9-959d06f85d3c_1728x.jpg"
-                          class="img-fluid h-auto"
-                          alt=""
-                        />
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <!-- Carousel controls -->
-              <!-- <a
-                class="carousel-control left carousel-control-prev"
-                href="#myCarousel-2"
-                data-slide="prev"
-              >
-                <i class="fa fa-angle-left"></i>
-              </a>
-              <a
-                class="carousel-control right carousel-control-next"
-                href="#myCarousel-2"
-                data-slide="next"
-              >
-                <i class="fa fa-angle-right"></i>
-              </a> -->
-            </div>
+          <div class="col-sm-12 px-0 px-md-5" id="carouselGoesHere">
+            <!-- generated carousel goes here -->
           </div>
         </div>
       </div>
