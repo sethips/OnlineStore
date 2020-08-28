@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Online Store</title>
+    <title>zShop - Online Store</title>
     <!-- Required meta tags -->
     <meta charset="utf-8" />
     <meta
@@ -34,14 +34,14 @@
     <div
       class="d-flex flex-column position-fixed burgerMenuStyle"
       id="hiddenBurgerMenu"
-      style="background-color: #00140a;"
+      style="background-color: #00140a"
     >
       <img
         width="20"
         height="20"
         src="https://image.flaticon.com/icons/svg/748/748122.svg"
         class="img-fluid m-4 ml-auto custom-cursor invert-color-toWhite"
-        style="top: 0; right: 0;"
+        style="top: 0; right: 0"
         id="hiddenBurgerMenuCloseBtn"
       />
       <div class="d-flex align-items-center justify-content-center h-100 w-100">
@@ -50,7 +50,7 @@
             <a
               class="nav-link text-white"
               href="index.html"
-              style="font-size: 1.8rem;"
+              style="font-size: 1.8rem"
               >HOME
             </a>
           </li>
@@ -58,7 +58,7 @@
             <a
               class="nav-link categoriesSelectedItem"
               href="collections.html"
-              style="font-size: 1.8rem;"
+              style="font-size: 1.8rem"
             >
               SHOPE
             </a>
@@ -70,7 +70,7 @@
               class="nav-link position-relative text-white"
               href="cart.html"
               aria-disabled="true"
-              style="font-size: 1.8rem; width: fit-content;"
+              style="font-size: 1.8rem; width: fit-content"
               >CART<span class="cart-badge-navbar cart-badge-navbar-For-Mobile"
                 >0</span
               >
@@ -79,19 +79,18 @@
           <li class="nav-item burgerMenuListItemStyle">
             <a
               class="nav-link text-white"
-              href="#"
+              href="about-us.html"
               aria-disabled="true"
-              style="font-size: 1.8rem;"
+              style="font-size: 1.8rem"
               >ABOUT US</a
             >
           </li>
           <li class="nav-item burgerMenuListItemStyle">
             <a
+              href="Contact-us.html"
               class="nav-link text-white"
-              href="#"
-              aria-disabled="true"
-              style="font-size: 1.8rem;"
-              >HELP</a
+              style="font-size: 1.8rem"
+              >CONTACT US</a
             >
           </li>
         </ul>
@@ -136,10 +135,7 @@
           <nav class="d-none d-md-flex navbar navbar-expand navbar-light">
             <div class="navbar-brand">
               <a href="index.html">
-                <img
-                  class="img-fluid"
-                  src="/img/logo.png"
-                  style="width: 196px;"
+                <img class="img-fluid" src="img/logo.png" style="width: 196px"
               /></a>
             </div>
             <button
@@ -155,13 +151,11 @@
             </button>
             <div class="collapse navbar-collapse" id="MainNavbar">
               <ul class="navbar-nav ml-auto">
-                <li class="nav-item active">
+                <li class="nav-item">
                   <a class="nav-link" href="index.html">HOME </a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="collections.html">
-                    SHOPE
-                  </a>
+                  <a class="nav-link active" href="collections.html"> SHOPE </a>
                 </li>
                 <li class="nav-item">
                   <a
@@ -172,10 +166,17 @@
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="#" aria-disabled="true">ABOUT US</a>
+                  <a class="nav-link" href="about-us.html" aria-disabled="true"
+                    >ABOUT US</a
+                  >
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="#" aria-disabled="true">HELP</a>
+                  <a
+                    class="nav-link"
+                    href="Contact-us.html"
+                    aria-disabled="true"
+                    >CONTACT US</a
+                  >
                 </li>
               </ul>
             </div>
@@ -184,11 +185,7 @@
           <!-- menu for mobiles -->
           <div class="d-flex d-md-none py-2 px-2">
             <a href="index.html">
-              <img
-                class="img-fluid"
-                src="/img/logo.png"
-                style="width: 196px;"
-              />
+              <img class="img-fluid" src="img/logo.png" style="width: 196px" />
             </a>
             <span
               class="ml-auto align-self-center custom-cursor"
@@ -237,7 +234,7 @@
             role="button"
             aria-expanded="false"
             aria-controls="collapseCategories"
-            style="color: white; text-decoration: none;"
+            style="color: white; text-decoration: none"
           >
             CATEGORIES
             <i class="fa fa-chevron-down text-white ml-3"></i>
@@ -246,51 +243,65 @@
           <div
             class="collapse bg-dark"
             id="collapseCategories"
-            style="min-width: 85%;"
+            style="min-width: 85%"
           >
             <div
               class="card card-body pt-0 bg-dark text-center border-0 m-auto categoriesList"
-              style="width: fit-content;"
+              style="width: fit-content"
             >
               <li
                 class="list-inline-item py-2 custom-cursor text-uppercase categorySelector"
                 id="all"
+                data-toggle="collapse"
+                href="#collapseCategories"
               >
                 all
               </li>
               <li
                 class="list-inline-item py-2 custom-cursor text-uppercase categorySelector"
                 id="footwear"
+                data-toggle="collapse"
+                href="#collapseCategories"
               >
                 footwear
               </li>
               <li
                 class="list-inline-item py-2 custom-cursor text-uppercase categorySelector"
                 id="menClothing"
+                data-toggle="collapse"
+                href="#collapseCategories"
               >
                 men's Clothing
               </li>
               <li
                 class="list-inline-item py-2 custom-cursor text-uppercase categorySelector"
                 id="womenClothing"
+                data-toggle="collapse"
+                href="#collapseCategories"
               >
                 Women's Clothing
               </li>
               <li
                 class="list-inline-item py-2 custom-cursor text-uppercase categorySelector"
                 id="watches"
+                data-toggle="collapse"
+                href="#collapseCategories"
               >
                 watches
               </li>
               <li
                 class="list-inline-item py-2 custom-cursor text-uppercase categorySelector"
                 id="bags"
+                data-toggle="collapse"
+                href="#collapseCategories"
               >
                 bags
               </li>
               <li
                 class="list-inline-item py-2 custom-cursor text-uppercase categorySelector"
                 id="accessories"
+                data-toggle="collapse"
+                href="#collapseCategories"
               >
                 accessories
               </li>
@@ -350,443 +361,6 @@
       <div class="container px-2 px-md-auto">
         <div class="row w-100 my-5 mx-0" id="collectionProductSection">
           <!-- Generated code Goes Here -->
-          <!-- <div class="col-6 col-md-4 col-lg-3 mb-4 px-1">
-            <div class="card border-0 custom-cursor">
-              <div class="overlay d-flex align-self-end">
-                <div class="d-flex flex-column p-2">
-                  <img
-                    width="25"
-                    height="25"
-                    src="https://image.flaticon.com/icons/svg/1077/1077035.svg"
-                    class="mb-2"
-                  />
-                  <img
-                    width="25"
-                    height="25"
-                    src="https://image.flaticon.com/icons/svg/3063/3063986.svg"
-                    class="loaded"
-                  />
-                </div>
-              </div>
-              <div class="position-relative overflow-hidden">
-                <div
-                  class="custom-add-to-cart overlay w-100 text-white py-2 rounded-0"
-                >
-                  <img
-                    width="20"
-                    height="20"
-                    src="https://image.flaticon.com/icons/svg/833/833314.svg"
-                    class="mr-2"
-                  />
-                  <span>Add to cart</span>
-                </div>
-                <img
-                  class="card-img-top position-absolute custom-transparency"
-                  src="https://cdn.shopify.com/s/files/1/0102/4383/3952/products/jewelry-2_a1d9a402-b051-4c85-8761-6e2a489eddcc_2048x.jpg"
-                  alt=""
-                  style="z-index: 1;"
-                />
-                <img
-                  class="card-img-top"
-                  src="https://cdn.shopify.com/s/files/1/0102/4383/3952/products/jewelry-12_8a0e17aa-c879-4127-98ea-6242dbf9568c_2048x.jpg"
-                  alt=""
-                  style="z-index: 1;"
-                />
-              </div>
-
-              <div class="card-body px-0">
-                <a class="text-dark" href="">Jeptum ring earrings</a>
-                <div class="priceColorsDiv d-flex">
-                  <div class="left-section pr-4 py-2 text-muted">
-                    $ 115.00
-                  </div>
-                  <div class="left-section pl-4 py-2 text-muted ml-auto">
-                    right section
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-6 col-md-4 col-lg-3 mb-4 px-1">
-            <div class="card border-0 custom-cursor">
-              <div class="overlay align-self-end">
-                <div class="d-flex flex-column p-2">
-                  <img
-                    width="25"
-                    height="25"
-                    src="https://image.flaticon.com/icons/svg/1077/1077035.svg"
-                    class="mb-2"
-                  />
-                  <img
-                    width="25"
-                    height="25"
-                    src="https://image.flaticon.com/icons/svg/3063/3063986.svg"
-                    class="loaded"
-                  />
-                </div>
-              </div>
-              <div class="position-relative overflow-hidden">
-                <div
-                  class="custom-add-to-cart overlay w-100 text-white py-2 rounded-0"
-                >
-                  <img
-                    width="20"
-                    height="20"
-                    src="https://image.flaticon.com/icons/svg/833/833314.svg"
-                    class="mr-2"
-                  />
-                  <span>Add to cart</span>
-                </div>
-                <img
-                  class="card-img-top position-absolute custom-transparency"
-                  src="https://cdn.shopify.com/s/files/1/0102/4383/3952/products/man-24_dcba02de-7b5b-40fb-842b-b5f9ce959465_2048x.jpg"
-                  alt=""
-                />
-                <img
-                  class="card-img-top"
-                  src="https://cdn.shopify.com/s/files/1/0102/4383/3952/products/man-25_1_1f371745-0e3b-471d-9dbe-e4514eae9fd2_2048x.jpg"
-                  alt=""
-                />
-              </div>
-              <div class="card-body px-0">
-                <a class="text-dark" href="">Jhecked flannel shirt</a>
-                <div class="priceColorsDiv d-flex">
-                  <div class="left-section pr-4 py-2 text-muted">
-                    $ 235.00
-                  </div>
-                  <div class="left-section pl-4 py-2 text-muted ml-auto">
-                    right section
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-6 col-md-4 col-lg-3 mb-4 px-1">
-            <div class="card border-0 custom-cursor">
-              <div class="overlay align-self-end">
-                <div class="d-flex flex-column p-2">
-                  <img
-                    width="25"
-                    height="25"
-                    src="https://image.flaticon.com/icons/svg/1077/1077035.svg"
-                    class="mb-2"
-                  />
-                  <img
-                    width="25"
-                    height="25"
-                    src="https://image.flaticon.com/icons/svg/3063/3063986.svg"
-                    class="loaded"
-                  />
-                </div>
-              </div>
-              <div class="position-relative overflow-hidden">
-                <div
-                  class="custom-add-to-cart overlay w-100 text-white py-2 rounded-0"
-                >
-                  <img
-                    width="20"
-                    height="20"
-                    src="https://image.flaticon.com/icons/svg/833/833314.svg"
-                    class="mr-2"
-                  />
-                  <span>Add to cart</span>
-                </div>
-                <img
-                  class="card-img-top position-absolute custom-transparency"
-                  src="https://cdn.shopify.com/s/files/1/0102/4383/3952/products/man-23_aeef1f21-0f1a-4173-bcb7-e0fb3fe8bc32_2048x.jpg"
-                  alt=""
-                />
-                <img
-                  class="card-img-top"
-                  src="https://cdn.shopify.com/s/files/1/0102/4383/3952/products/man-26_d7bf32dd-6a90-453f-acb6-1be183262632_2048x.jpg"
-                  alt=""
-                />
-              </div>
-              <div class="card-body px-0">
-                <a class="text-dark" href="">Basic Korean-style coat</a>
-                <div class="priceColorsDiv d-flex">
-                  <div class="left-section pr-4 py-2 text-muted">
-                    $ 675.00
-                  </div>
-                  <div class="left-section pl-4 py-2 text-muted ml-auto">
-                    right section
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-6 col-md-4 col-lg-3 mb-4 px-1">
-            <div class="card border-0 custom-cursor">
-              <div class="overlay align-self-end">
-                <div class="d-flex flex-column p-2">
-                  <img
-                    width="25"
-                    height="25"
-                    src="https://image.flaticon.com/icons/svg/1077/1077035.svg"
-                    class="mb-2"
-                  />
-                  <img
-                    width="25"
-                    height="25"
-                    src="https://image.flaticon.com/icons/svg/3063/3063986.svg"
-                    class="loaded"
-                  />
-                </div>
-              </div>
-              <div class="position-relative overflow-hidden">
-                <div
-                  class="custom-add-to-cart overlay w-100 text-white py-2 rounded-0"
-                >
-                  <img
-                    width="20"
-                    height="20"
-                    src="https://image.flaticon.com/icons/svg/833/833314.svg"
-                    class="mr-2"
-                  />
-                  <span>Add to cart</span>
-                </div>
-                <img
-                  class="card-img-top position-absolute custom-transparency"
-                  src="https://cdn.shopify.com/s/files/1/0102/4383/3952/products/accessories-241_7c9b49ad-9f62-42cb-bb36-4ad90c5eea70_2048x.jpg"
-                  alt=""
-                />
-                <img
-                  src="https://cdn.shopify.com/s/files/1/0102/4383/3952/products/accessories-23_421d7906-0b30-4ab1-8f01-392a1419ad6f_2048x.jpg"
-                  alt=""
-                  class="card-img-top"
-                />
-              </div>
-              <div class="card-body px-0">
-                <a class="text-dark" href="products.html"
-                  >Eingerless gloves in camel</a
-                >
-                <div class="priceColorsDiv d-flex">
-                  <div class="left-section pr-4 py-2 text-muted">
-                    $ 345.00
-                  </div>
-                  <div class="left-section pl-4 py-2 text-muted ml-auto">
-                    right section
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-6 col-md-4 col-lg-3 mb-4 px-1">
-            <div class="card border-0 custom-cursor">
-              <div class="overlay align-self-end">
-                <div class="d-flex flex-column p-2">
-                  <img
-                    width="25"
-                    height="25"
-                    src="https://image.flaticon.com/icons/svg/1077/1077035.svg"
-                    class="mb-2"
-                  />
-                  <img
-                    width="25"
-                    height="25"
-                    src="https://image.flaticon.com/icons/svg/3063/3063986.svg"
-                    class="loaded"
-                  />
-                </div>
-              </div>
-              <div class="position-relative overflow-hidden">
-                <div
-                  class="custom-add-to-cart overlay w-100 text-white py-2 rounded-0"
-                >
-                  <img
-                    width="20"
-                    height="20"
-                    src="https://image.flaticon.com/icons/svg/833/833314.svg"
-                    class="mr-2"
-                  />
-                  <span>Add to cart</span>
-                </div>
-                <img
-                  class="card-img-top position-absolute custom-transparency"
-                  src="https://cdn.shopify.com/s/files/1/0102/4383/3952/products/accessories-5_f85ee6be-135b-445f-b539-c7f4482e7c7f_2048x.jpg"
-                  alt=""
-                />
-                <img
-                  src="https://cdn.shopify.com/s/files/1/0102/4383/3952/products/accessories-16_64fd0422-07ec-4407-b434-a573bbdf3300_2048x.jpg"
-                  alt=""
-                  class="card-img-top"
-                />
-              </div>
-              <div class="card-body px-0">
-                <a class="text-dark" href="">Classic Square Buckle Belt</a>
-                <div class="priceColorsDiv d-flex">
-                  <div class="left-section pr-4 py-2 text-muted">
-                    $ 145.00
-                  </div>
-                  <div class="left-section pl-4 py-2 text-muted ml-auto">
-                    right section
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-6 col-md-4 col-lg-3 mb-4 px-1">
-            <div class="card border-0 custom-cursor">
-              <div class="overlay align-self-end">
-                <div class="d-flex flex-column p-2">
-                  <img
-                    width="25"
-                    height="25"
-                    src="https://image.flaticon.com/icons/svg/1077/1077035.svg"
-                    class="mb-2"
-                  />
-                  <img
-                    width="25"
-                    height="25"
-                    src="https://image.flaticon.com/icons/svg/3063/3063986.svg"
-                    class="loaded"
-                  />
-                </div>
-              </div>
-              <div class="position-relative overflow-hidden">
-                <div
-                  class="custom-add-to-cart overlay w-100 text-white py-2 rounded-0"
-                >
-                  <img
-                    width="20"
-                    height="20"
-                    src="https://image.flaticon.com/icons/svg/833/833314.svg"
-                    class="mr-2"
-                  />
-                  <span>Add to cart</span>
-                </div>
-                <img
-                  class="card-img-top position-absolute custom-transparency"
-                  src="https://cdn.shopify.com/s/files/1/0102/4383/3952/products/stiky-image-2_697a3b2d-0e4d-494e-b395-3903a1d0dc97_2048x.jpg"
-                  alt=""
-                />
-                <img
-                  src="https://cdn.shopify.com/s/files/1/0102/4383/3952/products/stiky-image-1_6dc7c6c4-fbad-4480-aa87-dad443314842_2048x.jpg"
-                  alt=""
-                  class="card-img-top"
-                />
-              </div>
-              <div class="card-body px-0">
-                <a class="text-dark" href="">Erinted dress with trimming</a>
-                <div class="priceColorsDiv d-flex">
-                  <div class="left-section pr-4 py-2 text-muted">
-                    $ 45.00
-                  </div>
-                  <div class="left-section pl-4 py-2 text-muted ml-auto">
-                    right section
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-6 col-md-4 col-lg-3 mb-4 px-1">
-            <div class="card border-0 custom-cursor">
-              <div class="overlay align-self-end">
-                <div class="d-flex flex-column p-2">
-                  <img
-                    width="25"
-                    height="25"
-                    src="https://image.flaticon.com/icons/svg/1077/1077035.svg"
-                    class="mb-2"
-                  />
-                  <img
-                    width="25"
-                    height="25"
-                    src="https://image.flaticon.com/icons/svg/3063/3063986.svg"
-                    class="loaded"
-                  />
-                </div>
-              </div>
-              <div class="position-relative overflow-hidden">
-                <div
-                  class="custom-add-to-cart overlay w-100 text-white py-2 rounded-0"
-                >
-                  <img
-                    width="20"
-                    height="20"
-                    src="https://image.flaticon.com/icons/svg/833/833314.svg"
-                    class="mr-2"
-                  />
-                  <span>Add to cart</span>
-                </div>
-                <img
-                  class="card-img-top position-absolute custom-transparency"
-                  src="https://cdn.shopify.com/s/files/1/0102/4383/3952/products/woman-26_e67d6a30-9fba-4e7f-b8c9-df7cf85477f4_2048x.jpg"
-                  alt=""
-                />
-                <img
-                  src="https://cdn.shopify.com/s/files/1/0102/4383/3952/products/woman-17_d09cf354-6a46-4cf4-a56e-9aa6e0724577_2048x.jpg"
-                  alt=""
-                  class="card-img-top"
-                />
-              </div>
-              <div class="card-body px-0">
-                <a class="text-dark" href="">Basic knit dress chest</a>
-                <div class="priceColorsDiv d-flex">
-                  <div class="left-section pr-4 py-2 text-muted">
-                    $ 105.00
-                  </div>
-                  <div class="left-section pl-4 py-2 text-muted ml-auto">
-                    right section
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-6 col-md-4 col-lg-3 mb-4 px-1">
-            <div class="card border-0 custom-cursor">
-              <div class="overlay align-self-end">
-                <div class="d-flex flex-column p-2">
-                  <img
-                    width="25"
-                    height="25"
-                    src="https://image.flaticon.com/icons/svg/1077/1077035.svg"
-                    class="mb-2"
-                  />
-                  <img
-                    width="25"
-                    height="25"
-                    src="https://image.flaticon.com/icons/svg/3063/3063986.svg"
-                    class="loaded"
-                  />
-                </div>
-              </div>
-              <div class="position-relative overflow-hidden">
-                <div
-                  class="custom-add-to-cart overlay w-100 text-white py-2 rounded-0"
-                >
-                  <img
-                    width="20"
-                    height="20"
-                    src="https://image.flaticon.com/icons/svg/833/833314.svg"
-                    class="mr-2"
-                  />
-                  <span>Add to cart</span>
-                </div>
-                <img
-                  class="card-img-top position-absolute custom-transparency"
-                  src="https://cdn.shopify.com/s/files/1/0102/4383/3952/products/watches-14_fb856b17-4e25-4a61-8648-b111606daefc_2048x.jpg"
-                  alt=""
-                />
-                <img
-                  src="https://cdn.shopify.com/s/files/1/0102/4383/3952/products/watches-3_9c41f2e9-1350-4850-94db-256335e36670_2048x.jpg"
-                  alt=""
-                  class="card-img-top"
-                />
-              </div>
-              <div class="card-body px-0">
-                <a class="text-dark" href="">Jasic rubber watch</a>
-                <div class="priceColorsDiv d-flex">
-                  <div class="left-section pr-4 py-2 text-muted">
-                    $ 100.00
-                  </div>
-                  <div class="left-section pl-4 py-2 text-muted ml-auto">
-                    right section
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div> -->
         </div>
       </div>
 
@@ -801,10 +375,10 @@
                 id="modalCloseBtn"
                 data-dismiss="modal"
                 aria-label="Close"
-                style="z-index: 100; position: relative; outline: none;"
+                style="z-index: 100; position: relative; outline: none"
               >
                 <span
-                  style="position: absolute; top: -15px; left: -3px;"
+                  style="position: absolute; top: -15px; left: -3px"
                   aria-hidden="true"
                   >&times;</span
                 >

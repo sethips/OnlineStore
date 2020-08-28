@@ -91,12 +91,46 @@ document.addEventListener('DOMContentLoaded', () => {
     );
     Ui_Updater.displayProduct(productTemplate);
 
+    let reviewExistOrNot = 0;
+    if (localStorage.getItem('reviews')) {
+      let reviewArray = JSON.parse(localStorage.getItem('reviews'));
+      reviewArray.forEach((element) => {
+        if (
+          element[0] ===
+          parseInt(location.search.substring(location.search.indexOf('=') + 1))
+        ) {
+          element[1].forEach((element) => {
+            Ui_Updater.addReview(element);
+          });
+          reviewExistOrNot++;
+        }
+      });
+    }
+    if (reviewExistOrNot > 0) {
+      //TODO change the text shown in the review status
+      document.querySelector('#reviewsDoExist').classList.remove('d-none');
+      if (
+        !document
+          .querySelector('#reviewsDoNotExist')
+          .classList.contains('d-none')
+      ) {
+        document.querySelector('#reviewsDoNotExist').classList.add('d-none');
+      }
+    } else {
+      document.querySelector('#reviewsDoNotExist').classList.remove('d-none');
+      if (
+        !document.querySelector('#reviewsDoExist').classList.contains('d-none')
+      ) {
+        document.querySelector('#reviewsDoExist').classList.add('d-none');
+      }
+    }
+
     //display carousel at the bottom of the page
     document
       .querySelector('#carouselGoesHere')
       .insertAdjacentHTML(
         'afterbegin',
-        Ui_Updater.fillRelatedProductCarousel('all')
+        Ui_Updater.fillRelatedProductCarousel('all', productParameter)
       );
   }
 
@@ -561,6 +595,109 @@ DomElements.body.addEventListener('click', (e) => {
     } else {
       mainLogic.addProductToCart(modalProductId);
       window.location.href = 'checkout.html';
+    }
+  }
+
+  //! product.html review star clicked
+  if (e.target.classList.contains('rating')) {
+    let starsArray = Array.from(e.target.parentNode.children);
+    starsArray.forEach((element, index) => {
+      if (starsArray.indexOf(e.target) >= index) {
+        element.classList.add('checked');
+      } else {
+        element.classList.remove('checked');
+      }
+    });
+  }
+
+  if (e.target.id === 'submitReviewBtn') {
+    let validEmailAndName = 0;
+    //name validation
+    if (document.querySelector('#reviewerName').value !== '') {
+      document.querySelector('#nameValidationFeedback').classList.add('d-none');
+      validEmailAndName++;
+    } else {
+      document
+        .querySelector('#nameValidationFeedback')
+        .classList.remove('d-none');
+    }
+
+    //email validation
+    const emailRegExp = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+    if (
+      document.querySelector('#reviewerEmail').value !== '' ||
+      emailRegExp.test(document.querySelector('#reviewerEmail').value)
+    ) {
+      document
+        .querySelector('#emailValidationFeedback')
+        .classList.add('d-none');
+      validEmailAndName++;
+    } else {
+      document
+        .querySelector('#emailValidationFeedback')
+        .classList.remove('d-none');
+    }
+
+    if (validEmailAndName == 2) {
+      let reviewObject = {
+        stars: document.querySelectorAll('#starsGivenByUser > span.checked')
+          .length,
+        name: document.querySelector('#reviewerName').value,
+        email: document.querySelector('#reviewerEmail').value,
+        title: document.querySelector('#reviewTitle').value,
+        reviewText: document.querySelector('#reviewText').value,
+        date: new Date().toLocaleDateString(),
+      };
+
+      if (!localStorage.getItem('reviews')) {
+        let reviews = [
+          [
+            parseInt(
+              location.search.substring(location.search.indexOf('=') + 1)
+            ),
+            [reviewObject],
+          ],
+        ];
+
+        localStorage.setItem('reviews', JSON.stringify(reviews));
+      } else {
+        let found = 0;
+        let reviewArray = JSON.parse(localStorage.getItem('reviews'));
+        reviewArray.forEach((element) => {
+          if (
+            element[0] ===
+            parseInt(
+              location.search.substring(location.search.indexOf('=') + 1)
+            )
+          ) {
+            console.log('im heerre');
+            element[1].push(reviewObject);
+            found++;
+          }
+        });
+        if (found === 0) {
+          reviewArray.push([
+            parseInt(
+              location.search.substring(location.search.indexOf('=') + 1)
+            ),
+            [reviewObject],
+          ]);
+        }
+
+        localStorage.setItem('reviews', JSON.stringify(reviewArray));
+      }
+      //TODO change the text shown in the review status
+      document.querySelector('#reviewsDoExist').classList.remove('d-none');
+      if (
+        !document
+          .querySelector('#reviewsDoNotExist')
+          .classList.contains('d-none')
+      ) {
+        document.querySelector('#reviewsDoNotExist').classList.add('d-none');
+      }
+
+      document.querySelector('.close').click();
+      Ui_Updater.addReview(reviewObject);
     }
   }
 

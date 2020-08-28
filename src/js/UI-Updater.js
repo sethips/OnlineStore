@@ -115,10 +115,9 @@ export function creatProductsCatalog(...args) {
 function creatProductsCarousel(...args) {
   let indexTemplate = args.map((element, index) => {
     let currentProduct = dataBaseHandler.getProductById(element);
-    let visibility = index % 2 == 0 ? 'd-none d-md-block' : '';
     if (currentProduct) {
       return `
-      <div class="${visibility} col-6 col-md-3 px-1">
+      <div class="col-6 col-md-3 px-1">
         <div class="card border-0 px-0" id="product-${currentProduct.id}">
           <div class="productImageContainer">
             ${getPicturesForCards(currentProduct.pictures)}
@@ -678,8 +677,8 @@ export function CreatProductTemplate(product, includeDescription) {
         id="myTab"
         role="tablist"
       >
-        <li class="nav-item custom-nav">
-          <a
+        <li class="nav-item  custom-cursor custom-nav">
+          <span
             class="nav-link active"
             id="Description-tab"
             data-toggle="tab"
@@ -687,11 +686,11 @@ export function CreatProductTemplate(product, includeDescription) {
             role="tab"
             aria-controls="Description"
             aria-selected="true"
-            >Description</a
+            >Description</span
           >
         </li>
-        <li class="nav-item custom-nav">
-          <a
+        <li class="nav-item  custom-cursor custom-nav">
+          <span
             class="nav-link"
             id="Additional-Information-tab"
             data-toggle="tab"
@@ -699,11 +698,11 @@ export function CreatProductTemplate(product, includeDescription) {
             role="tab"
             aria-controls="Additional-Information"
             aria-selected="false"
-            >Additional-Information</a
+            >Additional-Information</span
           >
         </li>
-        <li class="nav-item custom-nav">
-          <a
+        <li class="nav-item  custom-cursor custom-nav">
+          <span
             class="nav-link"
             id="Reviews-tab"
             data-toggle="tab"
@@ -711,11 +710,11 @@ export function CreatProductTemplate(product, includeDescription) {
             role="tab"
             aria-controls="Reviews"
             aria-selected="false"
-            >Reviews</a
+            >Reviews</span
           >
         </li>
-        <li class="nav-item custom-nav">
-          <a
+        <li class="nav-item  custom-cursor custom-nav">
+          <span
             class="nav-link"
             id="Shipping-Delivery-tab"
             data-toggle="tab"
@@ -723,7 +722,7 @@ export function CreatProductTemplate(product, includeDescription) {
             role="tab"
             aria-controls="Shipping-Delivery"
             aria-selected="false"
-            >Shipping-Delivery</a
+            >Shipping-Delivery</span
           >
         </li>
       </ul>
@@ -735,89 +734,9 @@ export function CreatProductTemplate(product, includeDescription) {
           aria-labelledby="Description-tab"
         >
           <div class="row w-100 mx-0 pt-4">
-            <div class="col-sm-12 col-md-6 ml-sm-4 ml-md-0">
+            <div class="col-12 ml-sm-4 ml-md-0">
               <div class="firstWrapper" id="#description">
                 ${getDescription(product.description)}
-              </div>
-            </div>
-            <div class="col-sm-12 col-md-6 px-0">
-              <!-- product carousel -->
-              <div class="row w-100 mx-0 w-100">
-                <h5 class="font-weight-bold pl-4 mb-0" style="font-size: 18px;">
-                  SHOP THE LOOK
-                </h5>
-                <div class="col-12 w-100 p-0">
-                  <div
-                    id="myCarousel"
-                    class="carousel slide"
-                    data-ride="carousel"
-                    data-interval="0"
-                  >
-                    <!-- Carousel indicators -->
-                    <ol class="carousel-indicators">
-                      <li
-                        data-target="#myCarousel"
-                        data-slide-to="0"
-                        class="active"
-                      ></li>
-                      <li data-target="#myCarousel" data-slide-to="1"></li>
-                    </ol>
-                    <!-- Wrapper for carousel items -->
-                    <div class="carousel-inner">
-                      <div class="item carousel-item active h-auto pt-3 pb-5">
-                        <div class="row w-100 mx-0 px-3">
-                          <div class="col-6 px-1">
-                            <div class="img-box my-3">
-                              <img
-                                src="https://cdn.shopify.com/s/files/1/0102/4383/3952/products/accessories-21_1_1a51cd0d-6911-4536-af1c-1a475b3792a6_1512x.jpg"
-                                class="img-fluid h-auto"
-                                alt=""
-                              />
-                            </div>
-                          </div>
-                          <div class="col-6 px-1">
-                            <div class="img-box my-3">
-                              <img
-                                src="https://cdn.shopify.com/s/files/1/0102/4383/3952/products/accessories-14_9e7e1119-5ef5-437f-b1c9-959d06f85d3c_1728x.jpg"
-                                class="img-fluid h-auto"
-                                alt=""
-                              />
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="item carousel-item h-auto pt-3 pb-5">
-                        <div class="row w-100 mx-0 px-3">
-                          <div class="col-6 px-1">
-                            <div class="img-box my-3">
-                              <img
-                                src="https://cdn.shopify.com/s/files/1/0102/4383/3952/products/accessories-23_421d7906-0b30-4ab1-8f01-392a1419ad6f_1728x.jpg"
-                                class="img-fluid h-auto"
-                                alt=""
-                              />
-                            </div>
-                          </div>
-                          <div class="col-6 px-1">
-                            <div class="img-box my-3">
-                              <img
-                                src="https://cdn.shopify.com/s/files/1/0102/4383/3952/products/accessories-16_64fd0422-07ec-4407-b434-a573bbdf3300_1728x.jpg"
-                                class="img-fluid h-auto"
-                                alt=""
-                              />
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <!-- Carousel controls -->
-                    <!-- <a class="carousel-control left carousel-control-prev" href="#myCarousel" data-slide="prev">
-                                <i class="fa fa-angle-left"></i>
-                            </a>
-                            <a class="carousel-control right carousel-control-next" href="#myCarousel" data-slide="next">
-                                <i class="fa fa-angle-right"></i>
-                            </a> -->
-                  </div>
-                </div>
               </div>
             </div>
           </div>
@@ -828,9 +747,17 @@ export function CreatProductTemplate(product, includeDescription) {
           role="tabpanel"
           aria-labelledby="Additional-Information-tab"
         >
-          <div class="w-100 h-100 d-flex justify-content-center py-5">
+          <div class="w-100 h-100 d-flex justify-content-center pt-5">
             <h4 class="mr-4">Color:</h4>
-            <h4>Products Colors Here</h4>
+            <h4>${product.color.join(', ')}</h4>
+          </div>
+          <div class="w-100 h-100 d-flex justify-content-center pb-5">
+            <h4 class="mr-4">Size:</h4>
+            <h4>${
+              product.size.lenght > 0
+                ? product.size.join(', ')
+                : 'Not available '
+            }</h4>
           </div>
         </div>
         <div
@@ -839,12 +766,25 @@ export function CreatProductTemplate(product, includeDescription) {
           role="tabpanel"
           aria-labelledby="Reviews-tab"
         >
-          <div class="w-100 h-100 d-flex flex-column text-center py-5">
-            <h4>There are no reviews</h4>
-            <h4>
-              Be the first to <span class="text-warning">Write a review</span>
+          <div class="w-100 h-100 d-flex flex-column text-center py-5" id="reviewStatus">
+          <div class="w-100 d-none" id="reviewsDoExist">
+            <h4>Please feel free to <span class="custom-cursor" id="writeReview" data-toggle="modal" data-target="#reviewModal" style="color:orange;">write a reviews</span>
             </h4>
           </div>
+          <div class="w-100 d-none" id="reviewsDoNotExist">
+            <h4>There are no reviews</h4>
+            <h4>
+              Be the first to <span class="custom-cursor" id="writeReview" data-toggle="modal" data-target="#reviewModal" style="color:orange;">write a review</span>
+            </h4
+          </div>
+          </div>
+          
+          </div>
+
+          <!-- product reviews  -->
+            <div class="w-100" id="productReviewsContainer">
+            </div>
+
         </div>
         <div
           class="tab-pane fade"
@@ -860,23 +800,69 @@ export function CreatProductTemplate(product, includeDescription) {
                 alt=""
               />
               <p class="">
-                Vestibulum curae torquent diam diam commodo parturient penatibus
-                nunc dui adipiscing convallis bulum parturient suspendisse
-                parturient a.Parturient in parturient scelerisque nibh lectus quam a
-                natoque adipiscing a vestibulum hendrerit et pharetra
-                fames.Consequat net Vestibulum parturient suspendisse parturient
-                a.Parturient in parturient scelerisque nibh lectus quam a natoque
-                adipiscing a vestibulum hendrerit et pharetra fames.Consequat netus.
-                Scelerisque adipiscing bibendum sem vestibulum et in a a a purus
-                lectus faucibus lobortis tincidunt purus lectus nisl class
-                eros.Condimentum a et ullamcorper dictumst mus et tristique
-                elementum nam inceptos hac vestibulum amet elit
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eveniet, excepturi sit molestiae vero soluta totam laboriosam veniam non obcaecati exercitationem quam et, temporibus natus voluptatum aut harum. Corrupti accusamus quibusdam voluptatibus optio maiores quis, excepturi fuga dignissimos autem asperiores. Iure perspiciatis tempore nam rem sint accusamus nisi pariatur impedit voluptas quos, reiciendis numquam inventore laudantium vel, libero ducimus non natus aliquam, consequatur consequuntur quasi fugit aperiam? Consequuntur voluptatibus consequatur nemo distinctio corrupti sequi esse voluptatem mollitia inventore, ullam vel! Ratione nostrum, expedita nemo sapiente veritatis dolorem, architecto cupiditate aut alias laboriosam assumenda modi necessitatibus commodi at maxime ullam deleniti, ipsa quas iure. Exercitationem, minus aliquam! Tempore, totam reiciendis quidem quasi, at cumque deserunt atque eaque non eos amet beatae minima.
               </p>
             </div>
           </div>
         </div>
       </div>
-    </div>`;
+    </div>
+    
+    <!-- review modal -->
+    <div class="modal fade" id="reviewModal">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Write a review</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+      <form>
+      <div class="form-group d-flex"> 
+        <label>Quality</label>
+        <div class="ml-5" id="starsGivenByUser">
+          <span class="fa fa-star custom-cursor starSize20px rating checked" ></span>
+          <span class="fa fa-star custom-cursor starSize20px rating checked"></span>
+          <span class="fa fa-star custom-cursor starSize20px rating checked"></span>
+          <span class="fa fa-star custom-cursor starSize20px rating checked"></span>
+          <span class="fa fa-star custom-cursor starSize20px rating checked"></span>
+        </div>
+      </div>
+     
+      <div class="form-group">
+          <label for="reviewerName">Your name</label>
+          <input type="text" class="form-control" placeholder="john smith" id="reviewerName"/>
+          <small id="nameValidationFeedback" class="d-none text-danger">
+            Please provide a valid name.
+          </small>
+      </div>
+      <div class="form-group">
+          <label for="reviewerName">Your email</label>
+          <input type="email" class="form-control" placeholder="example@yourdomain.com" id="reviewerEmail"/>
+          <small id="emailValidationFeedback" class="d-none text-danger">
+            Please provide a valid email.
+          </small>
+      </div>
+      <div class="form-group">
+          <label for="reviewerName">Review Title</label>
+          <input type="text" class="form-control" placeholder="Looks great" id="reviewTitle" />
+      </div>
+      <div class="form-group">
+          <label>Review Content</label>
+          <textarea class="form-control" placeholder="Write something" id="reviewText"></textarea>
+      </div>
+  </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn-primary" id="submitReviewBtn">Submit Your Review</button>
+      </div>
+    </div>
+  </div>
+</div>
+    `;
 
     return productSectionTemplate;
   } else {
@@ -1082,14 +1068,56 @@ export function CreatProductTemplate(product, includeDescription) {
   }
 }
 
+//! fill review in product page
+export function addReview(reviewAsObject) {
+  let reviewStars = '';
+
+  //get the number of stars from local storage
+  // 5 is for the numbers of stars in total
+  for (let i = 0; i < 5; i++) {
+    if (i < reviewAsObject.stars) {
+      reviewStars += '<span class="fa fa-star checked" ></span>';
+    } else {
+      reviewStars += '<span class="fa fa-star"></span>';
+    }
+  }
+
+  let templatestring = `
+  <div class="card mb-3 w-100">
+          <div class="row no-gutters">
+            <div class="col-md-3 p-4 d-flex justify-content-center align-items-center">
+            <img src="https://image.flaticon.com/icons/svg/149/149071.svg" class="img-fluid" style="max-width: 250px; max-height:250px">
+            </div>
+            <div class="col-md-8">
+              <div class="card-body">
+                <div class="card-title">
+                <h5>${reviewAsObject.name}</h5>
+                <div class="" >
+                  ${reviewStars}
+                </div>
+                </div>                
+                <p class="card-text">${reviewAsObject.reviewText}</p>
+                <p class="card-text"><small class="text-muted">${reviewAsObject.date}</small></p>
+              </div>
+            </div>
+          </div>
+        </div>`;
+
+  document
+    .querySelector('#productReviewsContainer')
+    .insertAdjacentHTML('afterbegin', templatestring);
+}
+
 // fill product.html RELATED PRODUCT bottom carousel
-export function fillRelatedProductCarousel(category) {
+export function fillRelatedProductCarousel(category, productIdToAvoid) {
   let productsIdsArray = mainLogic.getProductsIdBasedOnCategory(category);
+  productsIdsArray.splice(productsIdsArray.indexOf(productIdToAvoid), 1);
+
   let carouselItems = creatProductsCarousel(...productsIdsArray);
   let carouselTemplate = `
             <div
               id="myCarousel-2"
-              class="carousel slide"
+              class="d-none d-md-block carousel slide"
               data-ride="carousel"
               data-interval="0"
             >
@@ -1104,7 +1132,7 @@ export function fillRelatedProductCarousel(category) {
               </ol>
               <!-- Wrapper for carousel items -->
               <div class="carousel-inner">
-                <div class="item carousel-item active pt-3 pb-5 h-auto">
+                <div class="carousel-item active pt-3 pb-5 h-auto">
                   <div class="row mx-1">
                     ${carouselItems[0]}
                     ${carouselItems[1]}
@@ -1112,31 +1140,65 @@ export function fillRelatedProductCarousel(category) {
                     ${carouselItems[3]}
                   </div>
                 </div>
-                <div class="item carousel-item pt-3 pb-5 h-auto">
+                <div class="carousel-item pt-3 pb-5 h-auto">
                   <div class="row mx-1">
-                  ${carouselItems[4]}
-                  ${carouselItems[5]}
-                  ${carouselItems[6]}
-                  ${carouselItems[7]}
+                    ${carouselItems[4]}
+                    ${carouselItems[5]}
+                    ${carouselItems[6]}
+                    ${carouselItems[7]}
                   </div>
                 </div>
               </div>
-              <!-- Carousel controls -->
-              <!-- <a
-                class="carousel-control left carousel-control-prev"
-                href="#myCarousel-2"
-                data-slide="prev"
-              >
-                <i class="fa fa-angle-left"></i>
-              </a>
-              <a
-                class="carousel-control right carousel-control-next"
-                href="#myCarousel-2"
-                data-slide="next"
-              >
-                <i class="fa fa-angle-right"></i>
-              </a> -->
             </div>
+
+            <!-- carousel for mobile devices -->
+            <div
+            id="myCarousel-3"
+            class="d-md-none carousel slide"
+            data-ride="carousel"
+            data-interval="0"
+          >
+            <!-- Carousel indicators -->
+            <ol class="carousel-indicators">
+              <li
+                data-target="#myCarousel-3"
+                data-slide-to="0"
+                class="active"
+              ></li>
+              <li data-target="#myCarousel-3" data-slide-to="1"></li>
+              <li data-target="#myCarousel-3" data-slide-to="2"></li>
+              <li data-target="#myCarousel-3" data-slide-to="3"></li>
+            </ol>
+            <!-- Wrapper for carousel items -->
+            <div class="carousel-inner">
+              <div class="carousel-item active pt-3 pb-5 h-auto">
+                <div class="row mx-1">
+                  ${carouselItems[0]}
+                  ${carouselItems[1]}
+                  
+                </div>
+              </div>
+              <div class="carousel-item pt-3 pb-5 h-auto">
+                <div class="row mx-1">
+                ${carouselItems[2]}
+                ${carouselItems[3]}
+                </div>
+              </div>
+              <div class="carousel-item pt-3 pb-5 h-auto">
+                <div class="row mx-1">
+                  ${carouselItems[4]}
+                  ${carouselItems[5]}
+                  
+                </div>
+              </div>
+              <div class="carousel-item pt-3 pb-5 h-auto">
+                <div class="row mx-1">
+                ${carouselItems[6]}
+                ${carouselItems[7]}
+                </div>
+              </div>
+            </div>
+          </div>
   `;
 
   return carouselTemplate;
