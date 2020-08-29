@@ -49,7 +49,7 @@ document.addEventListener('DOMContentLoaded', () => {
       );
   }
 
-  // auto Load collection.html Product catalog from database based on exact product ids
+  //! auto Load collection.html Product catalog from database based on exact product ids
   if (document.querySelector('#collectionProductSection')) {
     let locationParam = window.location.search;
     let category = locationParam.includes('category')
@@ -456,7 +456,7 @@ document.querySelector('body').addEventListener('click', (e) => {
     let productsArray = mainLogic.getProductsIdBasedOnCategory(e.target.id);
     document.querySelector('#collectionProductSection').innerHTML = '';
     // clear the address bar param portion
-    window.history.pushState({}, document.title, './collections.html');
+    window.history.pushState({}, document.title, '/collections.html');
 
     //TODO hightLight clicked buttons after psudoElement selection on click
     document.querySelectorAll(`#${e.target.id}`).forEach((element) => {
@@ -467,7 +467,7 @@ document.querySelector('body').addEventListener('click', (e) => {
       .querySelector('#collectionProductSection')
       .insertAdjacentHTML(
         'afterbegin',
-        Ui_Updater.creatFeaturedProducts(...productsArray)
+        Ui_Updater.creatProductsCatalog(...productsArray)
       );
   }
 
