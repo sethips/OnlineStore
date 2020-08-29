@@ -397,7 +397,7 @@ export function getIpAddress() {
 export function getGeoLocation(ipAddress) {
   const apiAccessKey = '5ccaac31a6b0b3b1b8847556bddd1b9a';
   let country = null;
-  fetch(`http://api.ipstack.com/${ipAddress}?access_key=${apiAccessKey}`)
+  fetch(`https://api.ipstack.com/${ipAddress}?access_key=${apiAccessKey}`)
     .then((response) => {
       return response.json();
     })
