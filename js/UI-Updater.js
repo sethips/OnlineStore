@@ -51,15 +51,6 @@ export function creatProductsCatalog(...args) {
         <div class="card border-0" id="product-${currentProduct.id}">
           <div class="overlay d-flex align-self-end">
             <div class="d-flex flex-column p-2">
-              <img
-                width="25"
-                height="25"
-                src="https://image.flaticon.com/icons/svg/1077/1077035.svg"
-                class="mb-2 custom-cursor"
-                data-toggle="tooltip"
-                data-placement="left"
-                title="Add To Wishlist"
-              />
               <a data-toggle="modal" data-target="#mainModal">
               <img
                 width="25"
@@ -156,15 +147,7 @@ export function creatFeaturedProducts(...args) {
         >
           <div class="overlay align-self-end">
             <div class="d-flex flex-column p-2">
-              <img
-                width="25"
-                height="25"
-                src="https://image.flaticon.com/icons/svg/1077/1077035.svg"
-                class="mb-2 custom-cursor"
-                data-toggle="tooltip"
-                data-placement="left"
-                title="Add To Wishlist"
-              />
+              
               <a data-toggle="modal" data-target="#mainModal">
                 <img
                   width="25"
