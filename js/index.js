@@ -456,8 +456,7 @@ document.querySelector('body').addEventListener('click', (e) => {
     let productsArray = mainLogic.getProductsIdBasedOnCategory(e.target.id);
     document.querySelector('#collectionProductSection').innerHTML = '';
     // clear the address bar param portion
-    var newURL = location.href.split('?')[0];
-    window.history.pushState('object', document.title, newURL);
+    window.history.pushState({}, document.title, `${window.location.pathname}`);
 
     //TODO hightLight clicked buttons after psudoElement selection on click
     document.querySelectorAll(`#${e.target.id}`).forEach((element) => {
