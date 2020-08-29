@@ -174,7 +174,7 @@
         "https://cdn.shopify.com/s/files/1/0102/4383/3952/products/woman-17_d09cf354-6a46-4cf4-a56e-9aa6e0724577_2048x.jpg",
         "https://cdn.shopify.com/s/files/1/0102/4383/3952/products/woman-26_e67d6a30-9fba-4e7f-b8c9-df7cf85477f4_2048x.jpg"
       ],
-      "price": [10.0],
+      "price": [10.0, 10.0, 10.0, 10.0],
       "price-reduction": 0,
       "color": ["blue", "yellow", "green", "black"],
       "size": ["L", "M", "S", "XS"],
@@ -226,7 +226,7 @@
         "https://cdn.shopify.com/s/files/1/0102/4383/3952/products/bag-20_023ab3be-5abd-4d19-b3b3-4bbabf53a75e.jpg?v=1575432973%20870w%201110h",
         "https://cdn.shopify.com/s/files/1/0102/4383/3952/products/bag-24_cb598c64-4c0d-4081-b8d9-af6bacae2687.jpg?v=1575432973"
       ],
-      "price": [560.0],
+      "price": [560.0, 560.0],
       "price-reduction": 0,
       "color": ["brown", "green"],
       "size": [],
@@ -253,7 +253,7 @@
         "https://cdn.shopify.com/s/files/1/0102/4383/3952/products/bag-17.jpg?v=1575432967",
         "https://cdn.shopify.com/s/files/1/0102/4383/3952/products/bag-1_8e3c0786-5900-46e0-8a1b-07aa18df7966.jpg?v=1575432967"
       ],
-      "price": [54.0],
+      "price": [54.0, 54.0, 54.0],
       "price-reduction": 0,
       "color": ["black", "green", "brown"],
       "size": [],
@@ -522,7 +522,7 @@
         "https://cdn.shopify.com/s/files/1/0102/4383/3952/products/man-28_6fb92870-3d13-4c4c-906e-470d00eff13d_540x.jpg?v=1575433124",
         "https://cdn.shopify.com/s/files/1/0102/4383/3952/products/man-29_bfa6fb65-10a4-40b2-b9e1-a202178c678e_540x.jpg?v=1575433124"
       ],
-      "price": [570.0],
+      "price": [570.0, 570.0],
       "price-reduction": 0,
       "color": ["red", "blue"],
       "size": ["L", "M", "XS"],

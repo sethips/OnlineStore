@@ -1,12 +1,11 @@
 // imported Modules
 import * as DataBaseHandler from './DataBaseHandler';
 import * as Ui_Updater from './UI-Updater';
-import * as DomModules from './DomModules';
 import * as mainLogic from './mainLogic';
 import Swal from 'sweetalert';
 
 // Local Variables
-const DomElements = DomModules.DOMElements;
+
 let visitedProduct = '';
 let modalProductId = null;
 const loadingSvg = `<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" style="margin: auto; background: none; display: block; shape-rendering: auto;" width="24px" height="24px" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid">
@@ -247,7 +246,7 @@ document.addEventListener('DOMContentLoaded', () => {
 //
 //
 //!  all body click events
-DomElements.body.addEventListener('click', (e) => {
+document.querySelector('body').addEventListener('click', (e) => {
   //! burger menu click for mobiles
   if (
     e.target.id === 'mainBurgerMenuToggle' ||
@@ -473,7 +472,7 @@ DomElements.body.addEventListener('click', (e) => {
   }
 
   //! product.html product image selection event
-  if (e.target.className.includes('preview-img')) {
+  if (e.target.classList.contains('preview-img')) {
     if (e.target.src !== document.querySelector('.product-main-image').src) {
       for (const element of e.target.parentNode.children) {
         element.classList.remove('active');
@@ -484,14 +483,14 @@ DomElements.body.addEventListener('click', (e) => {
   }
 
   //! product.html product color selection event
-  if (e.target.className.includes('Color-Picker')) {
+  if (e.target.classList.contains('Color-Picker')) {
     for (const element of e.target.parentNode.parentNode.children) {
-      if (!element.className.includes('color-text')) {
+      if (!element.classList.contains('color-text')) {
         element.style.borderBottomStyle = 'hidden';
         element.children[0].classList.remove('Selected-color');
       }
     }
-    if (!e.target.className.includes('Selected-color')) {
+    if (!e.target.classList.contains('Selected-color')) {
       e.target.classList.add('Selected-color');
       e.target.parentNode.style.borderBottomStyle = 'Solid';
       //check if each color has it own price
@@ -504,10 +503,10 @@ DomElements.body.addEventListener('click', (e) => {
   }
 
   //! product.html product size selection event
-  if (e.target.className.includes('Size-Selector')) {
-    if (!e.target.className.includes('selectedSize')) {
+  if (e.target.classList.contains('Size-Selector')) {
+    if (!e.target.classList.contains('selectedSize')) {
       for (const element of e.target.parentNode.children) {
-        if (!element.className.includes('Size-Label')) {
+        if (!element.classList.contains('Size-Label')) {
           element.classList.remove('selectedSize');
         }
       }
@@ -516,7 +515,7 @@ DomElements.body.addEventListener('click', (e) => {
   }
 
   //! product.html increase and decrease product count events
-  if (e.target.className.includes('product-count')) {
+  if (e.target.classList.contains('product-count')) {
     let id = e.target.id.substring(e.target.id.indexOf('-') + 1);
     if (
       (e.target.id === `decrease-${id}`) &
@@ -670,7 +669,6 @@ DomElements.body.addEventListener('click', (e) => {
               location.search.substring(location.search.indexOf('=') + 1)
             )
           ) {
-            console.log('im heerre');
             element[1].push(reviewObject);
             found++;
           }
@@ -697,12 +695,26 @@ DomElements.body.addEventListener('click', (e) => {
       }
 
       document.querySelector('.close').click();
+      //reset fields
+      document.querySelector('#reviewerName').value = '';
+      document.querySelector('#reviewerEmail').value = '';
+      document.querySelector('#reviewTitle').value = '';
+      document.querySelector('#reviewText').value = '';
+      document
+        .querySelectorAll('#starsGivenByUser > span')
+        .forEach((element) => {
+          if (!element.classList.contains('checked')) {
+            element.classList.add('checked');
+          }
+        });
+
+      //add review to product page
       Ui_Updater.addReview(reviewObject);
     }
   }
 
   //! cart.html delete product from cart
-  if (e.target.className.includes('closeBtn')) {
+  if (e.target.classList.contains('closeBtn')) {
     let rowID = 0;
     if (e.target.id) {
       rowID = e.target.id.substring(e.target.id.indexOf('-') + 1);
@@ -789,7 +801,7 @@ DomElements.body.addEventListener('click', (e) => {
 
   //! checkout.html return to cart btn
   if (e.target.id === 'returnToCartBtn') {
-    location.href = '/src/cart.html';
+    location.href = 'cart.html';
   }
 
   //! checkout.html continue to shipping button press
@@ -1058,12 +1070,39 @@ DomElements.body.addEventListener('click', (e) => {
 
   //!  contact-us.html send a message button click
   if (e.target.id === 'sendAMessage') {
-    Swal({
-      icon: 'success',
-      'background-color': '#f4f4f4',
-      text: `Thanks for contacting us. We'll get back to you as soon as possible.`,
-      buttons: false,
-    });
+    const emailRegExp = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+    let score = 3;
+    if (document.querySelector('#name').value === '') {
+      document.querySelector('#nameErrMsg').classList.remove('d-none');
+      score--;
+    } else {
+      document.querySelector('#nameErrMsg').classList.add('d-none');
+    }
+    if (!emailRegExp.test(document.querySelector('#email').value)) {
+      document.querySelector('#emailErrMsg').classList.remove('d-none');
+      score--;
+    } else {
+      document.querySelector('#emailErrMsg').classList.add('d-none');
+    }
+    if (document.querySelector('#message').value === '') {
+      document.querySelector('#messageErrMsg').classList.remove('d-none');
+      score--;
+    } else {
+      document.querySelector('#messageErrMsg').classList.add('d-none');
+    }
+
+    if (score === 3) {
+      Swal({
+        icon: 'success',
+        'background-color': '#f4f4f4',
+        text: `Thanks for contacting us. We'll get back to you as soon as possible.`,
+        buttons: false,
+      });
+
+      document.querySelector('#name').value = '';
+      document.querySelector('#email').value = '';
+      document.querySelector('#message').value = '';
+    }
   }
 });
 

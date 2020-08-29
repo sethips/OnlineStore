@@ -318,12 +318,12 @@ function getSizes(arr) {
 function getPrice(arr) {
   let priceHtmlTemplate = '';
   if (arr.length > 1) {
-    priceHtmlTemplate += `<span class="money h2 text-info">
+    priceHtmlTemplate += `<span class="money h2 teal-color">
     ${arr[0].toFixed(2)}$</span> <span class="mx-2">-</span>`;
-    priceHtmlTemplate += `<span class="money h2 text-info">
+    priceHtmlTemplate += `<span class="money h2 teal-color">
     ${arr[arr.length - 1].toFixed(2)}$</span>`;
   } else {
-    priceHtmlTemplate += `<span class="money h2 text-info">
+    priceHtmlTemplate += `<span class="money h2 teal-color">
     ${arr[0].toFixed(2)} $</span>`;
   }
   return priceHtmlTemplate;
@@ -333,7 +333,7 @@ function getPrice(arr) {
 function getPriceForEachColor(priceArr) {
   if (priceArr.length > 1) {
     return `<div class="d-flex align-items-center my-4">
-              <span class="money h2 text-info itemPrice">${priceArr[0].toFixed(
+              <span class="money h2 teal-color itemPrice">${priceArr[0].toFixed(
                 2
               )}$</span>
             </div>`;
@@ -501,7 +501,7 @@ export function CreatProductTemplate(product, includeDescription) {
         <div class="col-sm-12 col-md-6 px-4">
           <h1 class="my-3 FontSize28">${product.name}</h1>
           <p class="my-3">
-            <span class="money h2 text-info">${getPrice(product.price)}</span>
+            <span class="money h2 teal-color">${getPrice(product.price)}</span>
           </p>
           <p class="my-3">
             <span class="text-danger font-weight-bold"
@@ -520,14 +520,14 @@ export function CreatProductTemplate(product, includeDescription) {
           <div class="text-center my-3">
             <p class="font-weight-bold mb-0">
               HURRY! ONLY
-              <span class="number text-info">${fixedRandomNumber}</span> LEFT IN
+              <span class="number teal-color">${fixedRandomNumber}</span> LEFT IN
               STOCK.
             </p>
     
             <!-- progress bar -->
             <div class="progress rounded-0 mb-3" style="height: 10px;">
               <div
-                class="progress-bar progress-bar-striped progress-bar-animated bg-info"
+                class="progress-bar progress-bar-striped progress-bar-animated custom-background"
                 role="progressbar"
                 style="width: ${fixedRandomNumber}%;"
                 aria-valuenow="${fixedRandomNumber}"
@@ -613,7 +613,7 @@ export function CreatProductTemplate(product, includeDescription) {
             type="button"
             name=""
             id="buyNowButton"
-            class="btn bg-info text-white btn-block rounded-0"
+            class="btn custom-background text-white btn-block rounded-0"
           >
             BUY IT NOW
           </button>
@@ -622,7 +622,7 @@ export function CreatProductTemplate(product, includeDescription) {
           <div class="mt-5 mb-4">
             <span class="font-weight-bold" style="font-size: 15px;"
               >Order in the next
-              <span class="bg-info px-2 py-1 text-white shadow-sm mb-5"
+              <span class="custom-background px-2 py-1 text-white shadow-sm mb-5"
                 >${optimalOrderDate()}</span
               >
               to get it by <span class="time">${getDeliveryDate(15)}</span>
@@ -658,7 +658,7 @@ export function CreatProductTemplate(product, includeDescription) {
             </span>
             <span class="my-2">
               Real time
-              <span class="bg-info pl-2 pr-1 py-1 mr-1 shadow-sm mb-5">
+              <span class="custom-background pl-2 pr-1 py-1 mr-1 shadow-sm mb-5">
                 <span class="text-white visitorsCount"
                   >${getVisitorsRightNow()}</span
                 >
@@ -894,7 +894,7 @@ export function CreatProductTemplate(product, includeDescription) {
       <div class="col-sm-12 col-md-6 px-4 modalMaxHeight descriptionOverflow" >
         <h1 class="my-3 FontSize28">${product.name}</h1>
         <p class="my-3">
-          <span class="money h2 text-info">${getPrice(product.price)}</span>
+          <span class="money h2 teal-color">${getPrice(product.price)}</span>
         </p>
         <p class="my-3">
           <span class="text-danger font-weight-bold"
@@ -913,14 +913,14 @@ export function CreatProductTemplate(product, includeDescription) {
         <div class="text-center my-3">
           <p class="font-weight-bold mb-0">
             HURRY! ONLY
-            <span class="number text-info">${fixedRandomNumber}</span> LEFT IN
+            <span class="number teal-color">${fixedRandomNumber}</span> LEFT IN
             STOCK.
           </p>
   
           <!-- progress bar -->
           <div class="progress rounded-0 mb-3" style="height: 10px;">
             <div
-              class="progress-bar progress-bar-striped progress-bar-animated bg-info"
+              class="progress-bar progress-bar-striped progress-bar-animated custom-background"
               role="progressbar"
               style="width: ${fixedRandomNumber}%;"
               aria-valuenow="${fixedRandomNumber}"
@@ -1006,7 +1006,7 @@ export function CreatProductTemplate(product, includeDescription) {
           type="button"
           name=""
           id="buyNowButton"
-          class="btn bg-info text-white btn-block rounded-0"
+          class="btn custom-background text-white btn-block rounded-0"
         >
           BUY IT NOW
         </button>
@@ -1015,7 +1015,7 @@ export function CreatProductTemplate(product, includeDescription) {
         <div class="mt-5 mb-4">
           <span class="font-weight-bold" style="font-size: 15px;"
             >Order in the next
-            <span class="bg-info px-2 py-1 text-white shadow-sm mb-5"
+            <span class="custom-background px-2 py-1 text-white shadow-sm mb-5"
               >${optimalOrderDate()}</span
             >
             to get it by <span class="time">${getDeliveryDate(15)}</span>
@@ -1051,7 +1051,7 @@ export function CreatProductTemplate(product, includeDescription) {
           </span>
           <span class="my-2">
             Real time
-            <span class="bg-info pl-2 pr-1 py-1 mr-1 shadow-sm mb-5">
+            <span class="custom-background pl-2 pr-1 py-1 mr-1 shadow-sm mb-5">
               <span class="text-white visitorsCount"
                 >${getVisitorsRightNow()}</span
               >
@@ -1717,7 +1717,7 @@ export function showShippingInformationSection() {
         id="emailOrPhone"
         placeholder="Email or mobile phone number"
       />
-      <span class="d-none text-danger emailWarningText"
+      <span class="d-none text-danger emailWarningText font-size-13"
         >Enter an email or mobile phone number</span
       >
     </div>
@@ -1749,7 +1749,7 @@ export function showShippingInformationSection() {
           class="form-control"
           placeholder="Last name"
         />
-        <span class="d-none text-danger lastNameWarningText"
+        <span class="d-none text-danger lastNameWarningText font-size-13"
           >Enter a last name</span
         >
       </div>
@@ -1761,7 +1761,7 @@ export function showShippingInformationSection() {
       class="form-control mt-3"
       placeholder="Address"
     />
-    <span class="d-none text-danger addressWarningText"
+    <span class="d-none text-danger addressWarningText font-size-13"
       >Enter an Address</span
     >
     <input
@@ -1780,7 +1780,7 @@ export function showShippingInformationSection() {
           class="form-control"
           placeholder="Postal code"
         />
-        <span class="d-none text-danger zipCodeWarningText"
+        <span class="d-none text-danger zipCodeWarningText font-size-13"
           >Enter a ZIP / postal code</span
         >
       </div>
@@ -1792,7 +1792,7 @@ export function showShippingInformationSection() {
           class="form-control"
           placeholder="City"
         />
-        <span class="d-none text-danger cityWarningText"
+        <span class="d-none text-danger cityWarningText font-size-13"
           >Enter a City</span
         >
       </div>
@@ -1818,7 +1818,7 @@ export function showShippingInformationSection() {
         name=""
         id="SaveForNextTime"
       />
-      <label for="SaveForNextTime" class="text-black-50 text-14 custom-cursor"
+      <label for="SaveForNextTime" class="text-black-50 text-14 custom-cursor mb-0"
         >Save this information for next time</span
       >
     </div>
@@ -1990,7 +1990,7 @@ export function showPaymentSection() {
             placeholder="Owner's name"
           />
         </div>
-        <span class="d-none text-danger cardNameWarningText"
+        <span class="d-none text-danger cardNameWarningText font-size-13"
         >Enter owner full name</span>
       </div>
       <div class="col-12 col-md-6">
@@ -2011,7 +2011,7 @@ export function showPaymentSection() {
             placeholder="Credit card number"
           />
         </div>
-        <span class="d-none text-danger cardNumberWarningText"
+        <span class="d-none text-danger cardNumberWarningText font-size-13"
         >Enter card number</span>
       </div>
     </div>
@@ -2034,7 +2034,7 @@ export function showPaymentSection() {
             placeholder="Exp date"
           />          
         </div>
-        <span class="d-none text-danger cardDateWarningText"
+        <span class="d-none text-danger cardDateWarningText font-size-13"
         >Enter card exp date</span>
       </div>
       <div class="col-12 col-md-6 mb-3">
@@ -2056,7 +2056,7 @@ export function showPaymentSection() {
             placeholder="CVV"
           />
         </div>
-        <span class="d-none text-danger cardCvvWarningText"
+        <span class="d-none text-danger cardCvvWarningText font-size-13"
         >Enter card CVV</span>
       </div>
 

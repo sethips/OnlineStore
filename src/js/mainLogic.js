@@ -100,7 +100,7 @@ function getProductProperties(productId) {
   ) {
     let product_color_collection = document.querySelectorAll('.Color-Picker');
     product_color_collection.forEach((element) => {
-      if (element.className.includes('Selected-color')) {
+      if (element.classList.contains('Selected-color')) {
         addedProduct.product_color = element.style.backgroundColor;
       }
     });
@@ -120,7 +120,7 @@ function getProductProperties(productId) {
   ) {
     let product_size_collection = document.querySelectorAll('.Size-Selector');
     product_size_collection.forEach((element) => {
-      if (element.className.includes('selectedSize')) {
+      if (element.classList.contains('selectedSize')) {
         addedProduct.product_size = element.textContent.trim();
       }
     });
@@ -200,24 +200,25 @@ function addRepeatedProduct(cartProductKey, price, quantity) {
 
 //--------
 export function incrementOrDecrementCartBadge() {
-  if (
-    document.querySelector('.cart-badge-navbar') ||
-    document.querySelector('.cart-badge')
-  ) {
+  if (document.querySelector('.cart-badge-navbar')) {
     let productCount = getHowManyProductInCart();
 
     if (productCount >= 1) {
-      document.querySelector('.cart-badge-navbar').style.display = 'block';
-      document.querySelector('.cart-badge').style.display = 'block';
+      document.querySelectorAll('.cart-badge-navbar').forEach((element) => {
+        element.style.display = 'block';
+      });
 
-      document.querySelector('.cart-badge-navbar').textContent = productCount;
-      document.querySelector('.cart-badge').textContent = productCount;
+      document.querySelectorAll('.cart-badge-navbar').forEach((element) => {
+        element.textContent = productCount;
+      });
     } else {
-      document.querySelector('.cart-badge-navbar').style.display = 'none';
-      document.querySelector('.cart-badge').style.display = 'none';
+      document.querySelectorAll('.cart-badge-navbar').forEach((element) => {
+        element.style.display = 'none';
+      });
 
-      document.querySelector('.cart-badge-navbar').textContent = productCount;
-      document.querySelector('.cart-badge').textContent = productCount;
+      document.querySelectorAll('.cart-badge-navbar').forEach((element) => {
+        element.textContent = productCount;
+      });
     }
   }
 }

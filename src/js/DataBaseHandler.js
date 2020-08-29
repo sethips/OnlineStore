@@ -3,17 +3,11 @@ const jsonDataBase = require('./Data.json');
 // //initialize fireBase database
 // import * as firebase from 'firebase/database';
 // const firebaseConfig = {
-//   apiKey: 'AIzaSyBw9J93VyYSapKuMQu9sFG57Q-68uGvRbA',
-//   authDomain: 'onlinestore-2881b.firebaseapp.com',
-//   databaseURL: 'https://onlinestore-2881b.firebaseio.com',
-//   projectId: 'onlinestore-2881b',
-//   storageBucket: 'onlinestore-2881b.appspot.com',
-//   messagingSenderId: '243496045078',
-//   appId: '1:243496045078:web:e400783a590a1787bf0337',
 // };
 // const app = firebase.initializeApp(firebaseConfig);
-// const database = firebase.database()
+// const database = firebase.database();
 // //initialize fireBase database End
+
 export function getAllProducts() {
   let products = [];
   for (const product of jsonDataBase.productsDataBase) {

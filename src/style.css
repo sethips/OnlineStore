@@ -11,6 +11,10 @@
   background-color: #1aada3;
 }
 
+.teal-color {
+  color: #1aada3;
+}
+
 .icon-color-white {
   color: white;
 }
@@ -332,6 +336,7 @@
 ::-webkit-scrollbar {
   display: none;
 }
+
 @keyframes blinker {
   50% {
     color: red;
