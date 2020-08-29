@@ -92,7 +92,7 @@ export function creatProductsCatalog(...args) {
           </div>
 
           <div class="card-body px-0">
-            <a class="text-dark product-name" href="products.html?product-id=${
+            <a class="text-dark product-name" href="./products.html?product-id=${
               currentProduct.id
             }">${currentProduct.name}</a>
             <div class="priceColorsDiv d-flex">
@@ -124,7 +124,7 @@ function creatProductsCarousel(...args) {
           </div>
 
           <div class="card-body px-0 text-truncate">
-            <a class="text-dark product-name" href="products.html?product-id=${
+            <a class="text-dark product-name" href="./products.html?product-id=${
               currentProduct.id
             }">${currentProduct.name}</a>
             <div class="priceColorsDiv d-flex">
@@ -189,7 +189,7 @@ export function creatFeaturedProducts(...args) {
           >
             <a
               class="text-dark product-name"
-              href="products.html?product-id=${currentProduct.id}"
+              href="./products.html?product-id=${currentProduct.id}"
               >${currentProduct.name}</a
             >
             <div class="priceColorsDiv d-flex">

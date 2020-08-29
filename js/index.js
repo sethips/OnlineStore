@@ -275,7 +275,7 @@ document.querySelector('body').addEventListener('click', (e) => {
       e.target.parentNode.parentNode.id.indexOf('-') + 1
     );
 
-    location.href = `products.html?product-id=${clickedProduct}`;
+    location.href = `./products.html?product-id=${clickedProduct}`;
   }
   //! index.html product cards Quick View icon click
   if (e.target.id.includes('quickView')) {
@@ -301,7 +301,7 @@ document.querySelector('body').addEventListener('click', (e) => {
     e.target.id === 'modalViewDetailsBtn' ||
     e.target.parentNode.id === 'modalViewDetailsBtn'
   ) {
-    location.href = `products.html?product-id=${modalProductId}`;
+    location.href = `./products.html?product-id=${modalProductId}`;
   }
 
   //index.html close modal clear current visitor counter
@@ -389,7 +389,7 @@ document.querySelector('body').addEventListener('click', (e) => {
   if (e.target.id === 'proceedToCheckoutBtn') {
     if (document.querySelector('#agreeWithCondition').checked) {
       // go to checkout from
-      window.location.href = 'checkout.html';
+      window.location.href = './checkout.html';
 
       //save current location to sessionStorage
       sessionStorage.setItem('currentPage', 'checkoutPage/ShippingAddress');
@@ -590,10 +590,10 @@ document.querySelector('body').addEventListener('click', (e) => {
         location.search.indexOf('=') + 1
       );
       mainLogic.addProductToCart(productId);
-      window.location.href = 'checkout.html';
+      window.location.href = './checkout.html';
     } else {
       mainLogic.addProductToCart(modalProductId);
-      window.location.href = 'checkout.html';
+      window.location.href = './checkout.html';
     }
   }
 
@@ -783,7 +783,7 @@ document.querySelector('body').addEventListener('click', (e) => {
       }
 
       // go to checkout from
-      window.location.href = 'checkout.html';
+      window.location.href = './checkout.html';
 
       //save current location to sessionStorage
       sessionStorage.setItem('currentPage', 'checkoutPage/ShippingAddress');
@@ -801,7 +801,7 @@ document.querySelector('body').addEventListener('click', (e) => {
 
   //! checkout.html return to cart btn
   if (e.target.id === 'returnToCartBtn') {
-    location.href = 'cart.html';
+    location.href = './cart.html';
   }
 
   //! checkout.html continue to shipping button press
@@ -1058,14 +1058,14 @@ document.querySelector('body').addEventListener('click', (e) => {
           'discount',
           'currentPage'
         );
-        location.href = 'orderStatus.html';
+        location.href = './orderStatus.html';
       }, 1000);
     }
   }
 
   // orderStatus.html button click
   if (e.target.id === 'goBackToHome') {
-    location.href = 'index.html';
+    location.href = './index.html';
   }
 
   //!  contact-us.html send a message button click
