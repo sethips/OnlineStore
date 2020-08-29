@@ -1,0 +1,582 @@
+* {
+  box-sizing: border-box;
+  font-family: 'Karla', sans-serif;
+}
+
+.font-size-13 {
+  font-size: 0.8125rem;
+}
+
+.custom-background {
+  background-color: #1aada3;
+}
+
+.teal-color {
+  color: #1aada3;
+}
+
+.icon-color-white {
+  color: white;
+}
+.custom-icon-size {
+  font-size: 20px;
+}
+.cart-badge {
+  display: none;
+  padding: 0 4.5px;
+  font-weight: bold;
+  font-size: 10px;
+  position: absolute;
+  top: -5px;
+  right: 1px;
+  border-radius: 50%;
+  background: rosybrown;
+  color: white;
+}
+.cart-badge-navbar {
+  display: none;
+  font-weight: bold;
+  padding: 0 4.5px;
+  font-size: 10px;
+  position: absolute;
+  top: 3px;
+  right: -4px;
+  border-radius: 50%;
+  background: #1aada3;
+  color: white;
+}
+
+.cart-badge-navbar-For-Mobile {
+  display: none;
+  font-weight: bold;
+  padding: 0 5px;
+  font-size: 10px;
+  position: absolute;
+  top: 8px;
+  right: -17px;
+  border-radius: 50%;
+  background: #1aada3;
+  color: white;
+}
+
+.carousel-item-custom-height {
+  height: 580px;
+}
+.carousel-item-custom-height img {
+  height: 580px;
+  object-fit: cover;
+}
+
+.carousel-text-custom {
+  text-align: right;
+  top: 150px;
+  left: auto;
+}
+.carousel-text-custom-2 {
+  text-align: left;
+  top: 150px;
+  right: auto;
+}
+
+.carousel-custom-font {
+  font-family: 'Pacifico', sans-serif;
+}
+
+.custom-link {
+  text-decoration: underline;
+  color: #1aada3;
+}
+
+.custom-link:hover {
+  color: #202020;
+}
+
+.custom-btn-pos {
+  position: absolute;
+  bottom: 10px;
+  left: 0;
+  text-decoration: none;
+  color: black;
+}
+.custom-btn-pos:hover {
+  text-decoration: none;
+  color: black;
+}
+
+.customStyle {
+  font-family: 'Lora', 'MS Sans Serif', Geneva, sans-serif;
+}
+.black-bg {
+  background-color: black;
+}
+.custom-img-bg {
+  background-image: url('https://cdn.shopify.com/s/files/1/0102/4383/3952/files/highcompress-main-big-baner-8.jpg');
+  background-size: cover;
+  height: 450px;
+}
+.custom-input {
+  outline: none;
+  background-color: transparent;
+  color: white;
+  border: none;
+  border-bottom: solid 1px white;
+  width: 40%;
+  padding: 5px 10px;
+  margin-right: 2px;
+}
+.custom-padding {
+  margin-bottom: -3px;
+}
+
+.brand-bg-img {
+  background-image: url('https://cdn.shopify.com/s/files/1/0102/4383/3952/files/highcompress-main-big-baner-7.jpg');
+  background-size: cover;
+  height: 450px;
+}
+
+.custom-bg-grey {
+  background-color: #f4f4f4;
+}
+
+.custom-border {
+  border: 10px #efefef solid;
+}
+
+.custom-width {
+  width: auto;
+}
+.custom-font {
+  font-family: 'Lato', sans-serif;
+  font-size: 22px;
+}
+.brand-custom-width {
+  max-width: 100%;
+}
+
+.custom-cursor {
+  cursor: pointer;
+}
+.custom-height.carousel-item {
+  height: 320px;
+  font-size: 14px;
+  margin-top: 1.5rem;
+}
+
+.carousel-indicators li {
+  background-color: #999;
+  background-color: rgba(70, 70, 70, 0.25);
+}
+
+.carousel-indicators .active {
+  background-color: #444;
+}
+
+.custom-envelope-color {
+  color: rgb(189, 189, 189);
+}
+::placeholder {
+  color: white;
+}
+
+.blackPlaceHolder::placeholder {
+  color: black;
+}
+
+.custom-nav > .nav-link {
+  color: rgba(0, 0, 0, 0.5);
+  font-size: 20px;
+  border-bottom: solid 2px rgba(0, 0, 0, 0.5);
+  padding: 8px 0 2px 0;
+  margin: 0 30px 15px 0;
+}
+.custom-nav > .nav-link.active {
+  color: black;
+  border-bottom: solid 2px black;
+}
+/*  */
+/* overlay */
+.overlay {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  z-index: 2;
+  opacity: 0;
+  background: transparent;
+  transition: 200ms ease-in-out;
+  border-radius: 4px;
+}
+
+.overlay-2 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  z-index: 2;
+  opacity: 0;
+  background: rgba(0, 0, 0, 0.6);
+  transition: all 200ms ease-in-out;
+  border-radius: 4px;
+}
+
+.card:hover .overlay {
+  opacity: 1;
+}
+
+.card:hover .overlay-2 {
+  opacity: 1;
+}
+.invert-color-toWhite {
+  -webkit-filter: invert(100%);
+}
+.invert {
+  -webkit-filter: invert(100%);
+  transform: translate(-50%, 0);
+  transition: all 0.2s ease-in-out;
+}
+.overlay-2:hover .invert {
+  -webkit-filter: invert(100%);
+  transform: translate(0, 0);
+  transition: all 0.2s ease-in-out;
+}
+/* overlay-end */
+/*  */
+
+.custom-add-to-cart {
+  bottom: 0;
+  background-color: black;
+  transform: translate(0, 100%);
+  transition: all 0.2s ease-in-out;
+}
+
+.card:hover .custom-add-to-cart {
+  transform: translate(0, 0);
+  transition: all 0.2s ease-in-out;
+}
+
+.custom-add-to-cart img {
+  -webkit-filter: invert(100%);
+}
+
+/* zoom effect */
+.zoom-effect-container {
+  overflow: hidden;
+}
+
+.zoom-effect-container img {
+  transition: transform 0.5s ease;
+}
+.zoom-effect-container:hover img {
+  transform: scale(1.1);
+}
+/* end zoom effect */
+
+/* card img switching on hover */
+
+.custom-transparency {
+  transition: opacity 400ms ease-in-out;
+  opacity: 0;
+}
+
+.productImageContainer:hover .custom-transparency {
+  transition: opacity 400ms ease-in-out;
+  opacity: 1;
+}
+/*  */
+/*  */
+
+/* cart and price animation */
+.price-hover-effect {
+  position: relative;
+  overflow: hidden;
+}
+
+.cart-section {
+  position: absolute;
+  width: 100%;
+  transform: translate(0, 110%);
+  transition: all 0.2s ease-in-out;
+  font-size: 14px;
+  font-weight: bold;
+  color: black;
+}
+.price-section {
+  transform: translate(0, 0);
+  width: 100%;
+  transition: all 0.2s ease-in-out;
+}
+
+.card:hover .cart-section {
+  transform: translate(0, 0);
+  transition: all 0.2s ease-in-out;
+}
+
+.card:hover .price-section {
+  transform: translate(0, -100%);
+  transition: all 0.2s ease-in-out;
+}
+/*  */
+
+.img-Selection .active {
+  filter: opacity(50%);
+}
+
+.selectedSize {
+  border-bottom: solid 2px Black;
+}
+.flash {
+  animation: flash 1s steps(5, start) infinite;
+}
+
+.swal-modal .swal-text {
+  text-align: center;
+}
+
+/* hide scroll bar in checkout.html summary section */
+::-webkit-scrollbar {
+  display: none;
+}
+
+@keyframes blinker {
+  50% {
+    color: red;
+    font-weight: bold;
+  }
+}
+
+.top-buffer {
+  margin-top: 20px;
+}
+.text-14 {
+  font-size: 14px;
+}
+
+.carouselHoverEffect:hover .carouselHoverEffectedElem {
+  transition: all 0.2s ease-in-out;
+  bottom: 0px !important;
+}
+
+.categoriesSelectedItem {
+  color: #1aada3 !important;
+}
+
+.hiddenBurgerMenuBackgroundFilterStyle {
+  display: none;
+  height: 100vh;
+  width: 100vw;
+  top: 0;
+  left: 0;
+  z-index: 900;
+  transition: 0.3s;
+  /* background-color: rgba(0, 20, 10, 0.5); */
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
+}
+
+.burgerMenuStyle {
+  height: 100vh;
+  width: 85vw;
+  top: 0;
+  right: 0;
+  z-index: 1000;
+  transform: translateX(100%);
+  transition: 0.3s;
+}
+
+.burgerMenuReveal {
+  transform: translateX(0);
+}
+
+/* product rating  */
+.checked {
+  color: orange;
+}
+.starSize20px {
+  font-size: 20px;
+}
+/*  */
+/* animations */
+@keyframes flash {
+  0%,
+  50% {
+    opacity: 0;
+  }
+  51%,
+  100% {
+    opacity: 1;
+  }
+}
+#showSummaryChevron {
+  transition: all 0.1s ease-in-out;
+}
+.chevronRotate {
+  transform: rotate(90deg);
+  transition: all 0.1s ease-in-out;
+}
+
+#mainModal > .modal-dialog {
+  min-width: 80vw;
+}
+.modalMaxHeight {
+  max-height: 75vh;
+}
+
+.descriptionOverflow {
+  overflow-y: scroll;
+}
+/*  Extra small devices (portrait phones, less than 576px)
+ No media query for `xs` since this is the default in Bootstrap */
+
+/* Small devices (landscape phones, 576px and up) */
+@media (max-width: 576px) {
+  .carousel-item-custom-height {
+    height: 380px;
+  }
+  .carousel-item-custom-height img {
+    height: 380px;
+    object-fit: cover;
+  }
+
+  .bigger-carousel-title {
+    font-size: 55px;
+  }
+
+  .smaller-carousel-title {
+    font-size: 23px;
+  }
+
+  .carousel-text-custom {
+    top: 70px;
+  }
+
+  .carousel-text-custom-2 {
+    top: 70px;
+  }
+
+  .FontSize28 {
+    font-size: 28px;
+  }
+
+  #mainModal > .modal-dialog {
+    min-width: 90vw;
+  }
+
+  .modalMaxHeight {
+    max-height: none;
+  }
+
+  .subscriptionTextSize-2 {
+    font-size: 26px !important;
+  }
+
+  .subscriptionTextSize {
+    font-size: 32px !important;
+  }
+
+  .custom-input {
+    outline: none;
+    background-color: transparent;
+    color: white;
+    border: none;
+    border-bottom: solid 1px white;
+    width: 60%;
+    padding: 5px 10px;
+    margin-right: 2px;
+  }
+
+  .custom-border {
+    border: none;
+  }
+}
+
+/* Medium devices (tablets, 768px and up) */
+@media (max-width: 768px) {
+  .carousel-item-custom-height {
+    height: 380px;
+  }
+  .carousel-item-custom-height img {
+    height: 380px;
+    object-fit: cover;
+  }
+
+  .bigger-carousel-title {
+    font-size: 55px;
+  }
+
+  .smaller-carousel-title {
+    font-size: 23px;
+  }
+
+  .carousel-text-custom {
+    top: 70px;
+  }
+
+  .carousel-text-custom-2 {
+    top: 70px;
+  }
+
+  .modalMaxHeight {
+    max-height: none;
+  }
+}
+
+/* Large devices (desktops, 992px and up) */
+@media (max-width: 992px) {
+  #mainModal > .modal-dialog {
+    min-width: 95vw !important;
+  }
+}
+
+/* hover effect for the after subElement on large devices */
+@media (min-width: 992px) {
+  /* hover effect for the after subElement of nav bar and categories bar */
+  li.custom-cursor::after {
+    content: '';
+    display: block;
+    width: 0;
+    height: 1px;
+    background: #fff;
+    transition: width 0.3s;
+  }
+
+  li.custom-cursor:hover::after {
+    width: 100%;
+  }
+  /*  */
+  /*  */
+  /*  */
+  /*  */
+
+  /* main navBar after underlining effect  */
+  a.nav-link::after {
+    content: '';
+    display: block;
+    width: 0;
+    height: 1px;
+    background: #000;
+    transition: width 0.3s;
+  }
+
+  a.nav-link:hover::after {
+    width: 100%;
+  }
+
+  /* top navBar after underlining effect  */
+  ul a.text-white::after {
+    content: '';
+    display: block;
+    width: 0;
+    height: 1px;
+    background: #fff;
+    transition: width 0.3s;
+  }
+
+  ul a.text-white:hover::after {
+    width: 100%;
+  }
+}
+
+/* Extra large devices (large desktops, 1200px and up) */
+@media (max-width: 1200px) {
+  /* categories list in the collection page  */
+}

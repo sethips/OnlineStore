@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>zShop - Online Store</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+
+    <!-- GoogleFont -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Karla&family=Lora:ital@1&family=Lato:ital@1&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Bootstrap CSS -->
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css" />
+    <link rel="shortcut icon" type="image/x-icon" href="/img/favicon.png" />
+  </head>
+  <body>
+    <div class="container my-0 py-0">
+      <div class="row">
+        <div class="col-12 col-lg-7 py-5 border-lg">
+          <span class="h1">Checkout</span>
+          <!-- this section will be displayed on smaller device only -->
+          <div class="d-block d-lg-none my-4 border rounded px-2 py-3 bg-light">
+            <div class="d-flex">
+              <span
+                class="d-flex align-items-center text-primary custom-cursor"
+                data-toggle="collapse"
+                data-target="#collapseThisDiv"
+                id="showSummary"
+              >
+                <img
+                  width="20"
+                  height="20"
+                  src="https://image.flaticon.com/icons/svg/3036/3036969.svg"
+                  class="mr-2"
+                  style="
+                    filter: invert(31%) sepia(44%) saturate(5859%)
+                      hue-rotate(202deg) brightness(107%) contrast(104%);
+                  "
+                />
+                <span id="showSummaryText" style="min-width: 157px"
+                  >Show order summary</span
+                >
+                <img
+                  width="10"
+                  height="10"
+                  src="https://image.flaticon.com/icons/svg/748/748073.svg"
+                  class="mx-2"
+                  id="showSummaryChevron"
+                  style="
+                    filter: invert(31%) sepia(44%) saturate(5859%)
+                      hue-rotate(202deg) brightness(107%) contrast(104%);
+                  "
+                /> </span
+              ><span class="ml-auto">
+                <span class="h6" id="summaryTotalPrice"></span>
+              </span>
+            </div>
+            <div class="collapse" id="collapseThisDiv">
+              <hr />
+              <div id="summarySection">
+                <!-- html generated code here -->
+              </div>
+            </div>
+          </div>
+          <!--  -->
+          <!--  -->
+          <ol class="breadcrumb bg-transparent pl-0" id="placement">
+            <li class="breadcrumb-item text-14">
+              <a href="cart.html">Cart</a>
+            </li>
+            <li class="breadcrumb-item text-14 active">
+              <a>Information</a>
+            </li>
+            <li class="breadcrumb-item text-14">
+              <a>Shipping</a>
+            </li>
+            <li class="breadcrumb-item text-14"><a>Payment</a></li>
+          </ol>
+
+          <!-- page dynamic section  -->
+          <div id="dynamicSection">
+            <!-- generated code goes here -->
+          </div>
+
+          <!-- bottom section -->
+          <div class="row mt-4">
+            <div
+              class="col-12 col-md-6 d-flex align-items-center justify-content-center justify-content-md-start order-1 order-md-0"
+              id="returnBtnSection"
+            >
+              <span class="custom-cursor text-primary" id="returnToCartBtn"
+                >&#60; Return to cart</span
+              >
+            </div>
+            <div class="col-12 col-md-6 mb-3" id="continueBtnSection">
+              <button
+                class="btn btn-info btn-block rounded-0"
+                id="continueToShipping"
+              >
+                Continue to shipping
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="col d-none d-lg-block bg-light py-5 border-left">
+          <!-- only show on large devices -->
+          <div class="col-12">
+            <div id="summarySection"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!--JavaScript -->
+    <script src="../dist/bundle.js"></script>
+
+    <!-- fontAwesome Js File-->
+    <script
+      src="https://kit.fontawesome.com/aab7f370d2.js"
+      crossorigin="anonymous"
+      SameSite="none"
+    ></script>
+
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script
+      src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+      integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+      integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+      integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>

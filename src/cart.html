@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>zShop - Online Store</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+
+    <!-- Bootstrap CSS -->
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+    <!-- GoogleFont -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Karla&family=Lora:ital@1&family=Lato:ital@1&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="./style.css" />
+    <link rel="shortcut icon" type="image/x-icon" href="/img/favicon.png" />
+  </head>
+
+  <body>
+    <div
+      class="position-fixed hiddenBurgerMenuBackgroundFilterStyle"
+      id="hiddenBurgerMenuBackgroundFilter"
+    ></div>
+
+    <div
+      class="d-flex flex-column position-fixed burgerMenuStyle"
+      id="hiddenBurgerMenu"
+      style="background-color: #00140a"
+    >
+      <img
+        width="20"
+        height="20"
+        src="https://image.flaticon.com/icons/svg/748/748122.svg"
+        class="img-fluid m-4 ml-auto custom-cursor invert-color-toWhite"
+        style="top: 0; right: 0"
+        id="hiddenBurgerMenuCloseBtn"
+      />
+      <div class="d-flex align-items-center justify-content-center h-100 w-100">
+        <ul class="navbar-nav text-center overflow-hidden w-100">
+          <li class="nav-item burgerMenuListItemStyle">
+            <a
+              class="nav-link text-white"
+              href="index.html"
+              style="font-size: 1.8rem"
+              >HOME
+            </a>
+          </li>
+          <li class="nav-item burgerMenuListItemStyle">
+            <a
+              class="nav-link text-white"
+              href="collections.html"
+              style="font-size: 1.8rem"
+            >
+              SHOPE
+            </a>
+          </li>
+          <li
+            class="nav-item burgerMenuListItemStyle d-flex justify-content-center"
+          >
+            <a
+              class="nav-link position-relative categoriesSelectedItem"
+              href="cart.html"
+              aria-disabled="true"
+              style="font-size: 1.8rem; width: fit-content"
+              >CART<span class="cart-badge-navbar cart-badge-navbar-For-Mobile"
+                >0</span
+              >
+            </a>
+          </li>
+          <li class="nav-item burgerMenuListItemStyle">
+            <a
+              class="nav-link text-white"
+              href="about-us.html"
+              aria-disabled="true"
+              style="font-size: 1.8rem"
+              >ABOUT US</a
+            >
+          </li>
+          <li class="nav-item burgerMenuListItemStyle">
+            <a
+              href="Contact-us.html"
+              class="nav-link text-white"
+              style="font-size: 1.8rem"
+              >CONTACT US</a
+            >
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div>
+      <!-- Main nav -->
+      <div class="fluid-container px-0 px-lg-5">
+        <div class="fluid-container p-0">
+          <nav class="d-none d-md-flex navbar navbar-expand navbar-light">
+            <div class="navbar-brand">
+              <a href="index.html">
+                <img class="img-fluid" src="img/logo.png" style="width: 196px"
+              /></a>
+            </div>
+            <button
+              class="navbar-toggler"
+              type="button"
+              data-toggle="collapse"
+              data-target="#MainNavbar"
+              aria-controls="MainNavbar"
+              aria-expanded="false"
+              aria-label="Toggle navigation"
+            >
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="MainNavbar">
+              <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                  <a class="nav-link" href="index.html">HOME</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="collections.html"> SHOPE </a>
+                </li>
+                <li class="nav-item">
+                  <a
+                    class="nav-link active position-relative"
+                    href="cart.html"
+                    aria-disabled="true"
+                    >CART<span class="cart-badge-navbar">0</span>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="about-us.html" aria-disabled="true"
+                    >ABOUT US</a
+                  >
+                </li>
+                <li class="nav-item">
+                  <a
+                    class="nav-link"
+                    href="Contact-us.html"
+                    aria-disabled="true"
+                    >CONTACT US</a
+                  >
+                </li>
+              </ul>
+            </div>
+          </nav>
+
+          <!-- menu for mobiles -->
+          <div class="d-flex d-md-none py-2 px-2">
+            <a href="index.html">
+              <img class="img-fluid" src="img/logo.png" style="width: 196px" />
+            </a>
+            <span
+              class="ml-auto align-self-center custom-cursor"
+              id="mainBurgerMenuToggle"
+            >
+              <svg
+                fill="#000000"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 30 30"
+                width="50px"
+                height="50px"
+              >
+                <path
+                  d="M 3 7 A 1.0001 1.0001 0 1 0 3 9 L 27 9 A 1.0001 1.0001 0 1 0 27 7 L 3 7 z M 3 14 A 1.0001 1.0001 0 1 0 3 16 L 27 16 A 1.0001 1.0001 0 1 0 27 14 L 3 14 z M 3 21 A 1.0001 1.0001 0 1 0 3 23 L 27 23 A 1.0001 1.0001 0 1 0 27 21 L 3 21 z"
+                />
+              </svg>
+            </span>
+          </div>
+
+          <!-- hidden search bar -->
+          <div class="search-container d-none justify-content-center">
+            <form class="form-inline">
+              <input
+                class="form-control mr-sm-2"
+                type="search"
+                placeholder="Search"
+                aria-label="Search"
+              />
+              <button class="btn btn-outline-info my-2 my-sm-0" type="submit">
+                Search
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+
+      <!-- collection bar -->
+      <div
+        class="fluid-container black-bg text-white d-flex justify-content-center"
+      >
+        <ul class="list-unstyled mb-0 p-3 text-center">
+          <li class="list-inline-item px-2" style="font-size: 30px">Cart</li>
+          <li class="d-flex">
+            <a
+              class="d-flex align-items-center justify-content-center text-white"
+              href="index.html"
+              ><img
+                width="15"
+                height="15"
+                src="https://image.flaticon.com/icons/svg/846/846551.svg"
+                class="invert-color-toWhite mr-2"
+              />
+              <span class="mx-1">Home</span></a
+            >
+
+            <span class="mx-1">/</span>
+            <span class="mx-1">Cart</span>
+          </li>
+        </ul>
+      </div>
+
+      <!-- main section -->
+      <div class="container py-3 py-lg-5" id="fullCart">
+        <div class="table-responsive">
+          <table class="table text-center">
+            <thead>
+              <tr class="d-none d-lg-table-row">
+                <th scope="col" class="border-top-0" style="width: 20px"></th>
+                <th scope="col" class="border-top-0" style="width: 100px"></th>
+                <th scope="col" class="border-top-0 text-left">PRODUCT</th>
+                <th scope="col" class="border-top-0">PRICE</th>
+                <th scope="col" class="border-top-0">QUANTITY</th>
+                <th scope="col" class="border-top-0">TOTAL</th>
+              </tr>
+            </thead>
+
+            <tbody id="CartPageInsertTemplateHere">
+              <!-- main section -->
+              <!-- insert Code Here -->
+              <!-- insert Code Here -->
+              <!-- insert Code Here -->
+              <!-- insert Code Here -->
+              <!-- insert Code Here -->
+              <!-- insert Code Here -->
+            </tbody>
+          </table>
+        </div>
+
+        <div class="row my-4">
+          <div class="col-12 col-lg-4 mt-3 mt-lg-0">
+            <button class="btn btn-dark rounded-0 px-4 w-100" id="clearCart">
+              Clear Shipping Cart
+            </button>
+          </div>
+        </div>
+
+        <div class="container my-3 my-lg-5 py-2 py-lg-5">
+          <div class="row">
+            <div
+              class="col-12 col-lg-6 d-flex flex-column align-items-center px-3 py-3 bg-light"
+            >
+              <h3 class="text-center mb-4">SPECIAL INSTRUCTIONS FOR SELLER</h3>
+              <textarea
+                class="p-3"
+                name="MessageForSeller"
+                id="specialInstruction"
+                rows="7"
+                style="width: 100%"
+              ></textarea>
+            </div>
+            <div class="col-12 col-lg-6 px-lg-5 mt-3 mt-lg-0 py-3 bg-light">
+              <h3 class="text-center">CART TOTALS</h3>
+              <div class="responsive-table my-4">
+                <table class="table bg-white">
+                  <tr class="border-1">
+                    <th>Subtotal:</th>
+                    <td class="text-right" id="subtotal"></td>
+                  </tr>
+                  <tr class="border-1 d-none" id="discount">
+                    <th>Discount:</th>
+                    <td class="text-right" id="discountAmount"></td>
+                  </tr>
+                  <tr class="border-1" style="font-size: 22px">
+                    <th>TOTAL</th>
+                    <td class="text-right" id="total"></td>
+                  </tr>
+                </table>
+              </div>
+
+              <div class="progress my-3" style="height: 20px">
+                <div
+                  class="progress-bar progress-bar-striped progress-bar-animated bg-danger text-center"
+                  role="progressbar"
+                  style="width: 50%"
+                >
+                  50%
+                </div>
+              </div>
+              <p class="small">
+                <span
+                  class="shipping_display h6 bg-danger text-left w-100 py-1 text-white pl-2 rounded free_shipping"
+                  style="display: none"
+                  >CONGRATULATIONS! YOU'VE GOT FREE SHIPPING!</span
+                >
+                <span class="remaining_free_shipping">
+                  Spend
+                  <span class="font-weight-bold amount_to_spend"></span>
+                  more to reach
+                  <span class="font-weight-bold">FREE SHIPPING!</span> Continue
+                  shopping to add more products to your cart and receive free
+                  shipping for orders over <u>1000$</u>
+                </span>
+              </p>
+
+              <table class="table mb-0 mt-4">
+                <tr>
+                  <th class="align-middle pb-0">
+                    <label for="Coupon" class="mb-0 font-weight-bold"
+                      >Coupon :</label
+                    >
+                  </th>
+                  <td class="pb-0">
+                    <input
+                      type="text"
+                      name="coupon"
+                      id="coupon"
+                      placeholder="Coupon code ex: SALE10"
+                      class="form-control"
+                    />
+                  </td>
+                </tr>
+              </table>
+              <div class="d-flex align-items-center pr-2" id="couponWaring">
+                <span class="small ml-auto pr-1" id="couponWaringText"
+                  ><span class="text-danger font-weight-bold">*</span>type your
+                  code and press Enter</span
+                >
+              </div>
+              <div class="d-flex align-items-center pl-2 mt-2">
+                <input
+                  type="checkbox"
+                  name=""
+                  id="agreeWithCondition"
+                  class="mr-2 custom-cursor"
+                />
+                <label
+                  for="agreeWithCondition"
+                  class="small conditionText m-0 custom-cursor"
+                  ><span class="text-danger font-weight-bold">*</span> I agree
+                  with the terms and conditions.</label
+                >
+              </div>
+              <button
+                class="btn btn-lg btn-info w-100 my-4 rounded-0"
+                id="proceedToCheckout"
+              >
+                PROCEED TO CHECKOUT
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- empty cart section -->
+      <div
+        class="container py-3 py-lg-5 d-none justify-content-center align-items-center flex-column"
+        id="emptyCart"
+      >
+        <div>
+          <img
+            class="img-fluid w-100"
+            src="https://image.flaticon.com/icons/svg/102/102661.svg"
+            alt=""
+            style="opacity: 50%"
+          />
+        </div>
+        <div><h3 class="my-4">YOUR CART IS CURRENTLY EMPTY.</h3></div>
+
+        <div class="col-12 col-lg-6 text-center">
+          <p class="my-4text-center text-muted">
+            Before proceed to checkout you must add some products to your
+            shopping cart. You will find a lot of interesting products on our
+            "Shop" page.
+          </p>
+        </div>
+        <div class="mt-2">
+          <a class="btn btn-info rounded-0" href="index.html">RETURN TO SHOP</a>
+        </div>
+      </div>
+      <!-- footer -->
+      <footer class="fluid-container black-bg pt-5 pb-3">
+        <div class="d-flex justify-content-center">
+          <span class="px-2"><i class="fa fa-facebook text-white"></i></span
+          ><span class="px-2"><i class="fa fa-twitter text-white"></i></span
+          ><span class="px-2"><i class="fa fa-envelope text-white"></i></span>
+        </div>
+        <div class="fluid-container px-5">
+          <div class="row py-5 text-white">
+            <div class="col-xs-12 col-sm-6 col-md-3 col-lg-2 my-2">
+              <h5 class="mb-4">
+                <span class="border-bottom">OUR</span> STORES
+              </h5>
+              <ul class="list-unstyled">
+                <li>Ha Noi</li>
+                <li>New York</li>
+                <li>London SF</li>
+                <li>Los Angeles</li>
+                <li>Chicago</li>
+                <li>Las Vegas</li>
+              </ul>
+            </div>
+            <div class="col-xs-12 col-sm-6 col-md-3 col-lg-2 my-2">
+              <h5 class="mb-4">
+                <span class="border-bottom">INF</span>ORMATION
+              </h5>
+              <ul class="list-unstyled">
+                <li>About Store</li>
+                <li>New Collection</li>
+                <li>Woman Dress</li>
+                <li>Contact Us</li>
+                <li>Latest News</li>
+                <li>Our Sitemap</li>
+              </ul>
+            </div>
+            <div class="col-xs-12 col-sm-6 col-md-3 col-lg-2 my-2">
+              <h5 class="mb-4">
+                <span class="border-bottom">USE</span>FUL LINKS
+              </h5>
+              <ul class="list-unstyled">
+                <li>Privacy Policy</li>
+                <li>Returns</li>
+                <li>Terms & Conditions</li>
+                <li>Contact Us</li>
+                <li>Latest News</li>
+                <li>Our Sitemap</li>
+              </ul>
+            </div>
+            <div class="col-xs-12 col-sm-6 col-md-3 col-lg-2 my-2">
+              <h5 class="mb-4">
+                <span class="border-bottom">FOO</span>TER MENU
+              </h5>
+              <ul class="list-unstyled">
+                <li>Instagram profile</li>
+                <li>New Collection</li>
+                <li>Woman Dress</li>
+                <li>Contact Us</li>
+                <li>Latest News</li>
+                <li>Purchase Theme</li>
+              </ul>
+            </div>
+            <div class="col-xs-12 col-md-4 col-lg-4 my-2 d-flex flex-column">
+              <h5 class="mb-4">
+                <span class="border-bottom">ABO</span>UT THE STORE
+              </h5>
+              <p>
+                STORE - worldwide fashion store since 1978. We sell over 1000+
+                branded products on our web-site.
+              </p>
+              <span class="mb-2"
+                ><i class="fa fa-location-arrow mr-2"></i> 451 Wall Street, USA,
+                New York</span
+              >
+              <span
+                ><i class="fa fa-mobile mr-2"></i> Phone: (064) 332-1233</span
+              >
+            </div>
+          </div>
+          <div
+            class="border-top text-white d-flex justify-content-center align-items-center"
+          >
+            <span class="pt-3">2020 Created by Zack-Mks</span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    <!--JavaScript -->
+    <script src="../dist/bundle.js"></script>
+
+    <!-- fontAwesome Js File-->
+    <script
+      src="https://kit.fontawesome.com/aab7f370d2.js"
+      crossorigin="anonymous"
+      SameSite="none"
+    ></script>
+
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script
+      src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+      integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+      integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+      integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>

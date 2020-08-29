@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>zShop - Online Store</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+
+    <!-- Bootstrap CSS -->
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+    <!-- GoogleFont -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Karla&family=Lora:ital@1&family=Lato:ital@1&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="./style.css" />
+    <link rel="shortcut icon" type="image/x-icon" href="/img/favicon.png" />
+  </head>
+
+  <body>
+    <div
+      class="position-fixed hiddenBurgerMenuBackgroundFilterStyle"
+      id="hiddenBurgerMenuBackgroundFilter"
+    ></div>
+
+    <div
+      class="d-flex flex-column position-fixed burgerMenuStyle"
+      id="hiddenBurgerMenu"
+      style="background-color: #00140a"
+    >
+      <img
+        width="20"
+        height="20"
+        src="https://image.flaticon.com/icons/svg/748/748122.svg"
+        class="img-fluid m-4 ml-auto custom-cursor invert-color-toWhite"
+        style="top: 0; right: 0"
+        id="hiddenBurgerMenuCloseBtn"
+      />
+      <div class="d-flex align-items-center justify-content-center h-100 w-100">
+        <ul class="navbar-nav text-center overflow-hidden w-100">
+          <li class="nav-item burgerMenuListItemStyle">
+            <a
+              class="nav-link text-white"
+              href="index.html"
+              style="font-size: 1.8rem"
+              >HOME
+            </a>
+          </li>
+          <li class="nav-item burgerMenuListItemStyle">
+            <a
+              class="nav-link categoriesSelectedItem"
+              href="collections.html"
+              style="font-size: 1.8rem"
+            >
+              SHOPE
+            </a>
+          </li>
+          <li
+            class="nav-item burgerMenuListItemStyle d-flex justify-content-center"
+          >
+            <a
+              class="nav-link position-relative text-white"
+              href="cart.html"
+              aria-disabled="true"
+              style="font-size: 1.8rem; width: fit-content"
+              >CART<span class="cart-badge-navbar cart-badge-navbar-For-Mobile"
+                >0</span
+              >
+            </a>
+          </li>
+          <li class="nav-item burgerMenuListItemStyle">
+            <a
+              class="nav-link text-white"
+              href="about-us.html"
+              aria-disabled="true"
+              style="font-size: 1.8rem"
+              >ABOUT US</a
+            >
+          </li>
+          <li class="nav-item burgerMenuListItemStyle">
+            <a
+              href="Contact-us.html"
+              class="nav-link text-white"
+              style="font-size: 1.8rem"
+              >CONTACT US</a
+            >
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="">
+      <!-- Main nav -->
+      <div class="fluid-container px-0 px-lg-5">
+        <div class="fluid-container p-0">
+          <nav class="d-none d-md-flex navbar navbar-expand navbar-light">
+            <div class="navbar-brand">
+              <a href="index.html">
+                <img class="img-fluid" src="img/logo.png" style="width: 196px"
+              /></a>
+            </div>
+            <button
+              class="navbar-toggler"
+              type="button"
+              data-toggle="collapse"
+              data-target="#MainNavbar"
+              aria-controls="MainNavbar"
+              aria-expanded="false"
+              aria-label="Toggle navigation"
+            >
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="MainNavbar">
+              <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                  <a class="nav-link" href="index.html">HOME </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link active" href="collections.html"> SHOPE </a>
+                </li>
+                <li class="nav-item">
+                  <a
+                    class="nav-link position-relative"
+                    href="cart.html"
+                    aria-disabled="true"
+                    >CART<span class="cart-badge-navbar">0</span>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="about-us.html" aria-disabled="true"
+                    >ABOUT US</a
+                  >
+                </li>
+                <li class="nav-item">
+                  <a
+                    class="nav-link"
+                    href="Contact-us.html"
+                    aria-disabled="true"
+                    >CONTACT US</a
+                  >
+                </li>
+              </ul>
+            </div>
+          </nav>
+
+          <!-- menu for mobiles -->
+          <div class="d-flex d-md-none py-2 px-2">
+            <a href="index.html">
+              <img class="img-fluid" src="img/logo.png" style="width: 196px" />
+            </a>
+            <span
+              class="ml-auto align-self-center custom-cursor"
+              id="mainBurgerMenuToggle"
+            >
+              <svg
+                fill="#000000"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 30 30"
+                width="50px"
+                height="50px"
+              >
+                <path
+                  d="M 3 7 A 1.0001 1.0001 0 1 0 3 9 L 27 9 A 1.0001 1.0001 0 1 0 27 7 L 3 7 z M 3 14 A 1.0001 1.0001 0 1 0 3 16 L 27 16 A 1.0001 1.0001 0 1 0 27 14 L 3 14 z M 3 21 A 1.0001 1.0001 0 1 0 3 23 L 27 23 A 1.0001 1.0001 0 1 0 27 21 L 3 21 z"
+                />
+              </svg>
+            </span>
+          </div>
+
+          <!-- hidden search bar -->
+          <div class="search-container d-none justify-content-center">
+            <form class="form-inline">
+              <input
+                class="form-control mr-sm-2"
+                type="search"
+                placeholder="Search"
+                aria-label="Search"
+              />
+              <button class="btn btn-outline-info my-2 my-sm-0" type="submit">
+                Search
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+
+      <!-- collection bar -->
+      <div
+        class="fluid-container black-bg text-white d-lg-flex justify-content-center"
+      >
+        <div class="d-flex flex-column align-items-center d-lg-none w-100">
+          <a
+            class="font-weight-bold py-2"
+            data-toggle="collapse"
+            href="#collapseCategories"
+            role="button"
+            aria-expanded="false"
+            aria-controls="collapseCategories"
+            style="color: white; text-decoration: none"
+          >
+            CATEGORIES
+            <i class="fa fa-chevron-down text-white ml-3"></i>
+          </a>
+
+          <div
+            class="collapse bg-dark"
+            id="collapseCategories"
+            style="min-width: 85%"
+          >
+            <div
+              class="card card-body pt-0 bg-dark text-center border-0 m-auto categoriesList"
+              style="width: fit-content"
+            >
+              <li
+                class="list-inline-item py-2 custom-cursor text-uppercase categorySelector"
+                id="all"
+                data-toggle="collapse"
+                href="#collapseCategories"
+              >
+                all
+              </li>
+              <li
+                class="list-inline-item py-2 custom-cursor text-uppercase categorySelector"
+                id="footwear"
+                data-toggle="collapse"
+                href="#collapseCategories"
+              >
+                footwear
+              </li>
+              <li
+                class="list-inline-item py-2 custom-cursor text-uppercase categorySelector"
+                id="menClothing"
+                data-toggle="collapse"
+                href="#collapseCategories"
+              >
+                men's Clothing
+              </li>
+              <li
+                class="list-inline-item py-2 custom-cursor text-uppercase categorySelector"
+                id="womenClothing"
+                data-toggle="collapse"
+                href="#collapseCategories"
+              >
+                Women's Clothing
+              </li>
+              <li
+                class="list-inline-item py-2 custom-cursor text-uppercase categorySelector"
+                id="watches"
+                data-toggle="collapse"
+                href="#collapseCategories"
+              >
+                watches
+              </li>
+              <li
+                class="list-inline-item py-2 custom-cursor text-uppercase categorySelector"
+                id="bags"
+                data-toggle="collapse"
+                href="#collapseCategories"
+              >
+                bags
+              </li>
+              <li
+                class="list-inline-item py-2 custom-cursor text-uppercase categorySelector"
+                id="accessories"
+                data-toggle="collapse"
+                href="#collapseCategories"
+              >
+                accessories
+              </li>
+            </div>
+          </div>
+        </div>
+
+        <ul
+          class="list-unstyled list-inline mb-0 p-4 d-none d-lg-block categoriesList"
+        >
+          <li
+            class="list-inline-item px-2 custom-cursor text-uppercase categorySelector"
+            id="all"
+          >
+            All
+          </li>
+          <li
+            class="list-inline-item px-2 custom-cursor text-uppercase categorySelector"
+            id="footwear"
+          >
+            Footwear
+          </li>
+          <li
+            class="list-inline-item px-2 custom-cursor text-uppercase categorySelector"
+            id="menClothing"
+          >
+            men's Clothing
+          </li>
+          <li
+            class="list-inline-item px-2 custom-cursor text-uppercase categorySelector"
+            id="womenClothing"
+          >
+            Women's Clothing
+          </li>
+          <li
+            class="list-inline-item px-2 custom-cursor text-uppercase categorySelector"
+            id="watches"
+          >
+            watches
+          </li>
+          <li
+            class="list-inline-item px-2 custom-cursor text-uppercase categorySelector"
+            id="bags"
+          >
+            bags
+          </li>
+          <li
+            class="list-inline-item px-2 custom-cursor text-uppercase categorySelector"
+            id="accessories"
+          >
+            Accessories
+          </li>
+        </ul>
+      </div>
+
+      <!-- main section -->
+      <div class="container px-2 px-md-auto">
+        <div class="row w-100 my-5 mx-0" id="collectionProductSection">
+          <!-- Generated code Goes Here -->
+        </div>
+      </div>
+
+      <!-- cards block modals-->
+      <div class="modal fade" id="mainModal" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+            <div class="modal-body">
+              <button
+                type="button"
+                class="close"
+                id="modalCloseBtn"
+                data-dismiss="modal"
+                aria-label="Close"
+                style="z-index: 100; position: relative; outline: none"
+              >
+                <span
+                  style="position: absolute; top: -15px; left: -3px"
+                  aria-hidden="true"
+                  >&times;</span
+                >
+              </button>
+              <div class="fluid-container" id="mainModalBody">
+                <!-- html generated code goes here -->
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  xmlns:xlink="http://www.w3.org/1999/xlink"
+                  style="
+                    margin: auto;
+                    background: none;
+                    display: block;
+                    shape-rendering: auto;
+                  "
+                  width="24px"
+                  height="24px"
+                  viewBox="0 0 100 100"
+                  preserveAspectRatio="xMidYMid"
+                >
+                  <circle
+                    cx="50"
+                    cy="50"
+                    fill="none"
+                    stroke="#000000"
+                    stroke-width="5"
+                    r="46"
+                    stroke-dasharray="216.76989309769573 74.25663103256524"
+                    transform="rotate(353.677 50.0001 50.0001)"
+                  >
+                    <animateTransform
+                      attributeName="transform"
+                      type="rotate"
+                      repeatCount="indefinite"
+                      dur="0.5s"
+                      values="0 50 50;360 50 50"
+                      keyTimes="0;1"
+                    ></animateTransform>
+                  </circle>
+                </svg>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- footer -->
+      <footer class="fluid-container black-bg pt-5 pb-3">
+        <div class="d-flex justify-content-center">
+          <span class="px-2"><i class="fa fa-facebook text-white"></i></span
+          ><span class="px-2"><i class="fa fa-twitter text-white"></i></span
+          ><span class="px-2"><i class="fa fa-envelope text-white"></i></span>
+        </div>
+        <div class="fluid-container px-5">
+          <div class="row py-5 text-white">
+            <div class="col-xs-12 col-sm-6 col-md-3 col-lg-2 my-2">
+              <h5 class="mb-4">
+                <span class="border-bottom">OUR</span> STORES
+              </h5>
+              <ul class="list-unstyled">
+                <li>Ha Noi</li>
+                <li>New York</li>
+                <li>London SF</li>
+                <li>Los Angeles</li>
+                <li>Chicago</li>
+                <li>Las Vegas</li>
+              </ul>
+            </div>
+            <div class="col-xs-12 col-sm-6 col-md-3 col-lg-2 my-2">
+              <h5 class="mb-4">
+                <span class="border-bottom">INF</span>ORMATION
+              </h5>
+              <ul class="list-unstyled">
+                <li>About Store</li>
+                <li>New Collection</li>
+                <li>Woman Dress</li>
+                <li>Contact Us</li>
+                <li>Latest News</li>
+                <li>Our Sitemap</li>
+              </ul>
+            </div>
+            <div class="col-xs-12 col-sm-6 col-md-3 col-lg-2 my-2">
+              <h5 class="mb-4">
+                <span class="border-bottom">USE</span>FUL LINKS
+              </h5>
+              <ul class="list-unstyled">
+                <li>Privacy Policy</li>
+                <li>Returns</li>
+                <li>Terms & Conditions</li>
+                <li>Contact Us</li>
+                <li>Latest News</li>
+                <li>Our Sitemap</li>
+              </ul>
+            </div>
+            <div class="col-xs-12 col-sm-6 col-md-3 col-lg-2 my-2">
+              <h5 class="mb-4">
+                <span class="border-bottom">FOO</span>TER MENU
+              </h5>
+              <ul class="list-unstyled">
+                <li>Instagram profile</li>
+                <li>New Collection</li>
+                <li>Woman Dress</li>
+                <li>Contact Us</li>
+                <li>Latest News</li>
+                <li>Purchase Theme</li>
+              </ul>
+            </div>
+            <div class="col-xs-12 col-md-4 col-lg-4 my-2 d-flex flex-column">
+              <h5 class="mb-4">
+                <span class="border-bottom">ABO</span>UT THE STORE
+              </h5>
+              <p>
+                STORE - worldwide fashion store since 1978. We sell over 1000+
+                branded products on our web-site.
+              </p>
+              <span class="mb-2"
+                ><i class="fa fa-location-arrow mr-2"></i> 451 Wall Street, USA,
+                New York</span
+              >
+              <span
+                ><i class="fa fa-mobile mr-2"></i> Phone: (064) 332-1233</span
+              >
+            </div>
+          </div>
+          <div
+            class="border-top text-white d-flex justify-content-center align-items-center"
+          >
+            <span class="pt-3">2020 Created by Zack-Mks</span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    <!--JavaScript -->
+    <script src="../dist/bundle.js"></script>
+
+    <!-- fontAwesome Js File-->
+    <script
+      src="https://kit.fontawesome.com/aab7f370d2.js"
+      crossorigin="anonymous"
+      SameSite="none"
+    ></script>
+
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script
+      src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+      integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+      integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+      integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+      crossorigin="anonymous"
+    ></script>
+    <!-- activate bootstrap tooltip -->
+    <script>
+      $(function () {
+        $('[data-toggle="tooltip"]').tooltip();
+      });
+    </script>
+  </body>
+</html>

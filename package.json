@@ -1,0 +1,28 @@
+{
+  "name": "myonlinestore",
+  "version": "1.0.0",
+  "description": "online store web app",
+  "main": "index.js",
+  "scripts": {
+    "devBuild": "webpack --mode development",
+    "productionBuild": "webpack --mode production",
+    "startServer": "webpack-dev-server --mode development"
+  },
+  "author": "Zakarya Abid",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/core": "^7.10.2",
+    "@babel/preset-env": "^7.10.2",
+    "babel-loader": "^8.1.0",
+    "file-loader": "^6.0.0",
+    "webpack": "^4.43.0",
+    "webpack-cli": "^3.3.11",
+    "webpack-dev-server": "^3.11.0"
+  },
+  "dependencies": {
+    "countries-list": "^2.5.4",
+    "firebase": "^7.16.1",
+    "payment": "^2.4.0",
+    "sweetalert": "^2.1.2"
+  }
+}
