@@ -50,7 +50,7 @@ export function creatProductsCatalog(...args) {
           <div class="col-6 col-md-4 col-lg-3 mb-4 px-1">
         <div class="card border-0" id="product-${currentProduct.id}">
           <div class="overlay d-flex align-self-end">
-            <div class="d-flex flex-column p-2">
+            <div class="d-flex flex-column p-2">              
               <a data-toggle="modal" data-target="#mainModal">
               <img
                 width="25"
@@ -147,7 +147,6 @@ export function creatFeaturedProducts(...args) {
         >
           <div class="overlay align-self-end">
             <div class="d-flex flex-column p-2">
-              
               <a data-toggle="modal" data-target="#mainModal">
                 <img
                   width="25"
